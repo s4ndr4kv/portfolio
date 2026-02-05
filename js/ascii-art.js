@@ -3,16 +3,16 @@
 
 const asciiPieces = [
     {
-        art: `  ♥♥   ♥♥\n ♥  ♥ ♥  ♥\n ♥   ♥   ♥\n  ♥     ♥\n   ♥   ♥\n    ♥ ♥\n     ♥`,
-        color: '#ff8ec4'  // pink
+        art: `  愛\n  愛\n  愛`,
+        color: '#ff8ec4'  // pink — amor
     },
     {
         art: ` /\\_/\\\n( o.o )\n > ^ <`,
         color: '#c4a7e7'  // lavender
     },
     {
-        art: `    *\n   ***\n  *****\n   ***\n    *`,
-        color: '#7dcfff'  // cyan
+        art: `  暴力\n  暴力\n  暴力`,
+        color: '#7dcfff'  // cyan — violencia
     },
     {
         art: `╔═══════╗\n║ 夢想家 ║\n║ ♡♡♡  ║\n╚═══════╝`,
@@ -61,13 +61,13 @@ class FloatingAscii {
             fontSize: '18px',
             lineHeight: '1.3',
             whiteSpace: 'pre',
-            color: piece.color,
+            color: '#ffffff',
             opacity: '0',           // start invisible, fade in
             margin: '0',
             padding: '0',
             userSelect: 'none',
             transition: 'none',
-            textShadow: `0 0 8px ${piece.color}, 0 0 16px ${piece.color}40`
+            textShadow: '0 0 8px rgba(255,255,255,0.6), 0 0 16px rgba(255,255,255,0.3)'
         });
 
         // Spread pieces across the desktop — keep well inside bounds
@@ -98,7 +98,7 @@ class FloatingAscii {
         // Subtle rotation wobble
         this.rotation = (Math.random() - 0.5) * 6;         // initial rotation (-3 to 3 deg)
         this.rotationSpeed = (Math.random() - 0.5) * 0.005; // very slow wobble
-        this.baseOpacity = 0.35 + Math.random() * 0.20;     // 0.35 - 0.55
+        this.baseOpacity = 0.55 + Math.random() * 0.20;     // 0.55 - 0.75
 
         // Slow opacity pulse for a breathing effect
         this.opacityPhase = Math.random() * Math.PI * 2;
@@ -133,7 +133,7 @@ class FloatingAscii {
         // Subtle opacity breathing
         this.opacityPhase += this.opacitySpeed;
         const opacityWobble = Math.sin(this.opacityPhase) * 0.08;
-        const targetOpacity = Math.max(0.20, this.baseOpacity + opacityWobble) * fadeMultiplier;
+        const targetOpacity = Math.max(0.40, this.baseOpacity + opacityWobble) * fadeMultiplier;
         this.el.style.opacity = String(targetOpacity);
 
         // Get approximate element dimensions

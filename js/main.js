@@ -909,45 +909,8 @@ function initCRTFlicker() {
     }
 
     function doFlicker() {
-        // Pick a random flicker type
-        const type = Math.random();
-
-        if (type < 0.4) {
-            // Quick brightness dip — like a power fluctuation
-            flickerBrightness(0.85 + Math.random() * 0.05, 60 + Math.random() * 80);
-        } else if (type < 0.7) {
-            // Double flash — quick dip-bright-dip
-            const dur = 50 + Math.random() * 40;
-            flickerBrightness(0.82, dur);
-            setTimeout(() => flickerBrightness(1.08, dur * 0.6), dur + 30);
-            setTimeout(() => flickerBrightness(0.90, dur * 0.5), dur * 2 + 50);
-        } else if (type < 0.85) {
-            // Horizontal roll — a bright band sweeps vertically
-            doHorizontalRoll();
-        } else {
-            // Brief white flash (like a static burst)
-            flicker.style.background = 'rgba(255,255,255,0.06)';
-            flicker.style.opacity = '1';
-            setTimeout(() => { flicker.style.opacity = '0'; }, 40 + Math.random() * 30);
-        }
-    }
-
-    function flickerBrightness(targetBrightness, duration) {
-        // Use the overlay with a semi-transparent color
-        if (targetBrightness < 1) {
-            // Dim: overlay with black
-            const alpha = (1 - targetBrightness) * 0.8;
-            flicker.style.background = `rgba(0,0,0,${alpha})`;
-        } else {
-            // Bright: overlay with white
-            const alpha = (targetBrightness - 1) * 0.5;
-            flicker.style.background = `rgba(255,255,255,${alpha})`;
-        }
-        flicker.style.opacity = '1';
-        flicker.style.mixBlendMode = 'normal';
-        setTimeout(() => {
-            flicker.style.opacity = '0';
-        }, duration);
+        // Only horizontal roll — band that sweeps down the screen
+        doHorizontalRoll();
     }
 
     function doHorizontalRoll() {

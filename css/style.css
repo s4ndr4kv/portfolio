@@ -69,7 +69,7 @@ body {
     color: var(--text-color);
 }
 
-/* ===== CUSTOM POINTER — W98 pointing hand in pink ===== */
+/* ===== CUSTOM POINTER — Pink heart cursor ===== */
 .icon, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next,
 .start-button, .taskbar-item, .start-menu-item, .window-button,
 .menu-item, .paint-tool, .paint-color, .paint-send-btn,
@@ -78,7 +78,7 @@ body {
 .winamp-seek-slider, .bios-skip, .kutv-channel-btn,
 .start-menu-main, .start-icon,
 a, button, [role="button"] {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='34' viewBox='0 0 18 22'%3E%3Cpath d='M7 0C7 0 7 7 7 7L4 7C3 7 1 8 1 10L1 15C1 18 3 20 6 20L12 20C15 20 17 18 17 15L17 10C17 8 16 7 14 7L11 7C11 3 11 3 11 3C11 1 10 0 9 0C8 0 7 0 7 0Z' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M7.5 7L7.5 1.5' stroke='%23e0509a' stroke-width='0.5'/%3E%3Cpath d='M10.5 7L10.5 3.5' stroke='%23e0509a' stroke-width='0.5'/%3E%3Cpath d='M4 10L14 10' stroke='%23e0509a' stroke-width='0.4' opacity='0.5'/%3E%3C/svg%3E") 9 0, pointer !important;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='28' viewBox='0 0 20 18'%3E%3Cpath d='M10 17C10 17 1 10 1 5C1 2 3 0 6 0C8 0 10 2 10 2C10 2 12 0 14 0C17 0 19 2 19 5C19 10 10 17 10 17Z' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") 15 14, pointer !important;
 }
 
 /* ===== SPLASH SCREEN — BIOS BOOT ===== */
