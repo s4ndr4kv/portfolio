@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandra — Portfolio</title>
+    <meta name="description" content="Portfolio de Sandra — Ilustradora y diseñadora. Ilustración editorial, personajes, contenido social y más.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ============ SPLASH SCREEN — BIOS BOOT ============ -->
+    <div id="splash-screen">
+        <div class="bios-content">
+            <div class="bios-lines" id="bios-lines">
+                <!-- Lines get added by JS one by one -->
+            </div>
+            <div class="bios-progress-section hidden" id="bios-progress-section">
+                <div class="splash-progress-border">
+                    <div class="splash-progress-bar" id="splash-progress"></div>
+                </div>
+            </div>
+            <div class="bios-skip">PRESS ANY KEY TO SKIP... ♡</div>
+        </div>
+    </div>
+
+    <!-- ============ DESKTOP ============ -->
+    <div id="desktop">
+
+        <!-- KAWAII BUNNY ♡ — pixel-perfect copy of reference, side view facing RIGHT -->
+        <div class="bunny-container" id="bunny-container">
+            <!-- 1px = 1 unit in SVG. Scaled up via CSS. Facing right → -->
+            <svg class="bunny-sprite" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17" shape-rendering="crispEdges">
+                <!-- Row 0: ear tips -->
+                <rect x="8" y="0" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="10" y="0" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 1: ears -->
+                <rect x="7" y="1" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="8" y="1" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="1" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="10" y="1" width="1" height="1" fill="#fff"/>
+                <rect x="11" y="1" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 2: ears -->
+                <rect x="7" y="2" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="8" y="2" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="2" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="10" y="2" width="1" height="1" fill="#fff"/>
+                <rect x="11" y="2" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 3: ears + pink inner -->
+                <rect x="7" y="3" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="8" y="3" width="1" height="1" fill="#fcc"/>
+                <rect x="9" y="3" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="10" y="3" width="1" height="1" fill="#fcc"/>
+                <rect x="11" y="3" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 4: ears meet head -->
+                <rect x="6" y="4" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="7" y="4" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="4" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="4" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="4" width="1" height="1" fill="#fff"/>
+                <rect x="11" y="4" width="1" height="1" fill="#fff"/>
+                <rect x="12" y="4" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 5: head wider -->
+                <rect x="5" y="5" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="6" y="5" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="5" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="5" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="5" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="5" width="1" height="1" fill="#fff"/>
+                <rect x="11" y="5" width="1" height="1" fill="#fff"/>
+                <rect x="12" y="5" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 6: head with eye top -->
+                <rect x="5" y="6" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="6" y="6" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="6" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="6" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="6" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="6" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="11" y="6" width="1" height="1" fill="#fff"/>
+                <rect x="12" y="6" width="1" height="1" fill="#fff"/>
+                <rect x="13" y="6" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 7: head with eye bottom + snout -->
+                <rect x="5" y="7" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="6" y="7" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="7" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="7" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="7" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="7" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="11" y="7" width="1" height="1" fill="#fff"/>
+                <rect x="12" y="7" width="1" height="1" fill="#fff"/>
+                <rect x="13" y="7" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 8: lower head / chin -->
+                <rect x="4" y="8" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="5" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="6" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="11" y="8" width="1" height="1" fill="#fff"/>
+                <rect x="12" y="8" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 9: tail top + body top -->
+                <rect x="1" y="9" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="2" y="9" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="3" y="9" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="4" y="9" width="1" height="1" fill="#fff"/>
+                <rect x="5" y="9" width="1" height="1" fill="#fff"/>
+                <rect x="6" y="9" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="9" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="9" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="9" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="9" width="1" height="1" fill="#fff"/>
+                <rect x="11" y="9" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 10: tail round pompom + body -->
+                <rect x="0" y="10" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="1" y="10" width="1" height="1" fill="#fff"/>
+                <rect x="2" y="10" width="1" height="1" fill="#fff"/>
+                <rect x="3" y="10" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="4" y="10" width="1" height="1" fill="#d8f0f8"/>
+                <rect x="5" y="10" width="1" height="1" fill="#fff"/>
+                <rect x="6" y="10" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="10" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="10" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="10" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="10" width="1" height="1" fill="#fff"/>
+                <rect x="11" y="10" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 11: tail bottom + body + shadow -->
+                <rect x="0" y="11" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="1" y="11" width="1" height="1" fill="#fff"/>
+                <rect x="2" y="11" width="1" height="1" fill="#fff"/>
+                <rect x="3" y="11" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="4" y="11" width="1" height="1" fill="#d8f0f8"/>
+                <rect x="5" y="11" width="1" height="1" fill="#d8f0f8"/>
+                <rect x="6" y="11" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="11" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="11" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="11" width="1" height="1" fill="#fff"/>
+                <rect x="10" y="11" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 12: lower body + leg separation -->
+                <rect x="1" y="12" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="2" y="12" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="3" y="12" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="4" y="12" width="1" height="1" fill="#d8f0f8"/>
+                <rect x="5" y="12" width="1" height="1" fill="#fff"/>
+                <rect x="6" y="12" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="12" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="12" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="12" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 13: back leg + belly + front leg -->
+                <rect x="3" y="13" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="4" y="13" width="1" height="1" fill="#fff"/>
+                <rect x="5" y="13" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="6" y="13" width="1" height="1" fill="#fff"/>
+                <rect x="7" y="13" width="1" height="1" fill="#fff"/>
+                <rect x="8" y="13" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 14: back foot + front foot -->
+                <rect x="2" y="14" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="3" y="14" width="1" height="1" fill="#fff"/>
+                <rect x="4" y="14" width="1" height="1" fill="#fff"/>
+                <rect x="5" y="14" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="7" y="14" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="8" y="14" width="1" height="1" fill="#fff"/>
+                <rect x="9" y="14" width="1" height="1" fill="#1a1a2e"/>
+                <!-- Row 15: feet bases -->
+                <rect x="2" y="15" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="3" y="15" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="4" y="15" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="7" y="15" width="1" height="1" fill="#1a1a2e"/>
+                <rect x="8" y="15" width="1" height="1" fill="#1a1a2e"/>
+            </svg>
+        </div>
+
+        <!-- DESKTOP ICONS -->
+        <div class="desktop-icons">
+            <!-- Gallery Icons -->
+            <div class="icon" data-window="editorial">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="8" y="8" width="32" height="3" fill="#2a1a2e"/>
+                        <rect x="8" y="37" width="32" height="3" fill="#2a1a2e"/>
+                        <rect x="6" y="8" width="3" height="32" fill="#2a1a2e"/>
+                        <rect x="39" y="8" width="3" height="32" fill="#2a1a2e"/>
+                        <rect x="9" y="10" width="30" height="27" fill="#ffb6c1"/>
+                        <rect x="8" y="10" width="4" height="27" fill="#e86080"/>
+                        <rect x="14" y="12" width="24" height="24" fill="#fff0f5"/>
+                        <rect x="16" y="16" width="18" height="2" fill="#ffb6c1"/>
+                        <rect x="16" y="20" width="18" height="2" fill="#ffb6c1"/>
+                        <rect x="16" y="24" width="14" height="2" fill="#ffb6c1"/>
+                        <rect x="22" y="28" width="3" height="3" fill="#e86080"/>
+                        <rect x="28" y="28" width="3" height="3" fill="#e86080"/>
+                        <rect x="21" y="30" width="5" height="3" fill="#e86080"/>
+                        <rect x="27" y="30" width="5" height="3" fill="#e86080"/>
+                        <rect x="20" y="32" width="13" height="3" fill="#e86080"/>
+                        <rect x="22" y="35" width="9" height="2" fill="#e86080"/>
+                        <rect x="24" y="37" width="5" height="2" fill="#e86080"/>
+                        <rect x="38" y="4" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="36" y="6" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="40" y="6" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="38" y="8" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="15" y="13" width="3" height="2" fill="#ffffff"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Illustration</span>
+            </div>
+
+            <div class="icon" data-window="personajes">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="22" y="2" width="4" height="3" fill="#8b5cf6"/>
+                        <rect x="20" y="5" width="8" height="3" fill="#8b5cf6"/>
+                        <rect x="18" y="8" width="12" height="3" fill="#8b5cf6"/>
+                        <rect x="16" y="11" width="16" height="3" fill="#8b5cf6"/>
+                        <rect x="14" y="14" width="20" height="3" fill="#7b68ee"/>
+                        <rect x="10" y="17" width="28" height="3" fill="#4a2a6a"/>
+                        <rect x="21" y="1" width="6" height="2" fill="#2a1a2e"/>
+                        <rect x="19" y="4" width="2" height="3" fill="#2a1a2e"/>
+                        <rect x="29" y="4" width="2" height="3" fill="#2a1a2e"/>
+                        <rect x="17" y="7" width="2" height="4" fill="#2a1a2e"/>
+                        <rect x="29" y="7" width="2" height="4" fill="#2a1a2e"/>
+                        <rect x="23" y="9" width="3" height="3" fill="#ffb6c1"/>
+                        <rect x="22" y="10" width="5" height="2" fill="#ffb6c1"/>
+                        <rect x="16" y="20" width="16" height="14" fill="#ffb6c1"/>
+                        <rect x="14" y="20" width="2" height="14" fill="#2a1a2e"/>
+                        <rect x="32" y="20" width="2" height="14" fill="#2a1a2e"/>
+                        <rect x="16" y="34" width="16" height="2" fill="#2a1a2e"/>
+                        <rect x="19" y="24" width="3" height="4" fill="#2a1a2e"/>
+                        <rect x="27" y="24" width="3" height="4" fill="#2a1a2e"/>
+                        <rect x="19" y="24" width="2" height="2" fill="#ffffff"/>
+                        <rect x="27" y="24" width="2" height="2" fill="#ffffff"/>
+                        <rect x="17" y="29" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="29" y="29" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="23" y="30" width="3" height="2" fill="#e86080"/>
+                        <rect x="8" y="6" width="2" height="2" fill="#b8a0d8"/>
+                        <rect x="38" y="10" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="18" y="36" width="12" height="4" fill="#b8a0d8"/>
+                        <rect x="16" y="38" width="16" height="4" fill="#b8a0d8"/>
+                        <rect x="16" y="42" width="16" height="2" fill="#2a1a2e"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Characters</span>
+            </div>
+
+            <div class="icon" data-window="winamp">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <!-- Winamp-style pixel art icon — lightning bolt + music player -->
+                        <!-- Player body -->
+                        <rect x="6" y="6" width="36" height="3" fill="#2a1a2e"/>
+                        <rect x="6" y="39" width="36" height="3" fill="#2a1a2e"/>
+                        <rect x="4" y="8" width="3" height="31" fill="#2a1a2e"/>
+                        <rect x="41" y="8" width="3" height="31" fill="#2a1a2e"/>
+                        <rect x="7" y="9" width="34" height="30" fill="#3a2a1a"/>
+                        <!-- Gradient fill — dark brown/gold like Winamp classic -->
+                        <rect x="7" y="9" width="34" height="6" fill="#8b6914"/>
+                        <rect x="7" y="15" width="34" height="6" fill="#6b4f10"/>
+                        <rect x="7" y="21" width="34" height="6" fill="#5a3e0e"/>
+                        <rect x="7" y="27" width="34" height="6" fill="#4a2e0a"/>
+                        <rect x="7" y="33" width="34" height="6" fill="#3a2008"/>
+                        <!-- Pink overlay tint for kawaii vibes -->
+                        <rect x="7" y="9" width="34" height="30" fill="#ff69b4" opacity="0.3"/>
+                        <!-- Display screen (dark) -->
+                        <rect x="9" y="11" width="30" height="10" fill="#1a0a28"/>
+                        <rect x="10" y="12" width="28" height="8" fill="#0a0514"/>
+                        <!-- Track text in display -->
+                        <rect x="12" y="14" width="3" height="2" fill="#87ceeb"/>
+                        <rect x="16" y="14" width="2" height="2" fill="#87ceeb"/>
+                        <rect x="19" y="14" width="4" height="2" fill="#87ceeb"/>
+                        <rect x="24" y="14" width="3" height="2" fill="#87ceeb"/>
+                        <rect x="28" y="14" width="5" height="2" fill="#87ceeb"/>
+                        <!-- Time display -->
+                        <rect x="12" y="17" width="2" height="2" fill="#00ff00"/>
+                        <rect x="15" y="17" width="2" height="2" fill="#00ff00"/>
+                        <rect x="14" y="17" width="1" height="1" fill="#00ff00"/>
+                        <!-- Spectrum bars -->
+                        <rect x="22" y="18" width="2" height="1" fill="#ff69b4"/>
+                        <rect x="25" y="17" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="28" y="16" width="2" height="3" fill="#ff69b4"/>
+                        <rect x="31" y="17" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="34" y="18" width="2" height="1" fill="#ff69b4"/>
+                        <!-- Transport buttons -->
+                        <rect x="10" y="23" width="5" height="4" fill="#2a1a2e"/>
+                        <rect x="16" y="23" width="5" height="4" fill="#2a1a2e"/>
+                        <rect x="22" y="23" width="5" height="4" fill="#2a1a2e"/>
+                        <rect x="28" y="23" width="5" height="4" fill="#2a1a2e"/>
+                        <!-- Play triangle -->
+                        <rect x="17" y="24" width="1" height="2" fill="#00ff00"/>
+                        <rect x="18" y="24" width="1" height="2" fill="#00ff00"/>
+                        <rect x="19" y="25" width="1" height="1" fill="#00ff00"/>
+                        <!-- Pause bars -->
+                        <rect x="23" y="24" width="1" height="2" fill="#ffb6c1"/>
+                        <rect x="25" y="24" width="1" height="2" fill="#ffb6c1"/>
+                        <!-- Stop square -->
+                        <rect x="29" y="24" width="2" height="2" fill="#ffb6c1"/>
+                        <!-- Volume slider track -->
+                        <rect x="10" y="30" width="28" height="2" fill="#2a1a2e"/>
+                        <rect x="10" y="30" width="18" height="2" fill="#ff69b4"/>
+                        <!-- Playlist area -->
+                        <rect x="10" y="34" width="28" height="4" fill="#1a0a28"/>
+                        <rect x="11" y="35" width="26" height="2" fill="#ff69b4" opacity="0.4"/>
+                        <!-- Sparkle decorations -->
+                        <rect x="2" y="4" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="44" y="4" width="2" height="2" fill="#ffb6c1"/>
+                        <rect x="44" y="40" width="2" height="2" fill="#8b5cf6"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Winamp</span>
+            </div>
+
+            <div class="icon" data-window="experimental">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="20" y="4" width="8" height="3" fill="#2a1a2e"/>
+                        <rect x="21" y="7" width="6" height="8" fill="#a0d8ef"/>
+                        <rect x="19" y="7" width="2" height="8" fill="#2a1a2e"/>
+                        <rect x="29" y="7" width="2" height="8" fill="#2a1a2e"/>
+                        <rect x="20" y="2" width="8" height="3" fill="#b8a0d8"/>
+                        <rect x="20" y="1" width="8" height="2" fill="#2a1a2e"/>
+                        <rect x="17" y="15" width="2" height="4" fill="#2a1a2e"/>
+                        <rect x="29" y="15" width="2" height="4" fill="#2a1a2e"/>
+                        <rect x="13" y="19" width="4" height="3" fill="#2a1a2e"/>
+                        <rect x="31" y="19" width="4" height="3" fill="#2a1a2e"/>
+                        <rect x="10" y="22" width="3" height="3" fill="#2a1a2e"/>
+                        <rect x="35" y="22" width="3" height="3" fill="#2a1a2e"/>
+                        <rect x="8" y="25" width="3" height="14" fill="#2a1a2e"/>
+                        <rect x="37" y="25" width="3" height="14" fill="#2a1a2e"/>
+                        <rect x="10" y="38" width="28" height="3" fill="#2a1a2e"/>
+                        <rect x="19" y="15" width="10" height="4" fill="#a0d8ef"/>
+                        <rect x="17" y="19" width="14" height="3" fill="#a0d8ef"/>
+                        <rect x="13" y="22" width="22" height="3" fill="#b8a0d8"/>
+                        <rect x="11" y="25" width="26" height="6" fill="#8b5cf6"/>
+                        <rect x="11" y="31" width="26" height="7" fill="#7b68ee"/>
+                        <rect x="16" y="23" width="3" height="2" fill="#e8d0ff"/>
+                        <rect x="28" y="24" width="2" height="2" fill="#e8d0ff"/>
+                        <rect x="15" y="28" width="3" height="3" fill="#b8a0d8"/>
+                        <rect x="26" y="32" width="3" height="3" fill="#b8a0d8"/>
+                        <rect x="22" y="27" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="26" y="27" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="21" y="29" width="8" height="2" fill="#ff69b4"/>
+                        <rect x="23" y="31" width="4" height="2" fill="#ff69b4"/>
+                        <rect x="6" y="8" width="2" height="2" fill="#8b5cf6"/>
+                        <rect x="40" y="6" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="22" y="8" width="2" height="3" fill="#e0f0ff"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Experimental</span>
+            </div>
+
+            <div class="icon" data-window="fotografia">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="10" y="8" width="8" height="4" fill="#a0d8ef"/>
+                        <rect x="10" y="6" width="8" height="3" fill="#2a1a2e"/>
+                        <rect x="4" y="12" width="40" height="3" fill="#2a1a2e"/>
+                        <rect x="4" y="38" width="40" height="3" fill="#2a1a2e"/>
+                        <rect x="2" y="14" width="3" height="24" fill="#2a1a2e"/>
+                        <rect x="43" y="14" width="3" height="24" fill="#2a1a2e"/>
+                        <rect x="5" y="15" width="38" height="23" fill="#ffb6c1"/>
+                        <rect x="5" y="15" width="38" height="4" fill="#ff69b4"/>
+                        <rect x="17" y="20" width="14" height="3" fill="#2a1a2e"/>
+                        <rect x="17" y="35" width="14" height="3" fill="#2a1a2e"/>
+                        <rect x="14" y="22" width="3" height="14" fill="#2a1a2e"/>
+                        <rect x="31" y="22" width="3" height="14" fill="#2a1a2e"/>
+                        <rect x="17" y="23" width="14" height="12" fill="#87ceeb"/>
+                        <rect x="20" y="26" width="8" height="6" fill="#a0d8ef"/>
+                        <rect x="21" y="27" width="3" height="2" fill="#ffffff"/>
+                        <rect x="23" y="29" width="3" height="3" fill="#4a2a6a"/>
+                        <rect x="33" y="17" width="6" height="4" fill="#2a1a2e"/>
+                        <rect x="34" y="18" width="4" height="2" fill="#87ceeb"/>
+                        <rect x="36" y="10" width="4" height="4" fill="#e86080"/>
+                        <rect x="36" y="9" width="4" height="2" fill="#2a1a2e"/>
+                        <rect x="7" y="30" width="2" height="2" fill="#e86080"/>
+                        <rect x="10" y="30" width="2" height="2" fill="#e86080"/>
+                        <rect x="7" y="32" width="5" height="2" fill="#e86080"/>
+                        <rect x="8" y="34" width="3" height="2" fill="#e86080"/>
+                        <rect x="40" y="4" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="4" y="4" width="2" height="2" fill="#a0d8ef"/>
+                        <rect x="6" y="16" width="6" height="2" fill="#ffd0dd"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Photography</span>
+            </div>
+
+            <!-- Utility Icons -->
+            <div class="icon" data-window="about">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="6" y="2" width="36" height="3" fill="#2a1a2e"/>
+                        <rect x="6" y="30" width="36" height="3" fill="#2a1a2e"/>
+                        <rect x="4" y="4" width="3" height="26" fill="#2a1a2e"/>
+                        <rect x="41" y="4" width="3" height="26" fill="#2a1a2e"/>
+                        <rect x="7" y="5" width="34" height="25" fill="#ff69b4"/>
+                        <rect x="10" y="7" width="28" height="20" fill="#e86080"/>
+                        <rect x="12" y="9" width="24" height="16" fill="#ffb6c1"/>
+                        <rect x="18" y="12" width="3" height="3" fill="#ff69b4"/>
+                        <rect x="24" y="12" width="3" height="3" fill="#ff69b4"/>
+                        <rect x="16" y="15" width="6" height="3" fill="#ff69b4"/>
+                        <rect x="22" y="15" width="6" height="3" fill="#ff69b4"/>
+                        <rect x="16" y="18" width="12" height="2" fill="#e86080"/>
+                        <rect x="18" y="20" width="8" height="2" fill="#e86080"/>
+                        <rect x="21" y="22" width="3" height="2" fill="#e86080"/>
+                        <rect x="18" y="12" width="2" height="2" fill="#ffb6c1"/>
+                        <rect x="13" y="10" width="4" height="2" fill="#ffd0e8"/>
+                        <rect x="22" y="27" width="4" height="2" fill="#87ceeb"/>
+                        <rect x="18" y="33" width="12" height="3" fill="#e86080"/>
+                        <rect x="18" y="33" width="12" height="2" fill="#2a1a2e"/>
+                        <rect x="8" y="36" width="32" height="2" fill="#2a1a2e"/>
+                        <rect x="8" y="44" width="32" height="2" fill="#2a1a2e"/>
+                        <rect x="6" y="37" width="2" height="7" fill="#2a1a2e"/>
+                        <rect x="40" y="37" width="2" height="7" fill="#2a1a2e"/>
+                        <rect x="8" y="38" width="32" height="6" fill="#ffb6c1"/>
+                        <rect x="10" y="39" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="14" y="39" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="18" y="39" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="22" y="39" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="26" y="39" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="30" y="39" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="34" y="39" width="4" height="2" fill="#ff69b4"/>
+                        <rect x="11" y="42" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="15" y="42" width="14" height="2" fill="#ff69b4"/>
+                        <rect x="30" y="42" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="34" y="42" width="4" height="2" fill="#ff69b4"/>
+                        <rect x="2" y="0" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="44" y="0" width="2" height="2" fill="#ffb6c1"/>
+                        <rect x="46" y="14" width="2" height="2" fill="#ff69b4"/>
+                    </svg>
+                </div>
+                <span class="icon-text">My Computer</span>
+            </div>
+
+            <div class="icon" data-window="notepad">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="8" y="4" width="28" height="3" fill="#2a1a2e"/>
+                        <rect x="8" y="40" width="28" height="3" fill="#2a1a2e"/>
+                        <rect x="6" y="6" width="3" height="34" fill="#2a1a2e"/>
+                        <rect x="35" y="6" width="3" height="34" fill="#2a1a2e"/>
+                        <rect x="9" y="7" width="26" height="33" fill="#f0e6ff"/>
+                        <rect x="9" y="7" width="26" height="4" fill="#b8a0d8"/>
+                        <rect x="12" y="14" width="20" height="2" fill="#d0c0e8"/>
+                        <rect x="12" y="18" width="20" height="2" fill="#d0c0e8"/>
+                        <rect x="12" y="22" width="16" height="2" fill="#d0c0e8"/>
+                        <rect x="12" y="26" width="20" height="2" fill="#d0c0e8"/>
+                        <rect x="12" y="30" width="14" height="2" fill="#d0c0e8"/>
+                        <rect x="12" y="34" width="18" height="2" fill="#d0c0e8"/>
+                        <rect x="32" y="18" width="3" height="18" fill="#8b5cf6"/>
+                        <rect x="35" y="18" width="3" height="18" fill="#7b68ee"/>
+                        <rect x="31" y="16" width="2" height="22" fill="#2a1a2e"/>
+                        <rect x="38" y="16" width="2" height="22" fill="#2a1a2e"/>
+                        <rect x="32" y="14" width="6" height="3" fill="#2a1a2e"/>
+                        <rect x="33" y="36" width="4" height="3" fill="#ffb6c1"/>
+                        <rect x="34" y="39" width="2" height="3" fill="#ffb6c1"/>
+                        <rect x="34" y="42" width="2" height="2" fill="#2a1a2e"/>
+                        <rect x="33" y="16" width="4" height="3" fill="#ff69b4"/>
+                        <rect x="32" y="19" width="6" height="2" fill="#e0d0f0"/>
+                        <rect x="14" y="14" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="17" y="14" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="13" y="16" width="7" height="2" fill="#ff69b4"/>
+                        <rect x="15" y="18" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="4" y="2" width="2" height="2" fill="#8b5cf6"/>
+                        <rect x="42" y="10" width="2" height="2" fill="#ff69b4"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Notepad</span>
+            </div>
+
+            <div class="icon" data-window="email">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="4" y="10" width="40" height="3" fill="#2a1a2e"/>
+                        <rect x="4" y="38" width="40" height="3" fill="#2a1a2e"/>
+                        <rect x="2" y="12" width="3" height="26" fill="#2a1a2e"/>
+                        <rect x="43" y="12" width="3" height="26" fill="#2a1a2e"/>
+                        <rect x="5" y="13" width="38" height="25" fill="#fff0f5"/>
+                        <rect x="5" y="13" width="38" height="3" fill="#ffb6c1"/>
+                        <rect x="8" y="16" width="32" height="3" fill="#ffb6c1"/>
+                        <rect x="11" y="19" width="26" height="3" fill="#a0d8ef"/>
+                        <rect x="14" y="22" width="20" height="3" fill="#a0d8ef"/>
+                        <rect x="17" y="25" width="14" height="3" fill="#87ceeb"/>
+                        <rect x="5" y="13" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="8" y="15" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="11" y="17" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="14" y="19" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="17" y="21" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="20" y="23" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="40" y="13" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="37" y="15" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="34" y="17" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="31" y="19" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="28" y="21" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="25" y="23" width="3" height="2" fill="#2a1a2e"/>
+                        <rect x="19" y="28" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="25" y="28" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="18" y="30" width="5" height="2" fill="#ff69b4"/>
+                        <rect x="24" y="30" width="5" height="2" fill="#ff69b4"/>
+                        <rect x="18" y="32" width="11" height="2" fill="#e86080"/>
+                        <rect x="20" y="34" width="7" height="2" fill="#e86080"/>
+                        <rect x="22" y="36" width="3" height="2" fill="#e86080"/>
+                        <rect x="19" y="28" width="2" height="2" fill="#ffb6c1"/>
+                        <rect x="2" y="6" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="44" y="6" width="2" height="2" fill="#a0d8ef"/>
+                        <rect x="22" y="4" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="24" y="6" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="22" y="8" width="2" height="2" fill="#ff69b4"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Email</span>
+            </div>
+
+            <div class="icon" data-window="paint">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="8" y="14" width="28" height="3" fill="#2a1a2e"/>
+                        <rect x="6" y="17" width="3" height="20" fill="#2a1a2e"/>
+                        <rect x="35" y="17" width="3" height="16" fill="#2a1a2e"/>
+                        <rect x="8" y="36" width="28" height="3" fill="#2a1a2e"/>
+                        <rect x="4" y="20" width="3" height="14" fill="#2a1a2e"/>
+                        <rect x="9" y="17" width="26" height="19" fill="#ffb6c1"/>
+                        <rect x="7" y="20" width="2" height="14" fill="#ffb6c1"/>
+                        <rect x="12" y="20" width="4" height="4" fill="#ff69b4"/>
+                        <rect x="11" y="21" width="6" height="3" fill="#ff69b4"/>
+                        <rect x="20" y="19" width="4" height="4" fill="#8b5cf6"/>
+                        <rect x="19" y="20" width="6" height="3" fill="#8b5cf6"/>
+                        <rect x="28" y="20" width="4" height="4" fill="#87ceeb"/>
+                        <rect x="27" y="21" width="6" height="3" fill="#87ceeb"/>
+                        <rect x="14" y="28" width="4" height="4" fill="#b8a0d8"/>
+                        <rect x="13" y="29" width="6" height="3" fill="#b8a0d8"/>
+                        <rect x="23" y="29" width="4" height="4" fill="#e86080"/>
+                        <rect x="22" y="30" width="6" height="3" fill="#e86080"/>
+                        <rect x="17" y="24" width="4" height="3" fill="#e0b0c8"/>
+                        <rect x="36" y="4" width="3" height="16" fill="#b8a0d8"/>
+                        <rect x="39" y="4" width="3" height="16" fill="#8b5cf6"/>
+                        <rect x="35" y="2" width="2" height="20" fill="#2a1a2e"/>
+                        <rect x="42" y="2" width="2" height="20" fill="#2a1a2e"/>
+                        <rect x="36" y="1" width="6" height="2" fill="#2a1a2e"/>
+                        <rect x="36" y="18" width="6" height="3" fill="#e0d0f0"/>
+                        <rect x="36" y="21" width="6" height="4" fill="#ff69b4"/>
+                        <rect x="37" y="25" width="4" height="3" fill="#ff69b4"/>
+                        <rect x="38" y="28" width="2" height="2" fill="#e86080"/>
+                        <rect x="36" y="25" width="2" height="3" fill="#2a1a2e"/>
+                        <rect x="42" y="21" width="2" height="5" fill="#2a1a2e"/>
+                        <rect x="40" y="28" width="2" height="2" fill="#2a1a2e"/>
+                        <rect x="2" y="10" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="44" y="34" width="2" height="2" fill="#8b5cf6"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Paint</span>
+            </div>
+
+            <div class="icon" data-window="recycle">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <rect x="8" y="8" width="32" height="3" fill="#2a1a2e"/>
+                        <rect x="20" y="4" width="8" height="3" fill="#b8a0d8"/>
+                        <rect x="19" y="3" width="10" height="2" fill="#2a1a2e"/>
+                        <rect x="18" y="5" width="2" height="3" fill="#2a1a2e"/>
+                        <rect x="28" y="5" width="2" height="3" fill="#2a1a2e"/>
+                        <rect x="9" y="8" width="30" height="4" fill="#b8a0d8"/>
+                        <rect x="8" y="12" width="32" height="2" fill="#2a1a2e"/>
+                        <rect x="10" y="14" width="2" height="26" fill="#2a1a2e"/>
+                        <rect x="36" y="14" width="2" height="26" fill="#2a1a2e"/>
+                        <rect x="12" y="40" width="24" height="3" fill="#2a1a2e"/>
+                        <rect x="12" y="14" width="24" height="26" fill="#d8c0f0"/>
+                        <rect x="14" y="16" width="20" height="22" fill="#e8d8f8"/>
+                        <rect x="18" y="14" width="2" height="26" fill="#c8b0e0"/>
+                        <rect x="24" y="14" width="2" height="26" fill="#c8b0e0"/>
+                        <rect x="30" y="14" width="2" height="26" fill="#c8b0e0"/>
+                        <rect x="17" y="22" width="3" height="4" fill="#2a1a2e"/>
+                        <rect x="26" y="22" width="3" height="4" fill="#2a1a2e"/>
+                        <rect x="17" y="22" width="2" height="2" fill="#ffffff"/>
+                        <rect x="26" y="22" width="2" height="2" fill="#ffffff"/>
+                        <rect x="14" y="28" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="30" y="28" width="3" height="2" fill="#ff69b4"/>
+                        <rect x="20" y="29" width="2" height="2" fill="#4a2a6a"/>
+                        <rect x="22" y="30" width="4" height="2" fill="#4a2a6a"/>
+                        <rect x="26" y="29" width="2" height="2" fill="#4a2a6a"/>
+                        <rect x="20" y="34" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="24" y="34" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="19" y="36" width="8" height="2" fill="#ff69b4"/>
+                        <rect x="21" y="38" width="4" height="2" fill="#ff69b4"/>
+                        <rect x="4" y="4" width="2" height="2" fill="#8b5cf6"/>
+                        <rect x="42" y="4" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="40" y="30" width="2" height="2" fill="#ffb6c1"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Recycle Bin</span>
+            </div>
+        </div>
+
+        <!-- ============ WINDOWS ============ -->
+
+        <!-- GALLERY: Ilustración Editorial -->
+        <div class="window" id="editorial-window" style="top: 40px; left: 120px; width: 600px; height: 450px;">
+            <div class="window-header">
+                <span class="window-title">📖 Illustration — イラスト ✧</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="editorial">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="editorial">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="editorial">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content">
+                <div class="gallery-grid" id="editorial-gallery">
+                    <!-- Gallery items will be added here -->
+                    <div class="gallery-placeholder">
+                        <i class="fas fa-images"></i>
+                        <p>Aquí irán tus ilustraciones editoriales.</p>
+                        <p class="gallery-hint">Escenas narrativas, portadas, cuentos...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="window-status-bar">
+                <span>0 objects ✧</span>
+            </div>
+        </div>
+
+        <!-- GALLERY: Personajes -->
+        <div class="window" id="personajes-window" style="top: 60px; left: 160px; width: 600px; height: 450px;">
+            <div class="window-header">
+                <span class="window-title">🧙 Characters — キャラクター ✧</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="personajes">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="personajes">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="personajes">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content">
+                <div class="gallery-grid" id="personajes-gallery">
+                    <div class="gallery-placeholder">
+                        <i class="fas fa-images"></i>
+                        <p>Aquí irán tus diseños de personajes.</p>
+                        <p class="gallery-hint">Concept art, character design...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="window-status-bar">
+                <span>0 objects ✧</span>
+            </div>
+        </div>
+
+        <!-- WINAMP PLAYER -->
+        <div class="window winamp-window" id="winamp-window" style="top: 80px; left: 200px; width: 340px; height: auto;">
+            <div class="window-header winamp-header">
+                <span class="window-title">🎵 Winamp — ウィンアンプ ♡</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="winamp">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="winamp">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="winamp">×</button>
+                </div>
+            </div>
+            <div class="winamp-body">
+                <!-- Main display -->
+                <div class="winamp-display">
+                    <div class="winamp-title-scroll" id="winamp-title-scroll">
+                        ♡ sandra's playlist — select a track ♡
+                    </div>
+                    <div class="winamp-info-row">
+                        <div class="winamp-time" id="winamp-time">00:00</div>
+                        <div class="winamp-visualizer" id="winamp-visualizer">
+                            <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                            <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                            <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                            <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                            <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+                            <div class="viz-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Seek bar -->
+                <div class="winamp-seek">
+                    <input type="range" id="winamp-seek" min="0" max="100" value="0" class="winamp-seek-slider">
+                </div>
+                <!-- Transport controls -->
+                <div class="winamp-controls">
+                    <button class="winamp-btn" id="winamp-prev" title="Previous">⏮</button>
+                    <button class="winamp-btn winamp-play" id="winamp-play" title="Play">▶</button>
+                    <button class="winamp-btn" id="winamp-pause" title="Pause">⏸</button>
+                    <button class="winamp-btn" id="winamp-stop" title="Stop">⏹</button>
+                    <button class="winamp-btn" id="winamp-next" title="Next">⏭</button>
+                </div>
+                <!-- Volume + balance -->
+                <div class="winamp-sliders">
+                    <div class="winamp-slider-group">
+                        <span class="winamp-slider-label">VOL</span>
+                        <input type="range" id="winamp-volume" min="0" max="100" value="75" class="winamp-vol-slider">
+                    </div>
+                    <div class="winamp-slider-group">
+                        <span class="winamp-slider-label">BAL</span>
+                        <input type="range" id="winamp-balance" min="-100" max="100" value="0" class="winamp-bal-slider">
+                    </div>
+                </div>
+                <!-- Playlist -->
+                <div class="winamp-playlist" id="winamp-playlist">
+                    <div class="winamp-playlist-header">♡ PLAYLIST ♡</div>
+                    <div class="winamp-track" data-index="0">1. Placebo - Teenage Angst</div>
+                    <div class="winamp-track" data-index="1">2. DPR IAN - Nerves</div>
+                    <div class="winamp-track" data-index="2">3. 4s4ki - Your Dreamland</div>
+                    <div class="winamp-track" data-index="3">4. Hayloft (feat. Miku &amp; Gumi)</div>
+                    <div class="winamp-track" data-index="4">5. Kikuo - Love me, Love me, Love me</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GALLERY: Experimental -->
+        <div class="window" id="experimental-window" style="top: 50px; left: 240px; width: 600px; height: 450px;">
+            <div class="window-header">
+                <span class="window-title">🧪 Experimental — 実験的 ✧</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="experimental">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="experimental">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="experimental">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content">
+                <div class="gallery-grid" id="experimental-gallery">
+                    <div class="gallery-placeholder">
+                        <i class="fas fa-images"></i>
+                        <p>Aquí irá tu trabajo experimental.</p>
+                        <p class="gallery-hint">Art journal, doodles, stencil, mixed media...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="window-status-bar">
+                <span>0 objects ✧</span>
+            </div>
+        </div>
+
+        <!-- GALLERY: Fotografía -->
+        <div class="window" id="fotografia-window" style="top: 70px; left: 180px; width: 600px; height: 450px;">
+            <div class="window-header">
+                <span class="window-title">📷 Photography — 写真 ✧</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="fotografia">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="fotografia">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="fotografia">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content">
+                <div class="gallery-grid" id="fotografia-gallery">
+                    <div class="gallery-placeholder">
+                        <i class="fas fa-images"></i>
+                        <p>Aquí irán tus fotografías.</p>
+                        <p class="gallery-hint">Urbana, nocturna, mixed media...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="window-status-bar">
+                <span>0 objects ✧</span>
+            </div>
+        </div>
+
+        <!-- ABOUT ME: Mi PC -->
+        <div class="window" id="about-window" style="top: 60px; left: 140px; width: 500px; height: 400px;">
+            <div class="window-header">
+                <span class="window-title">🖥️ My Computer — マイコンピュータ</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="about">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="about">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="about">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content about-content">
+                <div class="about-header">
+                    <div class="about-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="about-info">
+                        <h2>sandra ૮ . . ྀია</h2>
+                        <p class="about-subtitle">Illustrator & Designer ✧</p>
+                    </div>
+                </div>
+                <div class="about-body">
+                    <div class="about-section">
+                        <h3>System Info</h3>
+                        <div class="about-specs">
+                            <div class="spec-row">
+                                <span class="spec-label">Name:</span>
+                                <span class="spec-value">Sandra</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Role:</span>
+                                <span class="spec-value">Illustrator & Designer</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Tools:</span>
+                                <span class="spec-value">iPad, Procreate, acrílico, tinta, ceras, stencil</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-label">Location:</span>
+                                <span class="spec-value">—</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-section">
+                        <h3>About Me ♡</h3>
+                        <p class="about-bio">
+                            [Aquí va tu bio. Cuéntale al mundo quién eres, qué te mueve, y por qué dibujas.]
+                        </p>
+                    </div>
+                    <div class="about-links">
+                        <a href="https://instagram.com/bun.gif" target="_blank" class="about-link-btn">
+                            <i class="fab fa-instagram"></i> @bun.gif
+                        </a>
+                        <a href="https://instagram.com/_sandraku" target="_blank" class="about-link-btn">
+                            <i class="fab fa-instagram"></i> @_sandraku
+                        </a>
+                        <a href="https://patreon.com/bungif" target="_blank" class="about-link-btn">
+                            <i class="fab fa-patreon"></i> Patreon
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTEPAD: CV -->
+        <div class="window" id="notepad-window" style="top: 160px; left: 380px; width: 480px; height: 400px;">
+            <div class="window-header">
+                <span class="window-title">📝 CV.txt — メモ帳 ✧</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="notepad">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="notepad">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="notepad">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">Format</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content notepad-content">
+                <pre class="notepad-text">
+╔══════════════════════════════════════╗
+║         SANDRA — Resume              ║
+║      Illustrator & Designer          ║
+╚══════════════════════════════════════╝
+
+Experience
+───────────
+[Year] — [Client/Project]
+         [Brief description]
+
+[Year] — [Client/Project]
+         [Brief description]
+
+
+Education
+─────────
+[Year] — [Title]
+         [School]
+
+
+Skills
+───────────
+• Digital Illustration (Procreate, Photoshop)
+• Traditional Illustration (acrylic, ink, crayons)
+• Character Design
+• Social Media Content
+• Photography
+
+Contact
+────────
+Email: [your-email@example.com]
+Instagram: @bun.gif / @_sandraku
+Patreon: patreon.com/bungif
+
+
+─────────────────────────────────────
+    generated from Windows 98 ♡
+─────────────────────────────────────
+                </pre>
+            </div>
+        </div>
+
+        <!-- EMAIL: Outlook Express -->
+        <div class="window" id="email-window" style="top: 70px; left: 160px; width: 520px; height: 440px;">
+            <div class="window-header">
+                <span class="window-title">📧 New Message — メール ♡</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="email">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="email">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="email">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Insert</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="email-toolbar">
+                <button class="email-toolbar-btn" id="email-send-btn">
+                    <i class="fas fa-paper-plane"></i> Send
+                </button>
+            </div>
+            <div class="window-content email-content">
+                <form id="email-form" class="email-form">
+                    <div class="email-field">
+                        <label>To:</label>
+                        <input type="text" value="sandra@portfolio.com" readonly class="email-input email-to">
+                    </div>
+                    <div class="email-field">
+                        <label>From:</label>
+                        <input type="email" name="from_email" placeholder="your-email@example.com" class="email-input" required>
+                    </div>
+                    <div class="email-field">
+                        <label>Subject:</label>
+                        <input type="text" name="subject" placeholder="message for Sandra ♡" class="email-input" required>
+                    </div>
+                    <div class="email-body-field">
+                        <textarea name="message" placeholder="write your message here... ♡" class="email-textarea" required></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- PAINT -->
+        <div class="window" id="paint-window" style="top: 30px; right: 60px; left: auto; width: 560px; height: 440px;">
+            <div class="window-header">
+                <span class="window-title">🎨 untitled — ペイント ♡</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="paint">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="paint">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="paint">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Image</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content paint-content">
+                <div class="paint-layout">
+                    <!-- Left tool sidebar (MS Paint style) -->
+                    <div class="paint-sidebar">
+                        <div class="paint-tools-grid">
+                            <button class="paint-tool active" data-tool="brush" title="Pincel / Brush">
+                                <i class="fas fa-paint-brush"></i>
+                            </button>
+                            <button class="paint-tool" data-tool="pencil" title="Lápiz / Pencil">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                            <button class="paint-tool" data-tool="eraser" title="Borrador / Eraser">
+                                <i class="fas fa-eraser"></i>
+                            </button>
+                            <button class="paint-tool" data-tool="fill" title="Rellenar / Fill">
+                                <i class="fas fa-fill-drip"></i>
+                            </button>
+                            <button class="paint-tool" data-tool="line" title="Línea / Line">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button class="paint-tool" data-tool="rect" title="Rectángulo / Rectangle">
+                                <i class="far fa-square"></i>
+                            </button>
+                            <button class="paint-tool" data-tool="circle" title="Círculo / Circle">
+                                <i class="far fa-circle"></i>
+                            </button>
+                            <button class="paint-tool" data-tool="clear" title="Limpiar / Clear">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="paint-size-vertical">
+                            <input type="range" id="paint-size" min="1" max="20" value="3" orient="vertical">
+                        </div>
+                    </div>
+                    <!-- Canvas area -->
+                    <div class="paint-canvas-container">
+                        <canvas id="paint-canvas"></canvas>
+                    </div>
+                </div>
+                <!-- Bottom: color palette + actions -->
+                <div class="paint-bottom">
+                    <div class="paint-current-colors">
+                        <div class="paint-color-preview">
+                            <div class="paint-fg-color" id="paint-fg" style="background:#ff69b4" title="Color actual"></div>
+                            <div class="paint-bg-color" style="background:#ffffff" title="Color fondo"></div>
+                        </div>
+                    </div>
+                    <div class="paint-colors" id="paint-colors">
+                        <!-- Row 1: 14 colors -->
+                        <div class="paint-color" data-color="#000000" style="background:#000000"></div>
+                        <div class="paint-color" data-color="#808080" style="background:#808080"></div>
+                        <div class="paint-color" data-color="#800000" style="background:#800000"></div>
+                        <div class="paint-color" data-color="#808000" style="background:#808000"></div>
+                        <div class="paint-color" data-color="#008000" style="background:#008000"></div>
+                        <div class="paint-color" data-color="#008080" style="background:#008080"></div>
+                        <div class="paint-color" data-color="#000080" style="background:#000080"></div>
+                        <div class="paint-color" data-color="#800080" style="background:#800080"></div>
+                        <div class="paint-color" data-color="#808040" style="background:#808040"></div>
+                        <div class="paint-color" data-color="#004040" style="background:#004040"></div>
+                        <div class="paint-color" data-color="#0080ff" style="background:#0080ff"></div>
+                        <div class="paint-color" data-color="#004080" style="background:#004080"></div>
+                        <div class="paint-color" data-color="#4000ff" style="background:#4000ff"></div>
+                        <div class="paint-color" data-color="#804000" style="background:#804000"></div>
+                        <!-- Row 2: 14 colors -->
+                        <div class="paint-color" data-color="#ffffff" style="background:#ffffff"></div>
+                        <div class="paint-color" data-color="#c0c0c0" style="background:#c0c0c0"></div>
+                        <div class="paint-color" data-color="#ff0000" style="background:#ff0000"></div>
+                        <div class="paint-color" data-color="#ffff00" style="background:#ffff00"></div>
+                        <div class="paint-color" data-color="#00ff00" style="background:#00ff00"></div>
+                        <div class="paint-color" data-color="#00ffff" style="background:#00ffff"></div>
+                        <div class="paint-color" data-color="#0000ff" style="background:#0000ff"></div>
+                        <div class="paint-color" data-color="#ff00ff" style="background:#ff00ff"></div>
+                        <div class="paint-color" data-color="#ffff80" style="background:#ffff80"></div>
+                        <div class="paint-color" data-color="#00ff80" style="background:#00ff80"></div>
+                        <div class="paint-color" data-color="#80ffff" style="background:#80ffff"></div>
+                        <div class="paint-color" data-color="#8080ff" style="background:#8080ff"></div>
+                        <div class="paint-color active" data-color="#ff69b4" style="background:#ff69b4"></div>
+                        <div class="paint-color" data-color="#ff8800" style="background:#ff8800"></div>
+                    </div>
+                    <div class="paint-actions">
+                        <button class="paint-send-btn" id="paint-send-btn">
+                            <i class="fas fa-paper-plane"></i> Send to Sandra ♡
+                        </button>
+                        <span class="paint-hint">your secret message ♡ ひみつのメッセージ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECYCLE BIN -->
+        <div class="window" id="recycle-window" style="top: 90px; left: 220px; width: 450px; height: 350px;">
+            <div class="window-header">
+                <span class="window-title">🗑️ Recycle Bin — ごみ箱</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="recycle">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="recycle">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="recycle">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">File</span>
+                <span class="menu-item">Edit</span>
+                <span class="menu-item">View</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content">
+                <div class="recycle-grid">
+                    <div class="recycle-item">
+                        <i class="fas fa-file-image"></i>
+                        <span>boceto_descartado_01.jpg</span>
+                    </div>
+                    <div class="recycle-item">
+                        <i class="fas fa-file-image"></i>
+                        <span>intento_fallido_v3.png</span>
+                    </div>
+                    <div class="recycle-item">
+                        <i class="fas fa-file-image"></i>
+                        <span>esto_no_me_convence.psd</span>
+                    </div>
+                    <div class="recycle-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ideas_3am.txt</span>
+                    </div>
+                    <div class="recycle-item">
+                        <i class="fas fa-file-image"></i>
+                        <span>WIP_nunca_terminado.jpg</span>
+                    </div>
+                </div>
+                <p class="recycle-note">( discarded sketches & WIPs — nothing is truly lost ♡ )</p>
+            </div>
+            <div class="window-status-bar">
+                <span>5 objects ✧</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="lightbox-close">×</button>
+        <button class="lightbox-prev" id="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-next" id="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+
+    <!-- ============ TASKBAR ============ -->
+    <div class="taskbar">
+        <div class="start-button" id="start-button">
+            <span class="start-icon">✦</span>
+            スタート
+        </div>
+
+        <div class="taskbar-items" id="taskbar-items">
+            <!-- Dynamic taskbar items -->
+        </div>
+
+        <div class="clock" id="clock">12:00</div>
+    </div>
+
+    <!-- ============ START MENU ============ -->
+    <div class="start-menu" id="start-menu">
+        <div class="start-menu-sidebar">
+            <span class="sidebar-text">サンドラ98</span>
+        </div>
+        <div class="start-menu-main">
+            <div class="start-menu-items">
+                <div class="start-menu-item" data-window="editorial">
+                    <span class="start-icon">📖</span>
+                    Illustration
+                </div>
+                <div class="start-menu-item" data-window="personajes">
+                    <span class="start-icon">🧙</span>
+                    Characters
+                </div>
+                <div class="start-menu-item" data-window="winamp">
+                    <span class="start-icon">🎵</span>
+                    Winamp
+                </div>
+                <div class="start-menu-item" data-window="experimental">
+                    <span class="start-icon">🧪</span>
+                    Experimental
+                </div>
+                <div class="start-menu-item" data-window="fotografia">
+                    <span class="start-icon">📷</span>
+                    Photography
+                </div>
+                <div class="start-menu-separator"></div>
+                <div class="start-menu-item" data-window="about">
+                    <span class="start-icon">🖥️</span>
+                    My Computer
+                </div>
+                <div class="start-menu-item" data-window="notepad">
+                    <span class="start-icon">📝</span>
+                    Notepad (CV)
+                </div>
+                <div class="start-menu-item" data-window="email">
+                    <span class="start-icon">📧</span>
+                    Email
+                </div>
+                <div class="start-menu-item" data-window="paint">
+                    <span class="start-icon">🎨</span>
+                    Paint
+                </div>
+                <div class="start-menu-separator"></div>
+                <div class="start-menu-item" id="shutdown-btn">
+                    <span class="start-icon">⏻</span>
+                    Shut Down...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ DIALOG (for alerts) ============ -->
+    <div id="dialog-overlay" class="dialog-overlay">
+        <div class="dialog-box" id="dialog-box">
+            <div class="dialog-header">
+                <span class="dialog-title" id="dialog-title">Windows</span>
+                <button class="window-button close-btn" id="dialog-close">×</button>
+            </div>
+            <div class="dialog-content">
+                <i class="fas fa-info-circle dialog-icon" id="dialog-icon"></i>
+                <p id="dialog-message">Message</p>
+            </div>
+            <div class="dialog-buttons">
+                <button class="dialog-btn" id="dialog-ok">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/paint.js"></script>
+    <script src="js/winamp.js"></script>
+</body>
+</html>
