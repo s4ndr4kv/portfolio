@@ -69,20 +69,16 @@ body {
     color: var(--text-color);
 }
 
-/* ===== CUSTOM POINTER — big pink hand for all clickables ===== */
+/* ===== CUSTOM POINTER — W98 pointing hand in pink ===== */
 .icon, .gallery-item, .lightbox-close, .lightbox-prev, .lightbox-next,
 .start-button, .taskbar-item, .start-menu-item, .window-button,
 .menu-item, .paint-tool, .paint-color, .paint-send-btn,
 .email-toolbar-btn, .winamp-btn, .winamp-track,
 .dialog-btn, .error-close, .error-ok, .about-link-btn,
-.winamp-seek-slider, .bios-skip,
+.winamp-seek-slider, .bios-skip, .kutv-channel-btn,
+.start-menu-main, .start-icon,
 a, button, [role="button"] {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='36' viewBox='0 0 16 18'%3E%3Cpath d='M5 7V3.5a1 1 0 012 0V7m0 0V2.5a1 1 0 012 0V7m0 0V4a1 1 0 012 0v5c0 3.5-2 6-5.5 6S2 13.5 2 11.5V9a1 1 0 012 0V7' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 8 0, pointer;
-}
-
-/* ===== CUSTOM MOVE CURSOR — big pink crosshair for draggable titlebars ===== */
-.window-header {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M16 2v28M2 16h28M16 2l-4 4h8l-4-4zM16 30l-4-4h8l-4 4zM2 16l4-4v8l-4-4zM30 16l-4-4v8l4-4z' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 16 16, move;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='34' viewBox='0 0 18 22'%3E%3Cpath d='M7 0C7 0 7 7 7 7L4 7C3 7 1 8 1 10L1 15C1 18 3 20 6 20L12 20C15 20 17 18 17 15L17 10C17 8 16 7 14 7L11 7C11 3 11 3 11 3C11 1 10 0 9 0C8 0 7 0 7 0Z' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M7.5 7L7.5 1.5' stroke='%23e0509a' stroke-width='0.5'/%3E%3Cpath d='M10.5 7L10.5 3.5' stroke='%23e0509a' stroke-width='0.5'/%3E%3Cpath d='M4 10L14 10' stroke='%23e0509a' stroke-width='0.4' opacity='0.5'/%3E%3C/svg%3E") 9 0, pointer !important;
 }
 
 /* ===== SPLASH SCREEN — BIOS BOOT ===== */
@@ -384,7 +380,7 @@ a, button, [role="button"] {
     border-style: inset;
 }
 
-/* CRT tube monitor effect — covers ENTIRE site */
+/* CRT scanlines + flicker — covers ENTIRE site */
 body::after {
     content: '';
     position: fixed;
@@ -401,23 +397,19 @@ body::after {
     );
     pointer-events: none;
     z-index: 999999;
-    animation: crtFlicker 6s ease-in-out infinite;
 }
 
-/* CRT flicker — subtle old monitor pulsing */
-@keyframes crtFlicker {
-    0%   { opacity: 1; }
-    15%  { opacity: 0.92; }
-    20%  { opacity: 1; }
-    42%  { opacity: 0.95; }
-    44%  { opacity: 0.88; }
-    45%  { opacity: 1; }
-    70%  { opacity: 0.94; }
-    72%  { opacity: 1; }
-    85%  { opacity: 0.97; }
-    86%  { opacity: 0.85; }
-    87%  { opacity: 1; }
-    100% { opacity: 1; }
+/* CRT flicker overlay — separate layer for brightness flashes */
+#crt-flicker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999998;
+    opacity: 0;
+    mix-blend-mode: multiply;
 }
 
 /* CRT vignette — dark corners like a real tube monitor */
@@ -598,7 +590,7 @@ body::before {
     background: linear-gradient(90deg, var(--active-titlebar-start) 0%, var(--active-titlebar-mid) 50%, var(--active-titlebar-end) 100%);
     color: var(--white);
     padding: 3px 3px 3px 6px;
-    cursor: move;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpolygon points='16,2 12,7 14,7 14,14 7,14 7,12 2,16 7,20 7,18 14,18 14,25 12,25 16,30 20,25 18,25 18,18 25,18 25,20 30,16 25,12 25,14 18,14 18,7 20,7' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 16 16, move;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1503,6 +1495,72 @@ body::before {
     font-family: 'Zen Maru Gothic', sans-serif;
 }
 
+/* ===== KuTV — RETRO TELEVISION ===== */
+.kutv-content {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    background: #1a1a2e !important;
+}
+
+.kutv-screen-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    min-height: 200px;
+}
+
+.kutv-screen-container canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+}
+
+.kutv-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    background: var(--window-bg);
+    border-top: 1px outset var(--window-bg);
+    flex-shrink: 0;
+}
+
+.kutv-channels {
+    display: flex;
+    gap: 4px;
+}
+
+.kutv-channel-btn {
+    padding: 3px 10px;
+    background: var(--button-bg);
+    border: 2px outset var(--button-bg);
+    cursor: pointer;
+    font-family: 'MS Sans Serif', 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-color);
+    transition: background 0.1s;
+}
+
+.kutv-channel-btn:hover {
+    background: var(--button-hover);
+}
+
+.kutv-channel-btn.active {
+    border: 2px inset var(--button-bg);
+    background: var(--button-active);
+    color: var(--accent-pink);
+}
+
+.kutv-label {
+    font-size: 12px;
+    color: #8a7090;
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
+
 /* ===== TASKBAR ===== */
 .taskbar {
     position: fixed;
@@ -2163,9 +2221,9 @@ input[type="submit"]:active {
         display: none;
     }
 
-    /* Disable CRT flicker on mobile for performance */
-    body::after {
-        animation: none;
+    /* Hide CRT flicker overlay on mobile */
+    #crt-flicker {
+        display: none;
     }
 }
 

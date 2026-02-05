@@ -22,7 +22,8 @@ const windowTitles = {
     'notepad': '📝 CV.txt — メモ帳 ✧',
     'email': '📧 New Message — メール ♡',
     'paint': '🎨 untitled — ペイント ♡',
-    'recycle': '🗑️ Recycle Bin — ごみ箱'
+    'recycle': '🗑️ Recycle Bin — ごみ箱',
+    'kutv': '📺 KuTV — テレビ ♡'
 };
 
 // ===== SPLASH SCREEN — BIOS BOOT =====
@@ -188,6 +189,10 @@ function openWindow(windowId) {
     if (windowId === 'paint') {
         setTimeout(() => initPaintCanvas(), 50);
     }
+    // Initialize KuTV canvas when kutv window opens
+    if (windowId === 'kutv') {
+        setTimeout(() => { if (typeof initKuTV === 'function') initKuTV(); }, 50);
+    }
 }
 
 function closeWindow(windowId) {
@@ -204,6 +209,9 @@ function closeWindow(windowId) {
         windowEl.style.left = windowEl.dataset.origL || '';
         if (windowId === 'winamp') removeWinampEmptySlots();
     }
+
+    // Stop KuTV animation on close to save CPU
+    if (windowId === 'kutv' && typeof stopKuTV === 'function') stopKuTV();
 
     // Animate close: shrink + fade out
     windowEl.classList.add('closing');
@@ -879,3 +887,104 @@ function createSparkles() {
         setTimeout(spawnSparkle, i * 400);
     }
 }
+
+// ===== CRT FLICKER — realistic old monitor effect =====
+function initCRTFlicker() {
+    // Skip on mobile
+    if (window.innerWidth <= 768) return;
+
+    // Create the flicker overlay element
+    const flicker = document.createElement('div');
+    flicker.id = 'crt-flicker';
+    document.body.appendChild(flicker);
+
+    // Randomly trigger flicker events
+    function scheduleFlicker() {
+        // Random delay between 2-8 seconds
+        const delay = 2000 + Math.random() * 6000;
+        setTimeout(() => {
+            doFlicker();
+            scheduleFlicker();
+        }, delay);
+    }
+
+    function doFlicker() {
+        // Pick a random flicker type
+        const type = Math.random();
+
+        if (type < 0.4) {
+            // Quick brightness dip — like a power fluctuation
+            flickerBrightness(0.85 + Math.random() * 0.05, 60 + Math.random() * 80);
+        } else if (type < 0.7) {
+            // Double flash — quick dip-bright-dip
+            const dur = 50 + Math.random() * 40;
+            flickerBrightness(0.82, dur);
+            setTimeout(() => flickerBrightness(1.08, dur * 0.6), dur + 30);
+            setTimeout(() => flickerBrightness(0.90, dur * 0.5), dur * 2 + 50);
+        } else if (type < 0.85) {
+            // Horizontal roll — a bright band sweeps vertically
+            doHorizontalRoll();
+        } else {
+            // Brief white flash (like a static burst)
+            flicker.style.background = 'rgba(255,255,255,0.06)';
+            flicker.style.opacity = '1';
+            setTimeout(() => { flicker.style.opacity = '0'; }, 40 + Math.random() * 30);
+        }
+    }
+
+    function flickerBrightness(targetBrightness, duration) {
+        // Use the overlay with a semi-transparent color
+        if (targetBrightness < 1) {
+            // Dim: overlay with black
+            const alpha = (1 - targetBrightness) * 0.8;
+            flicker.style.background = `rgba(0,0,0,${alpha})`;
+        } else {
+            // Bright: overlay with white
+            const alpha = (targetBrightness - 1) * 0.5;
+            flicker.style.background = `rgba(255,255,255,${alpha})`;
+        }
+        flicker.style.opacity = '1';
+        flicker.style.mixBlendMode = 'normal';
+        setTimeout(() => {
+            flicker.style.opacity = '0';
+        }, duration);
+    }
+
+    function doHorizontalRoll() {
+        // Create a horizontal bright band that sweeps down the screen
+        const band = document.createElement('div');
+        band.style.cssText = `
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255,255,255,0.12);
+            pointer-events: none;
+            z-index: 999998;
+            top: -5px;
+            transition: none;
+        `;
+        document.body.appendChild(band);
+
+        let y = -5;
+        const speed = 8 + Math.random() * 12; // px per frame
+        function animateBand() {
+            y += speed;
+            band.style.top = y + 'px';
+            if (y < window.innerHeight + 10) {
+                requestAnimationFrame(animateBand);
+            } else {
+                band.remove();
+            }
+        }
+        requestAnimationFrame(animateBand);
+    }
+
+    scheduleFlicker();
+}
+
+// Start CRT flicker after splash
+document.addEventListener('DOMContentLoaded', () => {
+    // Delay slightly so it starts after splash
+    setTimeout(initCRTFlicker, 3000);
+});
