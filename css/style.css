@@ -60,6 +60,10 @@
     cursor: inherit;
 }
 
+html {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='42' viewBox='0 0 20 22'%3E%3Cpath d='M2 1L2 18L6 14L9 20L12 19L9 13L14 13Z' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='1'/%3E%3C/svg%3E"), default;
+}
+
 body {
     font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
     font-size: 14px;
@@ -76,7 +80,8 @@ body {
 .email-toolbar-btn, .winamp-btn, .winamp-track,
 .dialog-btn, .error-close, .error-ok, .about-link-btn,
 .winamp-seek-slider, .bios-skip, .kutv-channel-btn,
-.start-menu-main, .start-icon,
+.start-menu-main, .start-icon, .clock,
+#paint-canvas, .paint-canvas-container,
 a, button, [role="button"] {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='28' viewBox='0 0 20 18'%3E%3Cpath d='M10 17C10 17 1 10 1 5C1 2 3 0 6 0C8 0 10 2 10 2C10 2 12 0 14 0C17 0 19 2 19 5C19 10 10 17 10 17Z' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E") 15 14, pointer !important;
 }
@@ -93,7 +98,6 @@ a, button, [role="button"] {
     align-items: flex-start;
     justify-content: flex-start;
     z-index: 99999;
-    cursor: pointer;
     transition: opacity 0.5s ease;
     overflow: hidden;
 }
@@ -256,41 +260,42 @@ a, button, [role="button"] {
     100% { opacity: 0.35; }
 }
 
-/* ===== KAWAII BUNNY ANIMATION (disabled for now) ===== */
+/* ===== KAWAII BUNNY ANIMATION ===== */
+/* 5.1x scale (6x - 15%): original 62x65 → 316x332 */
 .bunny-container {
-    display: none; /* TODO: reactivar cuando se tenga un sprite mejor */
-    position: absolute;
-    bottom: 9%;
-    left: -80px;
-    width: 68px;
-    height: 68px;
-    z-index: 2;
+    position: fixed;
+    bottom: 60px;  /* above taskbar */
+    right: 20px;
+    width: 316px;   /* 62 × 5.1 */
+    height: 332px;  /* 65 × 5.1 */
+    z-index: 100;
     pointer-events: none;
-    animation: bunnyHopAcross 22s linear infinite;
+    overflow: hidden;
 }
 
 .bunny-sprite {
-    width: 68px;
-    height: 68px;
+    width: 2213px;  /* 434 × 5.1 (7 frames × 316px) */
+    height: 332px;  /* 65 × 5.1 */
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
     -ms-interpolation-mode: nearest-neighbor;
-    animation: bunnyBounce 0.5s ease-in-out infinite;
+    animation: bunnyExpressions 4.9s steps(1) infinite;
+    /* White lines via CSS filter */
+    filter: brightness(0) invert(1);
 }
 
-/* Hop across the screen left to right */
-@keyframes bunnyHopAcross {
-    0% { left: -80px; }
-    100% { left: calc(100% + 80px); }
-}
-
-/* Bounce up and down — snappy hop */
-@keyframes bunnyBounce {
-    0%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-16px); }
-    50% { transform: translateY(-18px); }
-    60% { transform: translateY(-14px); }
+/* Frame animation: 7 frames, 0.7s each = 4.9s total cycle */
+/* Cycle: neutral(1) → sad(2) → crying(3) → neutral(1) → surprised(4) → sad(2) → neutral(1) */
+/* translateX values for scaled sprite (316px per frame) */
+@keyframes bunnyExpressions {
+    0%      { transform: translateX(0); }        /* frame 1: neutral */
+    14.28%  { transform: translateX(-316px); }   /* frame 2: sad */
+    28.57%  { transform: translateX(-632px); }   /* frame 3: crying */
+    42.85%  { transform: translateX(-948px); }   /* frame 4: neutral */
+    57.14%  { transform: translateX(-1264px); }  /* frame 5: surprised */
+    71.42%  { transform: translateX(-1580px); }  /* frame 6: sad */
+    85.71%  { transform: translateX(-1896px); }  /* frame 7: neutral */
 }
 
 /* ===== LAIN GLITCH EFFECT — random horizontal jump ===== */
@@ -342,7 +347,6 @@ a, button, [role="button"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     color: var(--text-color);
     line-height: 1;
 }
@@ -369,7 +373,6 @@ a, button, [role="button"] {
     padding: 3px 24px;
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
-    cursor: pointer;
     font-size: 12px;
     color: var(--text-color);
     outline: 1px dotted #333;
@@ -381,6 +384,7 @@ a, button, [role="button"] {
 }
 
 /* CRT scanlines + flicker — covers ENTIRE site */
+/* CRT scanlines — covers entire site */
 body::after {
     content: '';
     position: fixed;
@@ -466,7 +470,6 @@ body::before {
     justify-self: center;
     align-self: center;
     width: 90px;
-    cursor: pointer;
     padding: 6px;
     transition: transform 0.1s;
     user-select: none;
@@ -624,7 +627,6 @@ body::before {
     height: 20px;
     background: var(--button-bg);
     border: 1px outset var(--button-bg);
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -661,7 +663,7 @@ body::before {
 
 .menu-item {
     padding: 1px 6px;
-    cursor: default;
+    cursor: inherit;
     font-size: 14px;
 }
 
@@ -704,7 +706,6 @@ body::before {
     aspect-ratio: 1;
     overflow: hidden;
     border: 1px inset var(--window-bg);
-    cursor: pointer;
     background: #f8f0f4;
     transition: transform 0.15s, box-shadow 0.15s;
 }
@@ -781,7 +782,6 @@ body::before {
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
     color: var(--text-color);
-    cursor: pointer;
     font-size: 18px;
     z-index: 99999;
 }
@@ -904,7 +904,6 @@ body::before {
     text-decoration: none;
     color: var(--text-color);
     font-size: 11px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -948,7 +947,6 @@ body::before {
     background: var(--button-bg);
     border: 1px outset var(--button-bg);
     padding: 3px 12px;
-    cursor: pointer;
     font-size: 11px;
     font-family: inherit;
     color: var(--text-color);
@@ -1069,7 +1067,6 @@ body::before {
     height: 22px;
     background: var(--button-bg);
     border: 1px outset var(--button-bg);
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1119,7 +1116,7 @@ body::before {
 
 #paint-canvas {
     display: block;
-    cursor: crosshair;
+    /* cursor inherited from heart pointer rule */
 }
 
 /* Bottom bar: current color + palette + actions */
@@ -1176,7 +1173,6 @@ body::before {
     width: 14px;
     height: 14px;
     border: 1px solid #a098a0;
-    cursor: pointer;
     transition: transform 0.1s;
 }
 
@@ -1203,7 +1199,6 @@ body::before {
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
     padding: 3px 10px;
-    cursor: pointer;
     font-size: 11px;
     font-family: inherit;
     color: var(--text-color);
@@ -1325,7 +1320,6 @@ body::before {
     width: 100%;
     height: 8px;
     accent-color: #ff69b4;
-    cursor: pointer;
 }
 
 /* Transport controls */
@@ -1343,7 +1337,6 @@ body::before {
     border: 1px outset #8a7060;
     color: #ffb6c1;
     font-size: 12px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1399,7 +1392,6 @@ body::before {
     flex: 1;
     height: 6px;
     accent-color: #ff69b4;
-    cursor: pointer;
 }
 
 /* Playlist */
@@ -1427,7 +1419,6 @@ body::before {
     font-size: 12px;
     font-family: 'VT323', monospace;
     padding: 3px 8px;
-    cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1471,7 +1462,7 @@ body::before {
     align-items: center;
     gap: 8px;
     padding: 4px 8px;
-    cursor: default;
+    cursor: inherit;
     font-size: 11px;
     transition: background 0.1s;
 }
@@ -1537,7 +1528,6 @@ body::before {
     padding: 3px 10px;
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
-    cursor: pointer;
     font-family: 'MS Sans Serif', 'Segoe UI', sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -1574,13 +1564,13 @@ body::before {
     align-items: center;
     z-index: 9999;
     font-size: 15px;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='38' height='42' viewBox='0 0 20 22'%3E%3Cpath d='M2 1L2 18L6 14L9 20L12 19L9 13L14 13Z' fill='%23ff69b4' stroke='%232a1a2e' stroke-width='1'/%3E%3C/svg%3E") 0 0, default !important;
 }
 
 .start-button {
     padding: 3px 12px;
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
-    cursor: pointer;
     font-weight: bold;
     margin: 3px;
     height: 38px;
@@ -1620,7 +1610,6 @@ body::before {
     padding: 3px 10px;
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
-    cursor: pointer;
     max-width: 170px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1704,7 +1693,6 @@ body::before {
 
 .start-menu-item {
     padding: 7px 32px 7px 10px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1796,7 +1784,6 @@ body::before {
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
     padding: 4px 24px;
-    cursor: pointer;
     font-size: 11px;
     font-family: inherit;
     min-width: 75px;
@@ -1861,7 +1848,6 @@ input[type="submit"] {
     background: var(--button-bg);
     border: 1px outset var(--button-bg);
     padding: 4px 12px;
-    cursor: pointer;
     font-size: 11px;
     font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif;
     color: var(--text-color);
@@ -1954,7 +1940,7 @@ input[type="submit"]:active {
 @media (max-width: 768px) {
     body {
         font-size: 18px;
-        cursor: default;
+        /* cursor inherited from desktop body rule — pink arrow */
         /* Retro Windows font for mobile */
         font-family: 'VT323', 'MS Sans Serif', 'Segoe UI', monospace;
     }
