@@ -261,7 +261,7 @@ a, button, [role="button"] {
 }
 
 /* ===== KAWAII BUNNY ANIMATION ===== */
-/* 5x scale (500%): original 62x65 → 310x325, sprite 372 → 1860 */
+/* 5x scale (500%): original 62x65 → 310x325, sprite 310 → 1550 */
 .bunny-container {
     position: fixed;
     bottom: 60px;  /* above taskbar */
@@ -274,27 +274,26 @@ a, button, [role="button"] {
 }
 
 .bunny-sprite {
-    width: 1860px;  /* 372 × 5 (6 frames × 310px) */
+    width: 1550px;  /* 310 × 5 (5 frames × 310px) */
     height: 325px;  /* 65 × 5 */
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
     -ms-interpolation-mode: nearest-neighbor;
-    animation: bunnyExpressions 4.2s steps(1) infinite;
+    animation: bunnyExpressions 3.5s steps(1) infinite;
     /* White lines via CSS filter */
     filter: brightness(0) invert(1);
 }
 
-/* Frame animation: 6 frames, 0.7s each = 4.2s total cycle */
-/* Cycle: bunny1 → bunny2 → bunny3 → bunny4 → bunny5 → bunny6 */
+/* Frame animation: 5 frames, 0.7s each = 3.5s total cycle */
+/* Cycle: bunny1 → bunny3 → bunny4 → bunny5 → bunny6 */
 /* translateX values for scaled sprite (310px per frame) */
 @keyframes bunnyExpressions {
-    0%        { transform: translateX(0); }        /* frame 1 */
-    16.66%    { transform: translateX(-310px); }   /* frame 2 */
-    33.33%    { transform: translateX(-620px); }   /* frame 3 */
-    50%       { transform: translateX(-930px); }   /* frame 4 */
-    66.66%    { transform: translateX(-1240px); }  /* frame 5 */
-    83.33%    { transform: translateX(-1550px); }  /* frame 6 */
+    0%     { transform: translateX(0); }        /* frame 1 */
+    20%    { transform: translateX(-310px); }   /* frame 3 */
+    40%    { transform: translateX(-620px); }   /* frame 4 */
+    60%    { transform: translateX(-930px); }   /* frame 5 */
+    80%    { transform: translateX(-1240px); }  /* frame 6 */
 }
 
 /* ===== LAIN GLITCH EFFECT — random horizontal jump ===== */
@@ -927,8 +926,8 @@ body::before {
 
 .notepad-text {
     font-family: 'Courier New', monospace;
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: 14px;
+    line-height: 1.5;
     white-space: pre;
     padding: 8px;
     margin: 0;
@@ -2244,7 +2243,6 @@ input[type="submit"]:active {
 }
 
 /* ===== BUNNY: MOBILE SIZE ===== */
-/* ===== BUNNY: MOBILE SIZE ===== */
 @media (max-width: 768px) {
     .bunny-container {
         bottom: 50px;
@@ -2254,18 +2252,17 @@ input[type="submit"]:active {
     }
 
     .bunny-sprite {
-        width: 744px;   /* 372 × 2 */
+        width: 620px;   /* 310 × 2 (5 frames × 124px) */
         height: 130px;  /* 65 × 2 */
     }
 
     /* Keyframes para 2x scale (124px por frame) */
     @keyframes bunnyExpressions {
-        0%        { transform: translateX(0); }
-        16.66%    { transform: translateX(-124px); }
-        33.33%    { transform: translateX(-248px); }
-        50%       { transform: translateX(-372px); }
-        66.66%    { transform: translateX(-496px); }
-        83.33%    { transform: translateX(-620px); }
+        0%     { transform: translateX(0); }
+        20%    { transform: translateX(-124px); }
+        40%    { transform: translateX(-248px); }
+        60%    { transform: translateX(-372px); }
+        80%    { transform: translateX(-496px); }
     }
 }
 
