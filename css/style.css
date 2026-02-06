@@ -2243,6 +2243,31 @@ input[type="submit"]:active {
     }
 }
 
+/* ===== BUNNY: MOBILE SIZE ===== */
+@media (max-width: 768px) {
+    .bunny-container {
+        bottom: 50px;  /* más pegado al taskbar */
+        right: 4px;    /* más pegado al borde derecho */
+        width: 155px;  /* mitad: 310 / 2 */
+        height: 162px; /* mitad: 325 / 2 */
+    }
+
+    .bunny-sprite {
+        width: 930px;  /* mitad: 1860 / 2 */
+        height: 162px; /* mitad: 325 / 2 */
+    }
+
+    /* Ajustar keyframes para el sprite más pequeño */
+    @keyframes bunnyExpressions {
+        0%        { transform: translateX(0); }
+        16.66%    { transform: translateX(-155px); }
+        33.33%    { transform: translateX(-310px); }
+        50%       { transform: translateX(-465px); }
+        66.66%    { transform: translateX(-620px); }
+        83.33%    { transform: translateX(-775px); }
+    }
+}
+
 /* ===== UTILITY ===== */
 .hidden {
     display: none !important;
