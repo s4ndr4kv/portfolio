@@ -261,41 +261,40 @@ a, button, [role="button"] {
 }
 
 /* ===== KAWAII BUNNY ANIMATION ===== */
-/* 5.1x scale (6x - 15%): original 62x65 → 316x332 */
+/* 5x scale (500%): original 62x65 → 310x325, sprite 372 → 1860 */
 .bunny-container {
     position: fixed;
     bottom: 60px;  /* above taskbar */
     right: 20px;
-    width: 316px;   /* 62 × 5.1 */
-    height: 332px;  /* 65 × 5.1 */
+    width: 310px;   /* 62 × 5 */
+    height: 325px;  /* 65 × 5 */
     z-index: 100;
     pointer-events: none;
     overflow: hidden;
 }
 
 .bunny-sprite {
-    width: 2213px;  /* 434 × 5.1 (7 frames × 316px) */
-    height: 332px;  /* 65 × 5.1 */
+    width: 1860px;  /* 372 × 5 (6 frames × 310px) */
+    height: 325px;  /* 65 × 5 */
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
     -ms-interpolation-mode: nearest-neighbor;
-    animation: bunnyExpressions 4.9s steps(1) infinite;
+    animation: bunnyExpressions 4.2s steps(1) infinite;
     /* White lines via CSS filter */
     filter: brightness(0) invert(1);
 }
 
-/* Frame animation: 7 frames, 0.7s each = 4.9s total cycle */
-/* Cycle: neutral(1) → sad(2) → crying(3) → neutral(1) → surprised(4) → sad(2) → neutral(1) */
-/* translateX values for scaled sprite (316px per frame) */
+/* Frame animation: 6 frames, 0.7s each = 4.2s total cycle */
+/* Cycle: bunny1 → bunny2 → bunny3 → bunny4 → bunny5 → bunny6 */
+/* translateX values for scaled sprite (310px per frame) */
 @keyframes bunnyExpressions {
-    0%      { transform: translateX(0); }        /* frame 1: neutral */
-    14.28%  { transform: translateX(-316px); }   /* frame 2: sad */
-    28.57%  { transform: translateX(-632px); }   /* frame 3: crying */
-    42.85%  { transform: translateX(-948px); }   /* frame 4: neutral */
-    57.14%  { transform: translateX(-1264px); }  /* frame 5: surprised */
-    71.42%  { transform: translateX(-1580px); }  /* frame 6: sad */
-    85.71%  { transform: translateX(-1896px); }  /* frame 7: neutral */
+    0%        { transform: translateX(0); }        /* frame 1 */
+    16.66%    { transform: translateX(-310px); }   /* frame 2 */
+    33.33%    { transform: translateX(-620px); }   /* frame 3 */
+    50%       { transform: translateX(-930px); }   /* frame 4 */
+    66.66%    { transform: translateX(-1240px); }  /* frame 5 */
+    83.33%    { transform: translateX(-1550px); }  /* frame 6 */
 }
 
 /* ===== LAIN GLITCH EFFECT — random horizontal jump ===== */
