@@ -122,15 +122,7 @@ function closeSplash() {
     splash.classList.add('fade-out');
     setTimeout(() => {
         splash.style.display = 'none';
-        // Auto-open Paint and Notepad on desktop only (not mobile)
-        if (window.innerWidth > 768) {
-            setTimeout(() => {
-                openWindow('paint');
-                setTimeout(() => {
-                    openWindow('notepad');
-                }, 150);
-            }, 200);
-        }
+        // Clean desktop — no windows auto-open
     }, 500);
 }
 
@@ -514,6 +506,183 @@ function closeDialog() {
     document.getElementById('dialog-overlay').classList.remove('visible');
 }
 
+// ===== BUNNY DEATH DIALOG =====
+function showBunnyDeathDialog() {
+    const bunny = document.getElementById('bunny-container');
+
+    // Hide the bunny
+    bunny.style.display = 'none';
+
+    // Show custom error dialog
+    const dialog = document.createElement('div');
+    dialog.className = 'error-dialog bunny-death-dialog';
+    dialog.style.cssText = `
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 99999;
+        min-width: 320px;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+    `;
+
+    dialog.innerHTML = `
+        <div class="error-titlebar" style="padding: 4px 8px; font-size: 14px; cursor: move;">
+            <span>Fatal Error</span>
+            <div class="error-close" style="font-size: 12px; padding: 2px 6px;">✕</div>
+        </div>
+        <div class="error-body" style="padding: 16px 20px; flex-direction: row; gap: 16px; align-items: center;">
+            <div class="error-icon" style="font-size: 32px; margin: 0;">💀</div>
+            <div style="flex: 1;">
+                <div style="font-size: 14px; margin-bottom: 12px;">Noooooooo, you killed him!!</div>
+                <button class="error-ok bunny-respawn-btn" style="padding: 4px 20px; font-size: 13px;">Respawn</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(dialog);
+
+    // Add event listeners
+    const closeBtn = dialog.querySelector('.error-close');
+    const respawnBtn = dialog.querySelector('.bunny-respawn-btn');
+
+    closeBtn.addEventListener('click', () => closeBunnyDeathDialog(false));
+    respawnBtn.addEventListener('click', () => closeBunnyDeathDialog(true));
+
+    // Make dialog draggable
+    const titlebar = dialog.querySelector('.error-titlebar');
+    let isDragging = false;
+    let startX, startY, dialogX, dialogY;
+
+    titlebar.addEventListener('mousedown', (e) => {
+        if (e.target.classList.contains('error-close')) return;
+        isDragging = true;
+        const rect = dialog.getBoundingClientRect();
+        dialogX = rect.left;
+        dialogY = rect.top;
+        startX = e.clientX;
+        startY = e.clientY;
+        dialog.style.transform = 'none';
+        dialog.style.left = dialogX + 'px';
+        dialog.style.top = dialogY + 'px';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        dialog.style.left = (dialogX + dx) + 'px';
+        dialog.style.top = (dialogY + dy) + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+}
+
+function closeBunnyDeathDialog(respawn) {
+    const dialog = document.querySelector('.bunny-death-dialog');
+    const bunny = document.getElementById('bunny-container');
+
+    // Remove dialog
+    if (dialog) dialog.remove();
+
+    // Only bring bunny back if respawn was clicked
+    if (respawn) {
+        bunny.style.display = '';
+        bunny.style.left = '';
+        bunny.style.top = '';
+        bunny.style.right = '8px';
+        bunny.style.bottom = '52px';
+        // Remove from recycle bin if it was there
+        window.bunnyIsDead = false;
+        removeDeadBunnyFromRecycle();
+    } else {
+        // Bunny is permanently dead - add to recycle bin
+        window.bunnyIsDead = true;
+        addDeadBunnyToRecycle();
+    }
+}
+
+function addDeadBunnyToRecycle() {
+    const recycleGrid = document.querySelector('.recycle-grid');
+    if (!recycleGrid) return;
+
+    // Check if already added
+    if (document.getElementById('dead-bunny-item')) return;
+
+    const deadBunnyItem = document.createElement('div');
+    deadBunnyItem.className = 'recycle-item dead-bunny';
+    deadBunnyItem.id = 'dead-bunny-item';
+    deadBunnyItem.innerHTML = `
+        <i class="fas fa-skull"></i>
+        <span>deadbunny.gif</span>
+    `;
+    recycleGrid.appendChild(deadBunnyItem);
+
+    // Update status bar count
+    const statusBar = document.querySelector('#recycle-window .window-status-bar span');
+    if (statusBar) {
+        statusBar.textContent = '6 objects ✧';
+    }
+}
+
+function removeDeadBunnyFromRecycle() {
+    const deadBunnyItem = document.getElementById('dead-bunny-item');
+    if (deadBunnyItem) {
+        deadBunnyItem.remove();
+        // Update status bar count
+        const statusBar = document.querySelector('#recycle-window .window-status-bar span');
+        if (statusBar) {
+            statusBar.textContent = '5 objects ✧';
+        }
+    }
+}
+
+// ===== SHUTDOWN SCREEN (Game Over) =====
+function showShutdownScreen() {
+    // First show CRT turn-off effect
+    const crtOff = document.createElement('div');
+    crtOff.id = 'crt-off';
+    document.body.appendChild(crtOff);
+
+    // Trigger CRT animation
+    setTimeout(() => {
+        crtOff.classList.add('active');
+    }, 10);
+
+    // Create game over screen BEFORE removing CRT (so it's underneath)
+    setTimeout(() => {
+        const overlay = document.createElement('div');
+        overlay.id = 'shutdown-screen';
+        overlay.classList.add('active');
+        overlay.innerHTML = `
+            <div class="gameover-content">
+                <div class="gameover-text">GAME OVER</div>
+                <div class="gameover-score">SCORE: 9999</div>
+                <div class="gameover-insert">INSERT COIN</div>
+                <div class="gameover-credits">CREDITS: 0</div>
+            </div>
+        `;
+        // Insert BEFORE crtOff so it appears underneath
+        document.body.insertBefore(overlay, crtOff);
+
+        // Now remove CRT (game over is already visible behind it)
+        setTimeout(() => {
+            crtOff.remove();
+        }, 50);
+
+        // Click to restart
+        overlay.addEventListener('click', () => {
+            // Keep screen black during reload
+            overlay.innerHTML = '<div class="gameover-restarting">RESTARTING...</div>';
+            setTimeout(() => {
+                location.reload();
+            }, 100);
+        });
+    }, 500);
+}
+
 // ===== LIGHTBOX =====
 let lightboxImages = [];
 let lightboxIndex = 0;
@@ -626,7 +795,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Shutdown button
     document.getElementById('shutdown-btn').addEventListener('click', () => {
         closeStartMenu();
-        showDialog('Apagar equipo', 'Gracias por visitar el portfolio de Sandra ♡\n¿Seguro que quieres irte?', 'fa-power-off');
+        showShutdownScreen();
     });
 
     // Close start menu on click outside
@@ -1014,6 +1183,25 @@ function initBunnyDrag() {
         if (!isDragging) return;
         isDragging = false;
         bunny.classList.remove('dragging');
+
+        // Check if bunny was dropped on the recycle bin
+        const recycleIcon = document.querySelector('.icon[data-window="recycle"]');
+        if (recycleIcon) {
+            const bunnyRect = bunny.getBoundingClientRect();
+            const recycleRect = recycleIcon.getBoundingClientRect();
+
+            // Check collision
+            const isOverRecycle = !(
+                bunnyRect.right < recycleRect.left ||
+                bunnyRect.left > recycleRect.right ||
+                bunnyRect.bottom < recycleRect.top ||
+                bunnyRect.top > recycleRect.bottom
+            );
+
+            if (isOverRecycle) {
+                showBunnyDeathDialog();
+            }
+        }
     }
 
     // Mouse events
