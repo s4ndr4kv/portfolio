@@ -23,7 +23,8 @@ const windowTitles = {
     'email': '📧 New Message — メール ♡',
     'paint': '🎨 untitled — ペイント ♡',
     'recycle': '🗑️ Recycle Bin — ごみ箱',
-    'kutv': '📺 KuTV — テレビ ♡'
+    'kutv': '📺 KuTV — テレビ ♡',
+    'tamagotchi': '🥚 Tamagotchi — たまごっち ♡'
 };
 
 // ===== SPLASH SCREEN — BIOS BOOT =====

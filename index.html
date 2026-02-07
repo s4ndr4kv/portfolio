@@ -515,6 +515,33 @@
                 </div>
                 <span class="icon-text">Recycle Bin</span>
             </div>
+
+            <div class="icon" data-window="tamagotchi">
+                <div class="icon-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+                        <!-- Tamagotchi egg shape -->
+                        <ellipse cx="24" cy="26" rx="16" ry="18" fill="#ff69b4"/>
+                        <ellipse cx="24" cy="26" rx="14" ry="16" fill="#ff9ec4"/>
+                        <ellipse cx="24" cy="25" rx="12" ry="13" fill="#ffb6d9"/>
+                        <!-- Screen -->
+                        <rect x="14" y="14" width="20" height="16" rx="2" fill="#9bbc0f"/>
+                        <rect x="15" y="15" width="18" height="14" fill="#8bac00"/>
+                        <!-- Bunny face on screen -->
+                        <rect x="19" y="18" width="3" height="3" fill="#2a1a2e"/>
+                        <rect x="26" y="18" width="3" height="3" fill="#2a1a2e"/>
+                        <rect x="22" y="23" width="4" height="2" fill="#2a1a2e"/>
+                        <!-- Buttons -->
+                        <circle cx="17" cy="36" r="3" fill="#ffcc00"/>
+                        <circle cx="24" cy="38" r="3" fill="#ffcc00"/>
+                        <circle cx="31" cy="36" r="3" fill="#ffcc00"/>
+                        <!-- Sparkles -->
+                        <rect x="6" y="10" width="2" height="2" fill="#ff69b4"/>
+                        <rect x="40" y="8" width="2" height="2" fill="#8b5cf6"/>
+                        <rect x="38" y="38" width="2" height="2" fill="#ffb6c1"/>
+                    </svg>
+                </div>
+                <span class="icon-text">Tamagotchi</span>
+            </div>
         </div>
 
         <!-- ============ WINDOWS ============ -->
@@ -1306,6 +1333,67 @@ hi@sandraku.com
             </div>
         </div>
 
+        <!-- TAMAGOTCHI — W98 Game Style -->
+        <div class="window" id="tamagotchi-window" style="top: 80px; left: 350px; width: 260px; height: 420px;">
+            <div class="window-header">
+                <span class="window-title">Bunny Pet</span>
+                <div class="window-controls">
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="tamagotchi">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="tamagotchi">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="tamagotchi">×</button>
+                </div>
+            </div>
+            <div class="window-menu-bar">
+                <span class="menu-item">Game</span>
+                <span class="menu-item">Options</span>
+                <span class="menu-item">Help</span>
+            </div>
+            <div class="window-content" style="padding: 0;">
+                <div class="tamagotchi-container">
+                    <!-- Game area with bunny -->
+                    <div class="tamagotchi-game">
+                        <pre class="tama-sprite" id="tama-sprite">
+  (\(\
+  ( o.o)
+  o_(")(")
+                        </pre>
+                        <!-- Stats panel -->
+                        <div class="tama-stats-panel">
+                            <div class="tama-stats">
+                                <div class="tama-stat">
+                                    <span class="tama-stat-label">FOOD</span>
+                                    <div class="tama-stat-bar">
+                                        <div class="tama-bar-fill" id="tama-hunger" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="tama-stat">
+                                    <span class="tama-stat-label">HAPPY</span>
+                                    <div class="tama-stat-bar">
+                                        <div class="tama-bar-fill" id="tama-happy" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="tama-stat">
+                                    <span class="tama-stat-label">ENERGY</span>
+                                    <div class="tama-stat-bar">
+                                        <div class="tama-bar-fill" id="tama-energy" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tama-info" id="tama-age">AGE: 0 MIN</div>
+                            <div class="tama-message" id="tama-message"></div>
+                            <!-- Buttons inside stats panel -->
+                            <div class="tamagotchi-buttons" id="tama-actions">
+                                <button class="tama-btn" id="tama-btn-feed">Feed</button>
+                                <button class="tama-btn" id="tama-btn-play">Play</button>
+                                <button class="tama-btn" id="tama-btn-sleep">Sleep</button>
+                            </div>
+                            <button class="tama-revive" id="tama-revive">REVIVE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- KuTV: Retro Television -->
         <div class="window" id="kutv-window" style="top: 50px; left: 180px; width: 520px; height: 440px;">
             <div class="window-header">
@@ -1447,5 +1535,6 @@ hi@sandraku.com
     <script src="js/kutv.js?v=20260205"></script>
     <script src="js/ascii-art.js?v=20260205"></script>
     <script src="js/gallery.js?v=20260207"></script>
+    <script src="js/tamagotchi.js?v=20260207"></script>
 </body>
 </html>
