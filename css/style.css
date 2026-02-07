@@ -2646,6 +2646,235 @@ input[type="submit"]:active {
     100% { transform: scale(1.2); opacity: 1; }
 }
 
+/* ===== TAMAGOTCHI — Winamp Style ===== */
+.tamagotchi-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(180deg, #5a4030 0%, #3a2518 50%, #2a1808 100%);
+    padding: 0;
+    font-family: 'VT323', monospace;
+}
+
+/* Game area - dark display like Winamp */
+.tamagotchi-game {
+    flex: 1;
+    background: #0a0514;
+    border: 2px inset #1a0a28;
+    margin: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    image-rendering: pixelated;
+}
+
+/* Bunny sprite - green glow like Winamp time display */
+.tama-sprite {
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #00ff00;
+    white-space: pre;
+    text-shadow: 0 0 6px rgba(0, 255, 0, 0.6);
+    margin-bottom: 12px;
+}
+
+/* Stats panel - wood gradient like Winamp body */
+.tama-stats-panel {
+    background: linear-gradient(180deg, #4a3520 0%, #2a1a10 100%);
+    border-top: 1px solid #6a5040;
+    padding: 8px;
+    width: 100%;
+}
+
+.tama-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tama-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tama-stat-label {
+    color: #ff69b4;
+    font-family: 'VT323', monospace;
+    font-size: 12px;
+    width: 55px;
+    text-transform: uppercase;
+    text-shadow: 0 0 3px rgba(255, 105, 180, 0.4);
+}
+
+.tama-stat-bar {
+    flex: 1;
+    height: 10px;
+    background: #0a0514;
+    border: 2px inset #1a0a28;
+}
+
+.tama-bar-fill {
+    height: 100%;
+    background: linear-gradient(0deg, #00cc00, #00ff00);
+    box-shadow: 0 0 4px rgba(0, 255, 0, 0.5);
+}
+
+.tama-bar-fill.warning {
+    background: linear-gradient(0deg, #cc9900, #ffcc00);
+    box-shadow: 0 0 4px rgba(255, 204, 0, 0.5);
+}
+
+.tama-bar-fill.critical {
+    background: linear-gradient(0deg, #cc0000, #ff0000);
+    box-shadow: 0 0 4px rgba(255, 0, 0, 0.5);
+    animation: tamaBlink 0.3s infinite;
+}
+
+@keyframes tamaBlink {
+    50% { opacity: 0.3; }
+}
+
+.tama-info {
+    color: #87ceeb;
+    font-family: 'VT323', monospace;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 6px;
+    text-transform: uppercase;
+    text-shadow: 0 0 4px rgba(135, 206, 235, 0.5);
+}
+
+.tama-message {
+    color: #ffb6c1;
+    font-family: 'VT323', monospace;
+    font-size: 12px;
+    text-align: center;
+    min-height: 14px;
+    opacity: 0;
+    margin-top: 4px;
+    text-shadow: 0 0 3px rgba(255, 182, 193, 0.4);
+}
+
+.tama-message.visible {
+    opacity: 1;
+}
+
+/* Buttons - Winamp style brown gradient */
+.tamagotchi-buttons {
+    display: flex;
+    gap: 4px;
+    padding: 8px 0 0 0;
+    margin-top: 8px;
+    justify-content: center;
+    border-top: 1px solid #6a5040;
+}
+
+.tama-btn {
+    min-width: 60px;
+    height: 24px;
+    background: linear-gradient(180deg, #6a5040 0%, #4a3020 100%);
+    border: 1px outset #8a7060;
+    font-family: 'VT323', monospace;
+    font-size: 13px;
+    color: #ffb6c1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.1s;
+}
+
+.tama-btn:hover {
+    background: linear-gradient(180deg, #8a6850 0%, #6a4830 100%);
+    color: #fff;
+}
+
+.tama-btn:active {
+    border-style: inset;
+}
+
+.tama-revive {
+    display: none;
+    width: 100%;
+    height: 24px;
+    background: linear-gradient(180deg, #6a5040 0%, #4a3020 100%);
+    border: 1px outset #8a7060;
+    font-family: 'VT323', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 6px rgba(0, 255, 0, 0.8);
+    margin-top: 8px;
+    transition: all 0.1s;
+}
+
+.tama-revive:hover {
+    background: linear-gradient(180deg, #8a6850 0%, #6a4830 100%);
+}
+
+.tama-revive:active {
+    border-style: inset;
+}
+
+/* Tamagotchi maximized - center the game */
+#tamagotchi-window.maximized .tamagotchi-container {
+    max-width: 400px;
+    margin: 0 auto;
+    height: auto;
+    min-height: 100%;
+}
+
+#tamagotchi-window.maximized .window-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #5a4030 0%, #3a2518 50%, #2a1808 100%);
+}
+
+#tamagotchi-window.maximized .tamagotchi-game {
+    padding: 32px;
+}
+
+#tamagotchi-window.maximized .tama-sprite {
+    font-size: 26px;
+    margin-bottom: 24px;
+}
+
+#tamagotchi-window.maximized .tama-stats-panel {
+    padding: 16px;
+}
+
+#tamagotchi-window.maximized .tama-stat-label {
+    font-size: 15px;
+    width: 70px;
+}
+
+#tamagotchi-window.maximized .tama-stat-bar {
+    height: 14px;
+}
+
+#tamagotchi-window.maximized .tama-info {
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+#tamagotchi-window.maximized .tamagotchi-buttons {
+    padding: 12px;
+    gap: 8px;
+}
+
+#tamagotchi-window.maximized .tama-btn {
+    min-width: 80px;
+    height: 28px;
+    font-size: 15px;
+}
+
 /* ===== RESPONSIVE: TABLET ===== */
 @media (max-width: 1024px) and (min-width: 769px) {
     .desktop-icons {
