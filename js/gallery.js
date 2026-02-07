@@ -7,7 +7,7 @@
 const folderConfig = {
     'character-design': {
         name: 'Character Design',
-        path: 'img/illustration/Character Design/',
+        path: 'img/Illustration/Character%20Design/',
         images: [
             '0BDA6B2C-3E09-45ED-88FD-F61644D3250F_1_102_o.jpeg',
             '29223947-303D-42AA-9289-8C5F68B5662F_1_201_a.jpeg',
@@ -26,7 +26,7 @@ const folderConfig = {
     },
     'kidcore': {
         name: 'Kidcore',
-        path: 'img/illustration/Kidcore/',
+        path: 'img/Illustration/Kidcore/',
         images: [
             '9B6597D1-3B4C-4D4B-A877-054B152BDABD_1_102_o.jpeg',
             'Facetune_01-10-2025-13-14-00.jpeg',
@@ -36,17 +36,17 @@ const folderConfig = {
             'IMG_6311.jpeg',
             'IMG_6841.png',
             'IMG_6846.png',
-            'Untitled_Artwork 11.png',
-            'Untitled_Artwork 15.png',
-            'Untitled_Artwork 2.png',
-            'Untitled_Artwork 3.png',
-            'Untitled_Artwork 5.png',
-            'Untitled_Artwork 9.png'
+            'Untitled_Artwork%2011.png',
+            'Untitled_Artwork%2015.png',
+            'Untitled_Artwork%202.png',
+            'Untitled_Artwork%203.png',
+            'Untitled_Artwork%205.png',
+            'Untitled_Artwork%209.png'
         ]
     },
     'narrative': {
         name: 'Narrative',
-        path: 'img/illustration/Narrative/',
+        path: 'img/Illustration/Narrative/',
         images: [
             'C6D0EEAA-D0D9-4FB6-9E0C-6189B8C6F12C_1_102_o.jpeg',
             'Facetune_05-11-2025-18-10-18.jpeg',
@@ -62,7 +62,7 @@ const folderConfig = {
             'IMG_4024.png',
             'IMG_4083.jpeg',
             'IMG_4199.png',
-            'Untitled_Artwork 3.png'
+            'Untitled_Artwork%203.png'
         ]
     }
 };
