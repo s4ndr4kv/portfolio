@@ -3,11 +3,17 @@
  * Windows Explorer style with folder navigation
  */
 
+// Detect mobile
+const isMobile = window.innerWidth <= 768;
+
+// Base paths - use smaller images on mobile
+const basePath = isMobile ? 'img/Illustration-mobile/' : 'img/Illustration/';
+
 // Folder configuration with images
 const folderConfig = {
     'character-design': {
         name: 'Character Design',
-        path: 'img/Illustration/Character%20Design/',
+        path: basePath + 'Character%20Design/',
         images: [
             '0BDA6B2C-3E09-45ED-88FD-F61644D3250F_1_102_o.jpeg',
             '29223947-303D-42AA-9289-8C5F68B5662F_1_201_a.jpeg',
@@ -26,7 +32,7 @@ const folderConfig = {
     },
     'kidcore': {
         name: 'Kidcore',
-        path: 'img/Illustration/Kidcore/',
+        path: basePath + 'Kidcore/',
         images: [
             '9B6597D1-3B4C-4D4B-A877-054B152BDABD_1_102_o.jpeg',
             'Facetune_01-10-2025-13-14-00.jpeg',
@@ -46,7 +52,7 @@ const folderConfig = {
     },
     'narrative': {
         name: 'Narrative',
-        path: 'img/Illustration/Narrative/',
+        path: basePath + 'Narrative/',
         images: [
             'C6D0EEAA-D0D9-4FB6-9E0C-6189B8C6F12C_1_102_o.jpeg',
             'Facetune_05-11-2025-18-10-18.jpeg',
