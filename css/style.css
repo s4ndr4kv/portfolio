@@ -2922,100 +2922,6 @@ input[type="submit"]:active {
         padding: 2px 6px;
     }
 
-    /* === EXPLORER (Illustration folder) — Mobile layout === */
-    /* Hide tree sidebar on mobile - too complex for small screens */
-    .explorer-sidebar {
-        display: none !important;
-    }
-
-    /* Explorer body: single column (no sidebar) */
-    .explorer-body {
-        flex-direction: column;
-    }
-
-    /* Explorer content takes full width */
-    .explorer-content {
-        width: 100%;
-    }
-
-    /* List items: larger for touch */
-    .explorer-list-item {
-        min-height: 44px;
-        font-size: 16px;
-        padding: 8px 4px;
-        touch-action: manipulation;
-    }
-
-    .explorer-list-item .list-col {
-        padding: 4px 6px;
-        font-size: 15px;
-    }
-
-    /* Hide less important columns on mobile */
-    .list-col-size,
-    .list-col-type,
-    .list-col-modified {
-        display: none;
-    }
-
-    /* Name column takes full width */
-    .list-col-name {
-        flex: 1;
-        width: auto !important;
-    }
-
-    /* List header: simplified */
-    .explorer-list-header {
-        display: none;
-    }
-
-    /* Folder icon bigger */
-    .list-icon.folder-icon-yellow {
-        width: 24px;
-        height: 20px;
-        margin-right: 8px;
-    }
-
-    /* Explorer toolbar: hide on mobile */
-    .explorer-toolbar {
-        display: none;
-    }
-
-    /* Address bar: simplified */
-    .explorer-address {
-        padding: 4px 8px;
-        font-size: 14px;
-    }
-
-    /* Viewer header: touch-friendly */
-    .viewer-header {
-        padding: 8px 12px;
-    }
-
-    .viewer-back {
-        padding: 8px 12px;
-        font-size: 16px;
-        min-height: 40px;
-    }
-
-    .viewer-title {
-        font-size: 16px;
-    }
-
-    /* Viewer nav buttons: larger */
-    .viewer-prev,
-    .viewer-next {
-        width: 50px;
-        height: 70px;
-        font-size: 32px;
-    }
-
-    /* Thumbnails: larger */
-    .viewer-thumb {
-        width: 55px;
-        height: 55px;
-    }
-
     /* Hide sparkle particles for performance */
     .sparkle {
         display: none;
@@ -3105,6 +3011,107 @@ input[type="submit"]:active {
         40%    { transform: translateX(-248px); }
         60%    { transform: translateX(-372px); }
         80%    { transform: translateX(-496px); }
+    }
+}
+
+/* ===== EXPLORER: MOBILE/TABLET — Hide sidebar, simplify layout ===== */
+/* Using 1024px to cover tablets and large phones */
+@media (max-width: 1024px) {
+    /* HIDE the entire tree sidebar */
+    .explorer-sidebar {
+        display: none !important;
+        width: 0 !important;
+        visibility: hidden !important;
+    }
+
+    /* Explorer body: single column */
+    .explorer-body {
+        flex-direction: column !important;
+    }
+
+    /* Explorer content takes full width */
+    .explorer-content {
+        width: 100% !important;
+        flex: 1 !important;
+    }
+
+    /* Hide toolbar on mobile */
+    .explorer-toolbar {
+        display: none !important;
+    }
+
+    /* Hide less important columns */
+    .list-col-size,
+    .list-col-type,
+    .list-col-modified {
+        display: none !important;
+    }
+
+    /* Hide list header */
+    .explorer-list-header {
+        display: none !important;
+    }
+
+    /* Name column full width */
+    .list-col-name {
+        flex: 1 !important;
+        width: auto !important;
+    }
+
+    /* List items: larger for touch */
+    .explorer-list-item {
+        min-height: 48px !important;
+        font-size: 18px !important;
+        padding: 12px 8px !important;
+        touch-action: manipulation;
+        cursor: pointer;
+    }
+
+    .explorer-list-item .list-col {
+        padding: 4px 8px !important;
+        font-size: 17px !important;
+    }
+
+    /* Folder icon bigger */
+    .list-icon.folder-icon-yellow {
+        width: 28px !important;
+        height: 24px !important;
+        margin-right: 12px !important;
+    }
+
+    /* Address bar: simplified */
+    .explorer-address {
+        padding: 6px 10px !important;
+        font-size: 15px !important;
+    }
+
+    /* Viewer header: touch-friendly */
+    .viewer-header {
+        padding: 10px 14px !important;
+    }
+
+    .viewer-back {
+        padding: 10px 14px !important;
+        font-size: 18px !important;
+        min-height: 44px !important;
+    }
+
+    .viewer-title {
+        font-size: 18px !important;
+    }
+
+    /* Viewer nav buttons: larger */
+    .viewer-prev,
+    .viewer-next {
+        width: 54px !important;
+        height: 80px !important;
+        font-size: 36px !important;
+    }
+
+    /* Thumbnails: larger */
+    .viewer-thumb {
+        width: 60px !important;
+        height: 60px !important;
     }
 }
 
