@@ -262,6 +262,7 @@ a, button, [role="button"] {
 
 /* ===== KAWAII BUNNY ANIMATION ===== */
 /* 5x scale (500%): original 62x65 → 310x325, sprite 310 → 1550 */
+/* Frames: bunny1(0) bunny3(-310) bunny4(-620) bunny5(-930) bunny6(-1240) */
 .bunny-container {
     position: fixed;
     bottom: 60px;  /* above taskbar */
@@ -269,8 +270,17 @@ a, button, [role="button"] {
     width: 310px;   /* 62 × 5 */
     height: 325px;  /* 65 × 5 */
     z-index: 100;
-    pointer-events: none;
+    pointer-events: auto;  /* enable interaction */
     overflow: hidden;
+    cursor: grab;
+}
+
+.bunny-container:active {
+    cursor: grabbing;
+}
+
+.bunny-container.dragging {
+    cursor: grabbing;
 }
 
 .bunny-sprite {
@@ -283,6 +293,19 @@ a, button, [role="button"] {
     animation: bunnyExpressions 3.5s steps(1) infinite;
     /* White lines via CSS filter */
     filter: brightness(0) invert(1);
+    transition: none;
+}
+
+/* Hover state: bunny1 (frame 0) */
+.bunny-container:hover .bunny-sprite {
+    animation: none;
+    transform: translateX(0);  /* bunny1 */
+}
+
+/* Dragging state: bunny4 (frame 2 = -620px) */
+.bunny-container.dragging .bunny-sprite {
+    animation: none;
+    transform: translateX(-620px);  /* bunny4 */
 }
 
 /* Frame animation: 5 frames, 0.7s each = 3.5s total cycle */
@@ -471,6 +494,13 @@ body::before {
     padding: 6px;
     transition: transform 0.1s;
     user-select: none;
+    cursor: grab;
+}
+
+.icon.dragging {
+    cursor: grabbing;
+    z-index: 200;
+    opacity: 0.9;
 }
 
 .icon:hover {
@@ -1733,6 +1763,157 @@ body::before {
     border-top: 1px solid var(--window-border-light);
 }
 
+/* ===== FOLDER VIEW (Windows Explorer style) ===== */
+.folder-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    background: var(--window-content-bg);
+    min-height: 200px;
+}
+
+.folder-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.folder-item:hover {
+    background: rgba(255, 105, 180, 0.15);
+    outline: 1px dashed var(--selection-border);
+}
+
+.folder-icon {
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.folder-name {
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* ===== IMAGE VIEWER ===== */
+.image-viewer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--window-content-bg);
+}
+
+.viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    background: var(--window-bg);
+    border-bottom: 1px solid var(--window-border-dark);
+}
+
+.viewer-back {
+    padding: 4px 10px;
+    font-size: 12px;
+    background: var(--window-bg);
+    border: 2px outset var(--window-bg);
+    cursor: pointer;
+}
+
+.viewer-back:hover {
+    background: var(--accent-pink);
+    color: white;
+}
+
+.viewer-back:active {
+    border-style: inset;
+}
+
+.viewer-title {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.viewer-count {
+    font-size: 12px;
+    color: #666;
+}
+
+.viewer-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a2e;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+.viewer-image {
+    max-width: 90%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.viewer-prev,
+.viewer-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 60px;
+    font-size: 28px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.viewer-prev:hover,
+.viewer-next:hover {
+    background: rgba(255, 105, 180, 0.4);
+}
+
+.viewer-prev { left: 0; }
+.viewer-next { right: 0; }
+
+.viewer-thumbnails {
+    display: flex;
+    gap: 4px;
+    padding: 8px;
+    background: var(--window-bg);
+    border-top: 1px solid var(--window-border-dark);
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.viewer-thumb {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s, border-color 0.2s;
+}
+
+.viewer-thumb:hover {
+    opacity: 0.9;
+}
+
+.viewer-thumb.active {
+    opacity: 1;
+    border-color: var(--accent-pink);
+}
+
 /* ===== DIALOG ===== */
 .dialog-overlay {
     display: none;
@@ -2268,6 +2449,16 @@ input[type="submit"]:active {
     .bunny-sprite {
         width: 620px;   /* 310 × 2 (5 frames × 124px) */
         height: 130px;  /* 65 × 2 */
+    }
+
+    /* Hover state: bunny1 (frame 0) — mobile */
+    .bunny-container:hover .bunny-sprite {
+        transform: translateX(0);  /* bunny1 */
+    }
+
+    /* Dragging state: bunny4 (frame 2) — mobile */
+    .bunny-container.dragging .bunny-sprite {
+        transform: translateX(-248px);  /* bunny4 */
     }
 
     /* Keyframes para 2x scale (124px por frame) */

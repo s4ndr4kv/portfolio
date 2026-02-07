@@ -536,17 +536,39 @@
                 <span class="menu-item">Help</span>
             </div>
             <div class="window-content">
-                <div class="gallery-grid" id="editorial-gallery">
-                    <!-- Gallery items will be added here -->
-                    <div class="gallery-placeholder">
-                        <i class="fas fa-images"></i>
-                        <p>Aquí irán tus ilustraciones editoriales.</p>
-                        <p class="gallery-hint">Escenas narrativas, portadas, cuentos...</p>
+                <!-- Folder View -->
+                <div class="folder-view" id="editorial-folders">
+                    <div class="folder-item" data-folder="character-design">
+                        <div class="folder-icon">📁</div>
+                        <span class="folder-name">Character Design</span>
                     </div>
+                    <div class="folder-item" data-folder="kidcore">
+                        <div class="folder-icon">📁</div>
+                        <span class="folder-name">Kidcore</span>
+                    </div>
+                    <div class="folder-item" data-folder="narrative">
+                        <div class="folder-icon">📁</div>
+                        <span class="folder-name">Narrative</span>
+                    </div>
+                </div>
+
+                <!-- Image Viewer (hidden by default) -->
+                <div class="image-viewer hidden" id="editorial-viewer">
+                    <div class="viewer-header">
+                        <button class="viewer-back">← Back</button>
+                        <span class="viewer-title">Folder</span>
+                        <span class="viewer-count">1 / 10</span>
+                    </div>
+                    <div class="viewer-main">
+                        <button class="viewer-prev">‹</button>
+                        <img class="viewer-image" src="" alt="illustration">
+                        <button class="viewer-next">›</button>
+                    </div>
+                    <div class="viewer-thumbnails"></div>
                 </div>
             </div>
             <div class="window-status-bar">
-                <span>0 objects ✧</span>
+                <span>3 folders ✧</span>
             </div>
         </div>
 
@@ -1199,10 +1221,11 @@ hi@sandraku.com
         </div>
     </div>
 
-    <script src="js/main.js?v=20260205"></script>
+    <script src="js/main.js?v=20260207"></script>
     <script src="js/paint.js?v=20260205"></script>
     <script src="js/winamp.js?v=20260205"></script>
     <script src="js/kutv.js?v=20260205"></script>
     <script src="js/ascii-art.js?v=20260205"></script>
+    <script src="js/gallery.js?v=20260207"></script>
 </body>
 </html>

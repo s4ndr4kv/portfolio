@@ -951,3 +951,203 @@ document.addEventListener('DOMContentLoaded', () => {
     // Delay slightly so it starts after splash
     setTimeout(initCRTFlicker, 3000);
 });
+
+// ===== BUNNY DRAG =====
+function initBunnyDrag() {
+    const bunny = document.getElementById('bunny-container');
+    if (!bunny) return;
+
+    let isDragging = false;
+    let startX, startY;
+    let bunnyX, bunnyY;
+
+    // Get initial position from CSS
+    function getBunnyPosition() {
+        const rect = bunny.getBoundingClientRect();
+        return { x: rect.left, y: rect.top };
+    }
+
+    function onStart(e) {
+        isDragging = true;
+        bunny.classList.add('dragging');
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const pos = getBunnyPosition();
+        bunnyX = pos.x;
+        bunnyY = pos.y;
+        startX = clientX - bunnyX;
+        startY = clientY - bunnyY;
+
+        // Switch from right/bottom positioning to left/top
+        bunny.style.left = bunnyX + 'px';
+        bunny.style.top = bunnyY + 'px';
+        bunny.style.right = 'auto';
+        bunny.style.bottom = 'auto';
+
+        e.preventDefault();
+    }
+
+    function onMove(e) {
+        if (!isDragging) return;
+
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        let newX = clientX - startX;
+        let newY = clientY - startY;
+
+        // Constrain to viewport
+        const maxX = window.innerWidth - bunny.offsetWidth;
+        const maxY = window.innerHeight - bunny.offsetHeight;
+        newX = Math.max(0, Math.min(newX, maxX));
+        newY = Math.max(0, Math.min(newY, maxY));
+
+        bunny.style.left = newX + 'px';
+        bunny.style.top = newY + 'px';
+
+        e.preventDefault();
+    }
+
+    function onEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        bunny.classList.remove('dragging');
+    }
+
+    // Mouse events
+    bunny.addEventListener('mousedown', onStart);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+
+    // Touch events
+    bunny.addEventListener('touchstart', onStart, { passive: false });
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('touchend', onEnd);
+}
+
+// Init bunny drag after DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    initBunnyDrag();
+});
+
+// ===== ICON DRAG =====
+function initIconDrag() {
+    const icons = document.querySelectorAll('.icon[data-window]');
+    let draggedIcon = null;
+    let isDragging = false;
+    let hasMoved = false;
+    let startX, startY;
+    let iconStartX, iconStartY;
+    const dragThreshold = 5; // pixels before considering it a drag
+
+    icons.forEach(icon => {
+        function onStart(e) {
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            draggedIcon = icon;
+            hasMoved = false;
+            isDragging = false;
+            startX = clientX;
+            startY = clientY;
+
+            // Get current position relative to desktop
+            const rect = icon.getBoundingClientRect();
+            const desktop = document.getElementById('desktop');
+            const desktopRect = desktop.getBoundingClientRect();
+            iconStartX = rect.left - desktopRect.left;
+            iconStartY = rect.top - desktopRect.top;
+        }
+
+        function onMove(e) {
+            if (!draggedIcon || draggedIcon !== icon) return;
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const deltaX = clientX - startX;
+            const deltaY = clientY - startY;
+
+            // Check if we've moved enough to start dragging
+            if (!isDragging && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
+                isDragging = true;
+                hasMoved = true;
+                icon.classList.add('dragging');
+
+                // Switch to absolute positioning when drag starts
+                icon.style.position = 'absolute';
+                icon.style.left = iconStartX + 'px';
+                icon.style.top = iconStartY + 'px';
+                // Remove grid placement
+                icon.style.gridColumn = 'auto';
+                icon.style.gridRow = 'auto';
+            }
+
+            if (isDragging) {
+                const desktop = document.getElementById('desktop');
+                const desktopRect = desktop.getBoundingClientRect();
+                const taskbarHeight = document.querySelector('.taskbar').offsetHeight;
+
+                let newX = iconStartX + deltaX;
+                let newY = iconStartY + deltaY;
+
+                // Constrain to desktop area
+                const maxX = desktopRect.width - icon.offsetWidth;
+                const maxY = desktopRect.height - taskbarHeight - icon.offsetHeight;
+                newX = Math.max(0, Math.min(newX, maxX));
+                newY = Math.max(0, Math.min(newY, maxY));
+
+                icon.style.left = newX + 'px';
+                icon.style.top = newY + 'px';
+
+                e.preventDefault();
+            }
+        }
+
+        function onEnd(e) {
+            if (draggedIcon === icon) {
+                icon.classList.remove('dragging');
+
+                // If we dragged, prevent the click from opening the window
+                if (hasMoved) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                draggedIcon = null;
+                isDragging = false;
+            }
+        }
+
+        // Mouse events
+        icon.addEventListener('mousedown', onStart);
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onEnd);
+
+        // Touch events
+        icon.addEventListener('touchstart', onStart, { passive: true });
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('touchend', onEnd);
+    });
+
+    // Prevent click when dragged
+    icons.forEach(icon => {
+        icon.addEventListener('click', (e) => {
+            if (hasMoved) {
+                e.preventDefault();
+                e.stopPropagation();
+                hasMoved = false;
+            }
+        }, true);
+    });
+}
+
+// Init icon drag after DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Skip on mobile - icons are in grid
+    if (window.innerWidth > 768) {
+        initIconDrag();
+    }
+});
