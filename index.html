@@ -520,9 +520,9 @@
         <!-- ============ WINDOWS ============ -->
 
         <!-- GALLERY: Ilustración Editorial — Windows Explorer style -->
-        <div class="window explorer-window" id="editorial-window" style="top: 40px; left: 120px; width: 650px; height: 480px;">
+        <div class="window explorer-window" id="editorial-window" style="top: 30px; left: 80px; width: 780px; height: 540px;">
             <div class="window-header">
-                <span class="window-title">📖 Illustration — イラスト ✧</span>
+                <span class="window-title">📂 Exploring — C:\Sandra\Illustration ✧</span>
                 <div class="window-controls">
                     <button class="window-button minimize-btn" data-action="minimize" data-window="editorial">_</button>
                     <button class="window-button maximize-btn" data-action="maximize" data-window="editorial">□</button>
@@ -535,6 +535,7 @@
                 <span class="menu-item">View</span>
                 <span class="menu-item">Go</span>
                 <span class="menu-item">Favorites</span>
+                <span class="menu-item">Tools</span>
                 <span class="menu-item">Help</span>
             </div>
             <!-- Explorer Toolbar -->
@@ -552,6 +553,19 @@
                     <span class="explorer-btn-label">Up</span>
                 </button>
                 <div class="explorer-separator"></div>
+                <button class="explorer-btn disabled" title="Cut">
+                    <span class="explorer-btn-icon">✂</span>
+                    <span class="explorer-btn-label">Cut</span>
+                </button>
+                <button class="explorer-btn disabled" title="Copy">
+                    <span class="explorer-btn-icon">⧉</span>
+                    <span class="explorer-btn-label">Copy</span>
+                </button>
+                <button class="explorer-btn disabled" title="Paste">
+                    <span class="explorer-btn-icon">📋</span>
+                    <span class="explorer-btn-label">Paste</span>
+                </button>
+                <div class="explorer-separator"></div>
                 <button class="explorer-btn" title="Views">
                     <span class="explorer-btn-icon">⊞</span>
                     <span class="explorer-btn-label">Views</span>
@@ -561,39 +575,169 @@
             <div class="explorer-address">
                 <span class="explorer-address-label">Address</span>
                 <div class="explorer-address-field">
-                    <span class="explorer-address-icon">📁</span>
-                    <span class="explorer-address-path" id="explorer-path">Illustration</span>
+                    <span class="explorer-address-icon folder-icon-yellow"></span>
+                    <span class="explorer-address-path" id="explorer-path">C:\Sandra\Illustration</span>
                 </div>
+                <button class="explorer-address-go">▼</button>
             </div>
             <!-- Explorer main content: sidebar + content area -->
             <div class="explorer-body">
-                <!-- Left sidebar: folder tree -->
+                <!-- Left sidebar: folder tree with dotted lines (W98 style) -->
                 <div class="explorer-sidebar">
                     <div class="explorer-sidebar-header">
                         All Folders
                         <button class="explorer-sidebar-close">×</button>
                     </div>
                     <div class="explorer-tree">
-                        <div class="tree-item tree-root expanded" data-folder="root">
-                            <span class="tree-toggle">−</span>
-                            <span class="tree-icon">📁</span>
-                            <span class="tree-label">Illustration</span>
-                        </div>
-                        <div class="tree-children">
-                            <div class="tree-item" data-folder="character-design">
-                                <span class="tree-toggle-placeholder"></span>
-                                <span class="tree-icon">📁</span>
-                                <span class="tree-label">Character Design</span>
+                        <!-- Desktop -->
+                        <div class="tree-node">
+                            <div class="tree-row">
+                                <span class="tree-box">−</span>
+                                <span class="tree-icon-img tree-icon-desktop"></span>
+                                <span class="tree-label">Desktop</span>
                             </div>
-                            <div class="tree-item" data-folder="kidcore">
-                                <span class="tree-toggle-placeholder"></span>
-                                <span class="tree-icon">📁</span>
-                                <span class="tree-label">Kidcore</span>
-                            </div>
-                            <div class="tree-item" data-folder="narrative">
-                                <span class="tree-toggle-placeholder"></span>
-                                <span class="tree-icon">📁</span>
-                                <span class="tree-label">Narrative</span>
+                            <div class="tree-branch">
+                                <!-- My Computer -->
+                                <div class="tree-node">
+                                    <div class="tree-row">
+                                        <span class="tree-box">−</span>
+                                        <span class="tree-icon-img tree-icon-computer"></span>
+                                        <span class="tree-label">My Computer</span>
+                                    </div>
+                                    <div class="tree-branch">
+                                        <!-- 3½ Floppy -->
+                                        <div class="tree-node">
+                                            <div class="tree-row">
+                                                <span class="tree-box-empty"></span>
+                                                <span class="tree-icon-img tree-icon-floppy"></span>
+                                                <span class="tree-label">3½ Floppy (A:)</span>
+                                            </div>
+                                        </div>
+                                        <!-- C: Drive -->
+                                        <div class="tree-node">
+                                            <div class="tree-row">
+                                                <span class="tree-box">−</span>
+                                                <span class="tree-icon-img tree-icon-drive"></span>
+                                                <span class="tree-label">(C:)</span>
+                                            </div>
+                                            <div class="tree-branch">
+                                                <!-- My Documents -->
+                                                <div class="tree-node">
+                                                    <div class="tree-row">
+                                                        <span class="tree-box">+</span>
+                                                        <span class="tree-icon-img tree-icon-folder"></span>
+                                                        <span class="tree-label">My Documents</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Sandra -->
+                                                <div class="tree-node">
+                                                    <div class="tree-row">
+                                                        <span class="tree-box">−</span>
+                                                        <span class="tree-icon-img tree-icon-folder"></span>
+                                                        <span class="tree-label">Sandra</span>
+                                                    </div>
+                                                    <div class="tree-branch">
+                                                        <!-- Illustration (selected/open) -->
+                                                        <div class="tree-node">
+                                                            <div class="tree-row selected" data-folder="root">
+                                                                <span class="tree-box">−</span>
+                                                                <span class="tree-icon-img tree-icon-folder-open"></span>
+                                                                <span class="tree-label">Illustration</span>
+                                                            </div>
+                                                            <div class="tree-branch">
+                                                                <div class="tree-node">
+                                                                    <div class="tree-row" data-folder="character-design">
+                                                                        <span class="tree-box-empty"></span>
+                                                                        <span class="tree-icon-img tree-icon-folder"></span>
+                                                                        <span class="tree-label">Character Design</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tree-node">
+                                                                    <div class="tree-row" data-folder="kidcore">
+                                                                        <span class="tree-box-empty"></span>
+                                                                        <span class="tree-icon-img tree-icon-folder"></span>
+                                                                        <span class="tree-label">Kidcore</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tree-node">
+                                                                    <div class="tree-row" data-folder="narrative">
+                                                                        <span class="tree-box-empty"></span>
+                                                                        <span class="tree-icon-img tree-icon-folder"></span>
+                                                                        <span class="tree-label">Narrative</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Photography -->
+                                                        <div class="tree-node">
+                                                            <div class="tree-row">
+                                                                <span class="tree-box">+</span>
+                                                                <span class="tree-icon-img tree-icon-folder"></span>
+                                                                <span class="tree-label">Photography</span>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Projects -->
+                                                        <div class="tree-node">
+                                                            <div class="tree-row">
+                                                                <span class="tree-box-empty"></span>
+                                                                <span class="tree-icon-img tree-icon-folder"></span>
+                                                                <span class="tree-label">Projects</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Program Files -->
+                                                <div class="tree-node">
+                                                    <div class="tree-row">
+                                                        <span class="tree-box">+</span>
+                                                        <span class="tree-icon-img tree-icon-folder"></span>
+                                                        <span class="tree-label">Program Files</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Windows -->
+                                                <div class="tree-node">
+                                                    <div class="tree-row">
+                                                        <span class="tree-box">+</span>
+                                                        <span class="tree-icon-img tree-icon-folder"></span>
+                                                        <span class="tree-label">Windows</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- D: Drive -->
+                                        <div class="tree-node">
+                                            <div class="tree-row">
+                                                <span class="tree-box">+</span>
+                                                <span class="tree-icon-img tree-icon-cdrom"></span>
+                                                <span class="tree-label">(D:)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- My Documents shortcut -->
+                                <div class="tree-node">
+                                    <div class="tree-row">
+                                        <span class="tree-box">+</span>
+                                        <span class="tree-icon-img tree-icon-folder"></span>
+                                        <span class="tree-label">My Documents</span>
+                                    </div>
+                                </div>
+                                <!-- Network -->
+                                <div class="tree-node">
+                                    <div class="tree-row">
+                                        <span class="tree-box">+</span>
+                                        <span class="tree-icon-img tree-icon-network"></span>
+                                        <span class="tree-label">Network Neighborhood</span>
+                                    </div>
+                                </div>
+                                <!-- Recycle Bin -->
+                                <div class="tree-node">
+                                    <div class="tree-row">
+                                        <span class="tree-box-empty"></span>
+                                        <span class="tree-icon-img tree-icon-recycle"></span>
+                                        <span class="tree-label">Recycle Bin</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -612,21 +756,25 @@
                             <span class="list-col list-col-name">Name</span>
                             <span class="list-col list-col-size">Size</span>
                             <span class="list-col list-col-type">Type</span>
+                            <span class="list-col list-col-modified">Modified</span>
                         </div>
                         <div class="explorer-list-item" data-folder="character-design">
-                            <span class="list-col list-col-name"><span class="list-icon">📁</span> Character Design</span>
+                            <span class="list-col list-col-name"><span class="list-icon folder-icon-yellow"></span> Character Design</span>
                             <span class="list-col list-col-size"></span>
                             <span class="list-col list-col-type">File Folder</span>
+                            <span class="list-col list-col-modified">01/15/25</span>
                         </div>
                         <div class="explorer-list-item" data-folder="kidcore">
-                            <span class="list-col list-col-name"><span class="list-icon">📁</span> Kidcore</span>
+                            <span class="list-col list-col-name"><span class="list-icon folder-icon-yellow"></span> Kidcore</span>
                             <span class="list-col list-col-size"></span>
                             <span class="list-col list-col-type">File Folder</span>
+                            <span class="list-col list-col-modified">01/12/25</span>
                         </div>
                         <div class="explorer-list-item" data-folder="narrative">
-                            <span class="list-col list-col-name"><span class="list-icon">📁</span> Narrative</span>
+                            <span class="list-col list-col-name"><span class="list-icon folder-icon-yellow"></span> Narrative</span>
                             <span class="list-col list-col-size"></span>
                             <span class="list-col list-col-type">File Folder</span>
+                            <span class="list-col list-col-modified">01/10/25</span>
                         </div>
                     </div>
                     <!-- Image Viewer main area (hidden by default) -->

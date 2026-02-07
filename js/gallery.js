@@ -69,33 +69,59 @@ const folderConfig = {
 
 // State
 let currentFolder = null;
+let currentFolderId = null;
 let currentImageIndex = 0;
 
 // DOM elements (initialized on load)
-let folderView, viewerHeader, viewerMain, viewerThumbs;
+let explorerList, viewerHeader, viewerMain, viewerThumbs;
 let viewerImage, viewerTitle, viewerCount;
+let explorerPath, explorerStatus;
 
 function initGallery() {
-    folderView = document.getElementById('editorial-folders');
+    explorerList = document.getElementById('editorial-folders');
     viewerHeader = document.getElementById('editorial-viewer-header');
     viewerMain = document.getElementById('editorial-viewer-main');
     viewerThumbs = document.getElementById('editorial-viewer-thumbs');
     viewerImage = document.querySelector('.viewer-image');
     viewerTitle = document.querySelector('.viewer-title');
     viewerCount = document.querySelector('.viewer-count');
+    explorerPath = document.getElementById('explorer-path');
+    explorerStatus = document.getElementById('explorer-status');
 
-    if (!folderView) return;
+    if (!explorerList) return;
 
-    // Folder click handlers
-    document.querySelectorAll('.folder-item').forEach(folder => {
-        folder.addEventListener('click', () => {
-            const folderId = folder.getAttribute('data-folder');
+    // List item click handlers (right panel)
+    document.querySelectorAll('.explorer-list-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const folderId = item.getAttribute('data-folder');
             openFolder(folderId);
         });
     });
 
-    // Back button
+    // Tree row click handlers (left sidebar) - new structure with .tree-row
+    document.querySelectorAll('.tree-row[data-folder]').forEach(row => {
+        row.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const folderId = row.getAttribute('data-folder');
+
+            // Update tree selection
+            document.querySelectorAll('.tree-row').forEach(r => r.classList.remove('selected'));
+            row.classList.add('selected');
+
+            if (folderId === 'root') {
+                closeFolder();
+            } else {
+                openFolder(folderId);
+            }
+        });
+    });
+
+    // Back button in viewer
     document.querySelector('.viewer-back')?.addEventListener('click', closeFolder);
+
+    // Explorer toolbar buttons
+    document.getElementById('explorer-back')?.addEventListener('click', closeFolder);
+    document.getElementById('explorer-up')?.addEventListener('click', closeFolder);
 
     // Navigation buttons
     document.querySelector('.viewer-prev')?.addEventListener('click', prevImage);
@@ -108,6 +134,9 @@ function initGallery() {
         if (e.key === 'ArrowRight') nextImage();
         if (e.key === 'Escape') closeFolder();
     });
+
+    // Select Illustration (root) in tree by default
+    document.querySelector('.tree-row[data-folder="root"]')?.classList.add('selected');
 }
 
 function openFolder(folderId) {
@@ -115,15 +144,30 @@ function openFolder(folderId) {
     if (!folder || folder.images.length === 0) return;
 
     currentFolder = folder;
+    currentFolderId = folderId;
     currentImageIndex = 0;
 
-    // Switch views - hide folders, show all viewer parts
-    folderView.classList.add('hidden');
+    // Update tree selection (using .tree-row now)
+    document.querySelectorAll('.tree-row').forEach(r => r.classList.remove('selected'));
+    document.querySelector(`.tree-row[data-folder="${folderId}"]`)?.classList.add('selected');
+
+    // Update address bar
+    if (explorerPath) {
+        explorerPath.textContent = `C:\\Sandra\\Illustration\\${folder.name}`;
+    }
+
+    // Update status bar
+    if (explorerStatus) {
+        explorerStatus.textContent = `${folder.images.length} object(s) ✧`;
+    }
+
+    // Switch views - hide folder list, show viewer
+    explorerList.classList.add('hidden');
     viewerHeader.classList.remove('hidden');
     viewerMain.classList.remove('hidden');
     viewerThumbs.classList.remove('hidden');
 
-    // Update title
+    // Update viewer title
     viewerTitle.textContent = folder.name;
 
     // Build thumbnails
@@ -135,8 +179,24 @@ function openFolder(folderId) {
 
 function closeFolder() {
     currentFolder = null;
-    // Show folders, hide all viewer parts
-    folderView.classList.remove('hidden');
+    currentFolderId = null;
+
+    // Update tree selection back to Illustration (root)
+    document.querySelectorAll('.tree-row').forEach(r => r.classList.remove('selected'));
+    document.querySelector('.tree-row[data-folder="root"]')?.classList.add('selected');
+
+    // Update address bar
+    if (explorerPath) {
+        explorerPath.textContent = 'C:\\Sandra\\Illustration';
+    }
+
+    // Update status bar
+    if (explorerStatus) {
+        explorerStatus.textContent = '3 object(s) ✧';
+    }
+
+    // Show folder list, hide viewer
+    explorerList.classList.remove('hidden');
     viewerHeader.classList.add('hidden');
     viewerMain.classList.add('hidden');
     viewerThumbs.classList.add('hidden');

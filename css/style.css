@@ -1780,11 +1780,11 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2px 8px;
+    padding: 2px 6px;
     background: var(--window-bg);
     border: none;
     cursor: pointer;
-    min-width: 50px;
+    min-width: 45px;
 }
 
 .explorer-btn:hover:not(.disabled) {
@@ -1796,23 +1796,23 @@ body::before {
 }
 
 .explorer-btn.disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: default;
 }
 
 .explorer-btn-icon {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1;
 }
 
 .explorer-btn-label {
-    font-size: 10px;
+    font-size: 9px;
     margin-top: 1px;
 }
 
 .explorer-separator {
     width: 1px;
-    height: 36px;
+    height: 32px;
     background: var(--window-border-dark);
     margin: 0 4px;
 }
@@ -1828,7 +1828,7 @@ body::before {
 }
 
 .explorer-address-label {
-    font-size: 12px;
+    font-size: 11px;
     padding: 0 4px;
 }
 
@@ -1837,7 +1837,7 @@ body::before {
     display: flex;
     align-items: center;
     gap: 4px;
-    padding: 2px 4px;
+    padding: 1px 4px;
     background: white;
     border: 2px inset var(--window-bg);
 }
@@ -1847,7 +1847,16 @@ body::before {
 }
 
 .explorer-address-path {
-    font-size: 12px;
+    font-size: 11px;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
+}
+
+.explorer-address-go {
+    padding: 2px 6px;
+    background: var(--window-bg);
+    border: 1px outset var(--window-bg);
+    font-size: 8px;
+    cursor: pointer;
 }
 
 /* Explorer Body - sidebar + content */
@@ -1859,9 +1868,9 @@ body::before {
 
 /* Left Sidebar - Folder Tree */
 .explorer-sidebar {
-    width: 180px;
+    width: 200px;
     background: white;
-    border-right: 1px solid var(--window-border-dark);
+    border-right: 2px groove var(--window-bg);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -1874,16 +1883,17 @@ body::before {
     padding: 2px 6px;
     background: var(--window-bg);
     border-bottom: 1px solid var(--window-border-dark);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
 }
 
 .explorer-sidebar-close {
     background: none;
     border: none;
-    font-size: 14px;
+    font-size: 12px;
     cursor: pointer;
     padding: 0 4px;
+    font-weight: bold;
 }
 
 .explorer-sidebar-close:hover {
@@ -1894,53 +1904,277 @@ body::before {
 .explorer-tree {
     flex: 1;
     overflow-y: auto;
-    padding: 4px;
+    overflow-x: auto;
+    padding: 2px;
+    font-size: 11px;
 }
 
-.tree-item {
+/* W98 Tree with dotted lines */
+.tree-node {
+    position: relative;
+}
+
+.tree-row {
     display: flex;
     align-items: center;
-    padding: 2px 4px;
+    padding: 1px 2px;
     cursor: pointer;
     white-space: nowrap;
-    font-size: 12px;
 }
 
-.tree-item:hover {
-    background: rgba(255, 105, 180, 0.15);
+.tree-row:hover {
+    background: rgba(0, 0, 128, 0.1);
 }
 
-.tree-item.selected {
-    background: var(--accent-pink);
+.tree-row.selected {
+    background: #000080;
     color: white;
 }
 
-.tree-toggle {
-    width: 12px;
-    font-size: 10px;
+/* The +/- box */
+.tree-box {
+    width: 9px;
+    height: 9px;
+    border: 1px solid #808080;
+    background: white;
+    font-size: 9px;
+    line-height: 7px;
     text-align: center;
+    margin-right: 3px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-.tree-toggle-placeholder {
+.tree-box-empty {
+    width: 9px;
+    height: 9px;
+    margin-right: 3px;
+    flex-shrink: 0;
+}
+
+/* Tree branch with dotted lines */
+.tree-branch {
+    position: relative;
+    margin-left: 4px;
+    padding-left: 16px;
+    border-left: 1px dotted #808080;
+}
+
+.tree-branch .tree-node {
+    position: relative;
+}
+
+.tree-branch .tree-node::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 8px;
     width: 12px;
+    border-top: 1px dotted #808080;
 }
 
-.tree-icon {
-    font-size: 14px;
+/* Tree icons - W98 style pixel icons */
+.tree-icon-img {
+    width: 16px;
+    height: 16px;
+    margin-right: 3px;
+    flex-shrink: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* W98 folder icon - yellow */
+.tree-icon-folder,
+.folder-icon-yellow {
+    display: inline-block;
+    width: 16px;
+    height: 14px;
+    background: linear-gradient(180deg, #ffff80 0%, #ffcc00 50%, #cc9900 100%);
+    border: 1px solid #996600;
+    border-radius: 0 2px 2px 2px;
+    position: relative;
+    margin-right: 4px;
+    flex-shrink: 0;
+}
+
+.tree-icon-folder::before,
+.folder-icon-yellow::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 7px;
+    height: 4px;
+    background: linear-gradient(180deg, #ffff80 0%, #ffcc00 100%);
+    border: 1px solid #996600;
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+}
+
+/* Open folder */
+.tree-icon-folder-open {
+    display: inline-block;
+    width: 16px;
+    height: 14px;
+    background: linear-gradient(180deg, #ffff80 0%, #ffcc00 100%);
+    border: 1px solid #996600;
+    border-radius: 0 2px 2px 2px;
+    position: relative;
+    margin-right: 4px;
+    flex-shrink: 0;
+}
+
+.tree-icon-folder-open::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 7px;
+    height: 4px;
+    background: linear-gradient(180deg, #ffff80 0%, #ffcc00 100%);
+    border: 1px solid #996600;
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+}
+
+.tree-icon-folder-open::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: -2px;
+    width: 18px;
+    height: 10px;
+    background: linear-gradient(180deg, #ffffcc 0%, #ffcc00 100%);
+    border: 1px solid #996600;
+    border-radius: 0 2px 2px 2px;
+    transform: skewX(-10deg);
+}
+
+/* Desktop icon */
+.tree-icon-desktop {
+    background: linear-gradient(180deg, #008080 30%, #004040 100%);
+    border: 2px outset #c0c0c0;
+    width: 16px;
+    height: 14px;
     margin-right: 4px;
 }
 
+/* Computer icon */
+.tree-icon-computer {
+    width: 16px;
+    height: 14px;
+    background: #c0c0c0;
+    border: 1px solid #808080;
+    margin-right: 4px;
+    position: relative;
+}
+
+.tree-icon-computer::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    width: 10px;
+    height: 7px;
+    background: #000080;
+    border: 1px inset #808080;
+}
+
+.tree-icon-computer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 4px;
+    width: 8px;
+    height: 3px;
+    background: #c0c0c0;
+    border-top: 1px solid #808080;
+}
+
+/* Drive icons */
+.tree-icon-drive {
+    width: 16px;
+    height: 12px;
+    background: linear-gradient(180deg, #e0e0e0 0%, #a0a0a0 100%);
+    border: 1px solid #808080;
+    margin-right: 4px;
+    position: relative;
+}
+
+.tree-icon-drive::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 2px;
+    width: 3px;
+    height: 3px;
+    background: #00ff00;
+    border-radius: 50%;
+}
+
+.tree-icon-floppy {
+    width: 14px;
+    height: 14px;
+    background: #404040;
+    border: 1px solid #000;
+    margin-right: 4px;
+    position: relative;
+}
+
+.tree-icon-floppy::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 3px;
+    width: 6px;
+    height: 4px;
+    background: #c0c0c0;
+}
+
+.tree-icon-cdrom {
+    width: 16px;
+    height: 12px;
+    background: linear-gradient(180deg, #e0e0e0 0%, #a0a0a0 100%);
+    border: 1px solid #808080;
+    margin-right: 4px;
+    position: relative;
+}
+
+.tree-icon-cdrom::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 2px;
+    background: #000;
+}
+
+/* Network icon */
+.tree-icon-network {
+    width: 16px;
+    height: 14px;
+    margin-right: 4px;
+    position: relative;
+    background:
+        linear-gradient(180deg, #c0c0c0 0%, #808080 100%);
+    border: 1px solid #404040;
+}
+
+/* Recycle bin */
+.tree-icon-recycle {
+    width: 14px;
+    height: 16px;
+    background: linear-gradient(180deg, #e0e0e0 0%, #a0a0a0 100%);
+    border: 1px solid #808080;
+    margin-right: 4px;
+    border-radius: 0 0 3px 3px;
+}
+
 .tree-label {
-    font-size: 12px;
-}
-
-.tree-children {
-    padding-left: 16px;
-}
-
-.tree-children .tree-item {
-    padding-left: 4px;
+    font-size: 11px;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
 }
 
 /* Explorer Content Area */
@@ -1958,24 +2192,32 @@ body::before {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    background: white;
 }
 
 .explorer-list-header {
     display: flex;
     background: var(--window-bg);
-    border-bottom: 1px solid var(--window-border-dark);
-    font-size: 12px;
+    border-bottom: 2px groove var(--window-bg);
+    font-size: 11px;
     font-weight: normal;
+    flex-shrink: 0;
+}
+
+.explorer-list-header .list-col {
+    border-right: 2px groove var(--window-bg);
+    padding: 2px 6px;
+    cursor: default;
 }
 
 .list-col {
-    padding: 2px 8px;
-    border-right: 1px solid var(--window-border-dark);
+    padding: 1px 6px;
+    font-size: 11px;
 }
 
 .list-col-name {
     flex: 1;
-    min-width: 150px;
+    min-width: 180px;
 }
 
 .list-col-size {
@@ -1984,33 +2226,64 @@ body::before {
 }
 
 .list-col-type {
-    width: 100px;
+    width: 80px;
+}
+
+.list-col-modified {
+    width: 70px;
 }
 
 .explorer-list-item {
     display: flex;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
-    border-bottom: 1px solid transparent;
+    border-bottom: none;
 }
 
 .explorer-list-item:hover {
-    background: rgba(255, 105, 180, 0.1);
+    background: #000080;
+    color: white;
 }
 
 .explorer-list-item.selected {
-    background: var(--accent-pink);
+    background: #000080;
     color: white;
 }
 
 .explorer-list-item .list-col {
-    border-right: none;
     display: flex;
     align-items: center;
+    padding: 2px 6px;
 }
 
 .list-icon {
     margin-right: 4px;
+    vertical-align: middle;
+}
+
+/* Small folder icon for list view */
+.folder-icon-sm {
+    display: inline-block;
+    width: 16px;
+    height: 14px;
+    background: linear-gradient(180deg, #ffff80 0%, #ffcc00 50%, #cc9900 100%);
+    border: 1px solid #996600;
+    border-radius: 0 2px 2px 2px;
+    position: relative;
+    vertical-align: middle;
+}
+
+.folder-icon-sm::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 7px;
+    height: 4px;
+    background: linear-gradient(180deg, #ffff80 0%, #ffcc00 100%);
+    border: 1px solid #996600;
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
 }
 
 /* Hide old folder-view when using explorer style */
@@ -2647,6 +2920,100 @@ input[type="submit"]:active {
         font-size: 16px;
         font-family: 'VT323', monospace;
         padding: 2px 6px;
+    }
+
+    /* === EXPLORER (Illustration folder) — Mobile layout === */
+    /* Hide tree sidebar on mobile - too complex for small screens */
+    .explorer-sidebar {
+        display: none !important;
+    }
+
+    /* Explorer body: single column (no sidebar) */
+    .explorer-body {
+        flex-direction: column;
+    }
+
+    /* Explorer content takes full width */
+    .explorer-content {
+        width: 100%;
+    }
+
+    /* List items: larger for touch */
+    .explorer-list-item {
+        min-height: 44px;
+        font-size: 16px;
+        padding: 8px 4px;
+        touch-action: manipulation;
+    }
+
+    .explorer-list-item .list-col {
+        padding: 4px 6px;
+        font-size: 15px;
+    }
+
+    /* Hide less important columns on mobile */
+    .list-col-size,
+    .list-col-type,
+    .list-col-modified {
+        display: none;
+    }
+
+    /* Name column takes full width */
+    .list-col-name {
+        flex: 1;
+        width: auto !important;
+    }
+
+    /* List header: simplified */
+    .explorer-list-header {
+        display: none;
+    }
+
+    /* Folder icon bigger */
+    .list-icon.folder-icon-yellow {
+        width: 24px;
+        height: 20px;
+        margin-right: 8px;
+    }
+
+    /* Explorer toolbar: hide on mobile */
+    .explorer-toolbar {
+        display: none;
+    }
+
+    /* Address bar: simplified */
+    .explorer-address {
+        padding: 4px 8px;
+        font-size: 14px;
+    }
+
+    /* Viewer header: touch-friendly */
+    .viewer-header {
+        padding: 8px 12px;
+    }
+
+    .viewer-back {
+        padding: 8px 12px;
+        font-size: 16px;
+        min-height: 40px;
+    }
+
+    .viewer-title {
+        font-size: 16px;
+    }
+
+    /* Viewer nav buttons: larger */
+    .viewer-prev,
+    .viewer-next {
+        width: 50px;
+        height: 70px;
+        font-size: 32px;
+    }
+
+    /* Thumbnails: larger */
+    .viewer-thumb {
+        width: 55px;
+        height: 55px;
     }
 
     /* Hide sparkle particles for performance */
