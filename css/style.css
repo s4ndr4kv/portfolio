@@ -1905,20 +1905,20 @@ body::before {
     flex: 1;
     overflow-y: auto;
     overflow-x: auto;
-    padding: 6px;
-    font-size: 13px;
+    padding: 8px;
+    font-size: 14px;
 }
 
 /* W98 Tree with dotted lines */
 .tree-node {
     position: relative;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .tree-row {
     display: flex;
     align-items: center;
-    padding: 3px 4px;
+    padding: 4px 6px;
     cursor: pointer;
     white-space: nowrap;
 }
@@ -2174,7 +2174,7 @@ body::before {
 }
 
 .tree-label {
-    font-size: 13px;
+    font-size: 14px;
     font-family: 'MS Sans Serif', Tahoma, sans-serif;
 }
 
