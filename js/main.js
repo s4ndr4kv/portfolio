@@ -199,21 +199,10 @@ function closeWindow(windowId) {
     const windowEl = document.getElementById(windowId + '-window');
     if (!windowEl) return;
 
-    // Reset maximized state so it reopens at normal size
-    if (windowEl.classList.contains('maximized')) {
-        windowEl.classList.remove('maximized');
-        windowEl.style.width = windowEl.dataset.origW || '';
-        windowEl.style.height = windowEl.dataset.origH || '';
-        windowEl.style.maxHeight = windowEl.dataset.origMaxH || '';
-        windowEl.style.top = windowEl.dataset.origT || '';
-        windowEl.style.left = windowEl.dataset.origL || '';
-        if (windowId === 'winamp') removeWinampEmptySlots();
-    }
-
     // Stop KuTV animation on close to save CPU
     if (windowId === 'kutv' && typeof stopKuTV === 'function') stopKuTV();
 
-    // Animate close: shrink + fade out
+    // Animate close: shrink + fade out (immediately, don't restore size first)
     windowEl.classList.add('closing');
     openWindows.delete(windowId);
     removeFromTaskbar(windowId);
@@ -221,6 +210,17 @@ function closeWindow(windowId) {
     setTimeout(() => {
         windowEl.classList.remove('visible', 'active', 'closing');
         windowEl.classList.add('inactive');
+
+        // Reset maximized state AFTER closing so it reopens at normal size
+        if (windowEl.classList.contains('maximized')) {
+            windowEl.classList.remove('maximized');
+            windowEl.style.width = windowEl.dataset.origW || '';
+            windowEl.style.height = windowEl.dataset.origH || '';
+            windowEl.style.maxHeight = windowEl.dataset.origMaxH || '';
+            windowEl.style.top = windowEl.dataset.origT || '';
+            windowEl.style.left = windowEl.dataset.origL || '';
+            if (windowId === 'winamp') removeWinampEmptySlots();
+        }
 
         if (openWindows.size > 0) {
             setActiveWindow(Array.from(openWindows).pop());

@@ -574,6 +574,20 @@ body::before {
     }
 }
 
+/* Close animation for maximized windows — fade only, no scale */
+@keyframes windowCloseMaximized {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.window.maximized.closing {
+    animation: windowCloseMaximized 0.2s ease-in forwards;
+}
+
 /* Resize handle */
 .window::after {
     content: '';

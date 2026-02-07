@@ -19,14 +19,6 @@ const asciiPieces = [
         color: '#dbb6ee'  // light purple
     },
     {
-        art: ` _______\n|  ___  |\n| |   | |\n| |___| |\n|_______|\n  || ||`,
-        color: '#7dcfff'  // cyan
-    },
-    {
-        art: `  .--.\n / .. \\\n| (  ) |\n \\    /\n  |~~|`,
-        color: '#ff8ec4'  // pink
-    },
-    {
         art: `♪ ♫ ♪\n  ♫\n♪   ♫`,
         color: '#c4a7e7'  // lavender
     },
