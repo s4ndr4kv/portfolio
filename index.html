@@ -535,6 +535,12 @@
                 <span class="menu-item">View</span>
                 <span class="menu-item">Help</span>
             </div>
+            <!-- Viewer header bar (hidden by default, shows when viewing images) -->
+            <div class="viewer-header hidden" id="editorial-viewer-header">
+                <button class="viewer-back">← Back</button>
+                <span class="viewer-title">Folder</span>
+                <span class="viewer-count">1 / 10</span>
+            </div>
             <div class="window-content">
                 <!-- Folder View -->
                 <div class="folder-view" id="editorial-folders">
@@ -551,22 +557,15 @@
                         <span class="folder-name">Narrative</span>
                     </div>
                 </div>
-
-                <!-- Image Viewer (hidden by default) -->
-                <div class="image-viewer hidden" id="editorial-viewer">
-                    <div class="viewer-header">
-                        <button class="viewer-back">← Back</button>
-                        <span class="viewer-title">Folder</span>
-                        <span class="viewer-count">1 / 10</span>
-                    </div>
-                    <div class="viewer-main">
-                        <button class="viewer-prev">‹</button>
-                        <img class="viewer-image" src="" alt="illustration">
-                        <button class="viewer-next">›</button>
-                    </div>
-                    <div class="viewer-thumbnails"></div>
+                <!-- Image Viewer main area (hidden by default) -->
+                <div class="viewer-main hidden" id="editorial-viewer-main">
+                    <button class="viewer-prev">‹</button>
+                    <img class="viewer-image" src="" alt="illustration">
+                    <button class="viewer-next">›</button>
                 </div>
             </div>
+            <!-- Viewer thumbnails (hidden by default, anchored above status bar) -->
+            <div class="viewer-thumbnails hidden" id="editorial-viewer-thumbs"></div>
             <div class="window-status-bar">
                 <span>3 folders ✧</span>
             </div>

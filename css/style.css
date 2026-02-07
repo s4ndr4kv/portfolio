@@ -1800,27 +1800,22 @@ body::before {
 }
 
 /* ===== IMAGE VIEWER ===== */
-.image-viewer {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: var(--window-content-bg);
-}
-
+/* Viewer header bar - anchored right below menu bar */
 .viewer-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 10px;
+    padding: 3px 6px;
     background: var(--window-bg);
     border-bottom: 1px solid var(--window-border-dark);
 }
 
 .viewer-back {
-    padding: 4px 10px;
-    font-size: 12px;
+    padding: 2px 8px;
+    font-size: 14px;
+    font-family: inherit;
     background: var(--window-bg);
-    border: 2px outset var(--window-bg);
+    border: none;
     cursor: pointer;
 }
 
@@ -1829,33 +1824,36 @@ body::before {
     color: white;
 }
 
-.viewer-back:active {
-    border-style: inset;
-}
-
 .viewer-title {
-    font-weight: bold;
-    font-size: 13px;
+    font-size: 14px;
+    font-family: inherit;
 }
 
 .viewer-count {
-    font-size: 12px;
+    font-size: 14px;
     color: #666;
 }
 
+/* When viewer is active, remove window-content padding/border/margin */
+.window-content:has(.viewer-main:not(.hidden)) {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+/* Viewer main area - fills the window content */
 .viewer-main {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #1a1a2e;
+    background: var(--window-bg);
     position: relative;
     overflow: hidden;
-    min-height: 200px;
 }
 
 .viewer-image {
-    max-width: 90%;
+    max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 }
@@ -1880,23 +1878,24 @@ body::before {
     background: rgba(255, 105, 180, 0.4);
 }
 
-.viewer-prev { left: 0; }
-.viewer-next { right: 0; }
+.viewer-prev { left: 2px; }
+.viewer-next { right: 2px; }
 
+/* Viewer thumbnails - anchored right above status bar */
 .viewer-thumbnails {
     display: flex;
     gap: 4px;
-    padding: 8px;
+    padding: 4px 6px;
     background: var(--window-bg);
-    border-top: 1px solid var(--window-border-dark);
+    border-top: 1px solid var(--window-border-light);
     overflow-x: auto;
     overflow-y: hidden;
 }
 
 .viewer-thumb {
     flex-shrink: 0;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     background-size: cover;
     background-position: center;
     border: 2px solid transparent;

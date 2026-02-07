@@ -72,15 +72,17 @@ let currentFolder = null;
 let currentImageIndex = 0;
 
 // DOM elements (initialized on load)
-let folderView, imageViewer, viewerImage, viewerTitle, viewerCount, thumbnailsContainer;
+let folderView, viewerHeader, viewerMain, viewerThumbs;
+let viewerImage, viewerTitle, viewerCount;
 
 function initGallery() {
     folderView = document.getElementById('editorial-folders');
-    imageViewer = document.getElementById('editorial-viewer');
+    viewerHeader = document.getElementById('editorial-viewer-header');
+    viewerMain = document.getElementById('editorial-viewer-main');
+    viewerThumbs = document.getElementById('editorial-viewer-thumbs');
     viewerImage = document.querySelector('.viewer-image');
     viewerTitle = document.querySelector('.viewer-title');
     viewerCount = document.querySelector('.viewer-count');
-    thumbnailsContainer = document.querySelector('.viewer-thumbnails');
 
     if (!folderView) return;
 
@@ -115,9 +117,11 @@ function openFolder(folderId) {
     currentFolder = folder;
     currentImageIndex = 0;
 
-    // Switch views
+    // Switch views - hide folders, show all viewer parts
     folderView.classList.add('hidden');
-    imageViewer.classList.remove('hidden');
+    viewerHeader.classList.remove('hidden');
+    viewerMain.classList.remove('hidden');
+    viewerThumbs.classList.remove('hidden');
 
     // Update title
     viewerTitle.textContent = folder.name;
@@ -131,8 +135,11 @@ function openFolder(folderId) {
 
 function closeFolder() {
     currentFolder = null;
+    // Show folders, hide all viewer parts
     folderView.classList.remove('hidden');
-    imageViewer.classList.add('hidden');
+    viewerHeader.classList.add('hidden');
+    viewerMain.classList.add('hidden');
+    viewerThumbs.classList.add('hidden');
 }
 
 function showImage(index) {
@@ -173,16 +180,16 @@ function nextImage() {
 }
 
 function buildThumbnails() {
-    if (!currentFolder || !thumbnailsContainer) return;
+    if (!currentFolder || !viewerThumbs) return;
 
-    thumbnailsContainer.innerHTML = '';
+    viewerThumbs.innerHTML = '';
 
     currentFolder.images.forEach((img, index) => {
         const thumb = document.createElement('div');
         thumb.className = 'viewer-thumb' + (index === 0 ? ' active' : '');
         thumb.style.backgroundImage = `url('${currentFolder.path}${img}')`;
         thumb.addEventListener('click', () => showImage(index));
-        thumbnailsContainer.appendChild(thumb);
+        viewerThumbs.appendChild(thumb);
     });
 }
 
