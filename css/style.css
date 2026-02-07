@@ -1727,6 +1727,7 @@ body::before {
 
 .start-menu-main {
     min-width: 200px;
+    overflow: hidden;
 }
 
 .start-menu-items {
@@ -1763,7 +1764,261 @@ body::before {
     border-top: 1px solid var(--window-border-light);
 }
 
-/* ===== FOLDER VIEW (Windows Explorer style) ===== */
+/* ===== WINDOWS EXPLORER STYLE ===== */
+
+/* Explorer Toolbar */
+.explorer-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px 4px;
+    background: var(--window-bg);
+    border-bottom: 1px solid var(--window-border-dark);
+}
+
+.explorer-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px 8px;
+    background: var(--window-bg);
+    border: none;
+    cursor: pointer;
+    min-width: 50px;
+}
+
+.explorer-btn:hover:not(.disabled) {
+    background: var(--window-border-light);
+}
+
+.explorer-btn:active:not(.disabled) {
+    background: var(--window-border-dark);
+}
+
+.explorer-btn.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.explorer-btn-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.explorer-btn-label {
+    font-size: 10px;
+    margin-top: 1px;
+}
+
+.explorer-separator {
+    width: 1px;
+    height: 36px;
+    background: var(--window-border-dark);
+    margin: 0 4px;
+}
+
+/* Address Bar */
+.explorer-address {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 4px;
+    background: var(--window-bg);
+    border-bottom: 1px solid var(--window-border-dark);
+}
+
+.explorer-address-label {
+    font-size: 12px;
+    padding: 0 4px;
+}
+
+.explorer-address-field {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 4px;
+    background: white;
+    border: 2px inset var(--window-bg);
+}
+
+.explorer-address-icon {
+    font-size: 14px;
+}
+
+.explorer-address-path {
+    font-size: 12px;
+}
+
+/* Explorer Body - sidebar + content */
+.explorer-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Left Sidebar - Folder Tree */
+.explorer-sidebar {
+    width: 180px;
+    background: white;
+    border-right: 1px solid var(--window-border-dark);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.explorer-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 6px;
+    background: var(--window-bg);
+    border-bottom: 1px solid var(--window-border-dark);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.explorer-sidebar-close {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.explorer-sidebar-close:hover {
+    background: var(--accent-pink);
+    color: white;
+}
+
+.explorer-tree {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px;
+}
+
+.tree-item {
+    display: flex;
+    align-items: center;
+    padding: 2px 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 12px;
+}
+
+.tree-item:hover {
+    background: rgba(255, 105, 180, 0.15);
+}
+
+.tree-item.selected {
+    background: var(--accent-pink);
+    color: white;
+}
+
+.tree-toggle {
+    width: 12px;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tree-toggle-placeholder {
+    width: 12px;
+}
+
+.tree-icon {
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+.tree-label {
+    font-size: 12px;
+}
+
+.tree-children {
+    padding-left: 16px;
+}
+
+.tree-children .tree-item {
+    padding-left: 4px;
+}
+
+/* Explorer Content Area */
+.explorer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    overflow: hidden;
+}
+
+/* List View (like Explorer details view) */
+.explorer-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.explorer-list-header {
+    display: flex;
+    background: var(--window-bg);
+    border-bottom: 1px solid var(--window-border-dark);
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.list-col {
+    padding: 2px 8px;
+    border-right: 1px solid var(--window-border-dark);
+}
+
+.list-col-name {
+    flex: 1;
+    min-width: 150px;
+}
+
+.list-col-size {
+    width: 60px;
+    text-align: right;
+}
+
+.list-col-type {
+    width: 100px;
+}
+
+.explorer-list-item {
+    display: flex;
+    font-size: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+}
+
+.explorer-list-item:hover {
+    background: rgba(255, 105, 180, 0.1);
+}
+
+.explorer-list-item.selected {
+    background: var(--accent-pink);
+    color: white;
+}
+
+.explorer-list-item .list-col {
+    border-right: none;
+    display: flex;
+    align-items: center;
+}
+
+.list-icon {
+    margin-right: 4px;
+}
+
+/* Hide old folder-view when using explorer style */
+.explorer-window .folder-view {
+    display: none;
+}
+
+/* ===== FOLDER VIEW (legacy grid style) ===== */
 .folder-view {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));

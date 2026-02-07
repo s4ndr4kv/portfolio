@@ -519,8 +519,8 @@
 
         <!-- ============ WINDOWS ============ -->
 
-        <!-- GALLERY: Ilustración Editorial -->
-        <div class="window" id="editorial-window" style="top: 40px; left: 120px; width: 600px; height: 450px;">
+        <!-- GALLERY: Ilustración Editorial — Windows Explorer style -->
+        <div class="window explorer-window" id="editorial-window" style="top: 40px; left: 120px; width: 650px; height: 480px;">
             <div class="window-header">
                 <span class="window-title">📖 Illustration — イラスト ✧</span>
                 <div class="window-controls">
@@ -533,41 +533,114 @@
                 <span class="menu-item">File</span>
                 <span class="menu-item">Edit</span>
                 <span class="menu-item">View</span>
+                <span class="menu-item">Go</span>
+                <span class="menu-item">Favorites</span>
                 <span class="menu-item">Help</span>
             </div>
-            <!-- Viewer header bar (hidden by default, shows when viewing images) -->
-            <div class="viewer-header hidden" id="editorial-viewer-header">
-                <button class="viewer-back">← Back</button>
-                <span class="viewer-title">Folder</span>
-                <span class="viewer-count">1 / 10</span>
+            <!-- Explorer Toolbar -->
+            <div class="explorer-toolbar">
+                <button class="explorer-btn" id="explorer-back" title="Back">
+                    <span class="explorer-btn-icon">←</span>
+                    <span class="explorer-btn-label">Back</span>
+                </button>
+                <button class="explorer-btn disabled" title="Forward">
+                    <span class="explorer-btn-icon">→</span>
+                    <span class="explorer-btn-label">Forward</span>
+                </button>
+                <button class="explorer-btn" id="explorer-up" title="Up">
+                    <span class="explorer-btn-icon">↑</span>
+                    <span class="explorer-btn-label">Up</span>
+                </button>
+                <div class="explorer-separator"></div>
+                <button class="explorer-btn" title="Views">
+                    <span class="explorer-btn-icon">⊞</span>
+                    <span class="explorer-btn-label">Views</span>
+                </button>
             </div>
-            <div class="window-content">
-                <!-- Folder View -->
-                <div class="folder-view" id="editorial-folders">
-                    <div class="folder-item" data-folder="character-design">
-                        <div class="folder-icon">📁</div>
-                        <span class="folder-name">Character Design</span>
+            <!-- Address Bar -->
+            <div class="explorer-address">
+                <span class="explorer-address-label">Address</span>
+                <div class="explorer-address-field">
+                    <span class="explorer-address-icon">📁</span>
+                    <span class="explorer-address-path" id="explorer-path">Illustration</span>
+                </div>
+            </div>
+            <!-- Explorer main content: sidebar + content area -->
+            <div class="explorer-body">
+                <!-- Left sidebar: folder tree -->
+                <div class="explorer-sidebar">
+                    <div class="explorer-sidebar-header">
+                        All Folders
+                        <button class="explorer-sidebar-close">×</button>
                     </div>
-                    <div class="folder-item" data-folder="kidcore">
-                        <div class="folder-icon">📁</div>
-                        <span class="folder-name">Kidcore</span>
-                    </div>
-                    <div class="folder-item" data-folder="narrative">
-                        <div class="folder-icon">📁</div>
-                        <span class="folder-name">Narrative</span>
+                    <div class="explorer-tree">
+                        <div class="tree-item tree-root expanded" data-folder="root">
+                            <span class="tree-toggle">−</span>
+                            <span class="tree-icon">📁</span>
+                            <span class="tree-label">Illustration</span>
+                        </div>
+                        <div class="tree-children">
+                            <div class="tree-item" data-folder="character-design">
+                                <span class="tree-toggle-placeholder"></span>
+                                <span class="tree-icon">📁</span>
+                                <span class="tree-label">Character Design</span>
+                            </div>
+                            <div class="tree-item" data-folder="kidcore">
+                                <span class="tree-toggle-placeholder"></span>
+                                <span class="tree-icon">📁</span>
+                                <span class="tree-label">Kidcore</span>
+                            </div>
+                            <div class="tree-item" data-folder="narrative">
+                                <span class="tree-toggle-placeholder"></span>
+                                <span class="tree-icon">📁</span>
+                                <span class="tree-label">Narrative</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Image Viewer main area (hidden by default) -->
-                <div class="viewer-main hidden" id="editorial-viewer-main">
-                    <button class="viewer-prev">‹</button>
-                    <img class="viewer-image" src="" alt="illustration">
-                    <button class="viewer-next">›</button>
+                <!-- Right content: folder view or image viewer -->
+                <div class="explorer-content">
+                    <!-- Viewer header bar (hidden by default, shows when viewing images) -->
+                    <div class="viewer-header hidden" id="editorial-viewer-header">
+                        <button class="viewer-back">← Back</button>
+                        <span class="viewer-title">Folder</span>
+                        <span class="viewer-count">1 / 10</span>
+                    </div>
+                    <!-- Folder View (list style like Explorer) -->
+                    <div class="explorer-list" id="editorial-folders">
+                        <div class="explorer-list-header">
+                            <span class="list-col list-col-name">Name</span>
+                            <span class="list-col list-col-size">Size</span>
+                            <span class="list-col list-col-type">Type</span>
+                        </div>
+                        <div class="explorer-list-item" data-folder="character-design">
+                            <span class="list-col list-col-name"><span class="list-icon">📁</span> Character Design</span>
+                            <span class="list-col list-col-size"></span>
+                            <span class="list-col list-col-type">File Folder</span>
+                        </div>
+                        <div class="explorer-list-item" data-folder="kidcore">
+                            <span class="list-col list-col-name"><span class="list-icon">📁</span> Kidcore</span>
+                            <span class="list-col list-col-size"></span>
+                            <span class="list-col list-col-type">File Folder</span>
+                        </div>
+                        <div class="explorer-list-item" data-folder="narrative">
+                            <span class="list-col list-col-name"><span class="list-icon">📁</span> Narrative</span>
+                            <span class="list-col list-col-size"></span>
+                            <span class="list-col list-col-type">File Folder</span>
+                        </div>
+                    </div>
+                    <!-- Image Viewer main area (hidden by default) -->
+                    <div class="viewer-main hidden" id="editorial-viewer-main">
+                        <button class="viewer-prev">‹</button>
+                        <img class="viewer-image" src="" alt="illustration">
+                        <button class="viewer-next">›</button>
+                    </div>
                 </div>
             </div>
             <!-- Viewer thumbnails (hidden by default, anchored above status bar) -->
             <div class="viewer-thumbnails hidden" id="editorial-viewer-thumbs"></div>
             <div class="window-status-bar">
-                <span>3 folders ✧</span>
+                <span id="explorer-status">3 object(s) ✧</span>
             </div>
         </div>
 
@@ -1116,7 +1189,7 @@ hi@sandraku.com
                 </div>
             </div>
             <div class="window-status-bar">
-                <span>Channel 1 — LIVE ✧</span>
+                <span id="kutv-status">Channel 1 — LIVE ✧</span>
             </div>
         </div>
 

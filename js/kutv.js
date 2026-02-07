@@ -2,6 +2,15 @@
 
 let kutvCanvas, kutvCtx;
 let kutvChannel = 1;
+let kutvStatusEl = null;
+
+// Channel names
+const CHANNEL_NAMES = {
+    1: 'Channel 1 — LIVE ✧',
+    2: 'Channel 2 — NO SIGNAL',
+    3: 'Channel 3 — GLITCH',
+    4: 'Channel 4 — COMING SOON ♡'
+};
 let kutvAnimFrame = null;
 let kutvActive = false;
 let kutvSwitching = false;
@@ -42,6 +51,7 @@ function initKuTV() {
     kutvCanvas = document.getElementById('kutv-canvas');
     if (!kutvCanvas) return;
     kutvCtx = kutvCanvas.getContext('2d');
+    kutvStatusEl = document.getElementById('kutv-status');
 
     // Size canvas to container
     resizeKuTVCanvas();
@@ -97,6 +107,11 @@ function switchChannel(ch) {
     document.querySelectorAll('.kutv-channel-btn').forEach(btn => {
         btn.classList.toggle('active', parseInt(btn.dataset.channel) === ch);
     });
+
+    // Update status bar text
+    if (kutvStatusEl && CHANNEL_NAMES[ch]) {
+        kutvStatusEl.textContent = CHANNEL_NAMES[ch];
+    }
 }
 
 function renderKuTV(timestamp) {
