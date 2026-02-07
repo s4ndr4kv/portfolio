@@ -2691,6 +2691,22 @@ input[type="submit"]:active {
     }
 }
 
+/* ===== IMAGE VIEWER: MOBILE FULLSCREEN ===== */
+@media (max-width: 768px) {
+    /* Maximized window: image fills entire viewer area */
+    .window.maximized .viewer-main {
+        background: #000;
+    }
+
+    .window.maximized .viewer-image {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: cover;
+    }
+}
+
 /* ===== BUNNY: MOBILE SIZE ===== */
 @media (max-width: 768px) {
     .bunny-container {
