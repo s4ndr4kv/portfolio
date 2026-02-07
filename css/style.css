@@ -1770,8 +1770,8 @@ body::before {
 .explorer-toolbar {
     display: flex;
     align-items: center;
-    gap: 2px;
-    padding: 2px 4px;
+    gap: 4px;
+    padding: 4px 6px;
     background: var(--window-bg);
     border-bottom: 1px solid var(--window-border-dark);
 }
@@ -1780,11 +1780,11 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2px 6px;
+    padding: 4px 8px;
     background: var(--window-bg);
     border: none;
     cursor: pointer;
-    min-width: 45px;
+    min-width: 50px;
 }
 
 .explorer-btn:hover:not(.disabled) {
@@ -1801,34 +1801,34 @@ body::before {
 }
 
 .explorer-btn-icon {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1;
 }
 
 .explorer-btn-label {
-    font-size: 9px;
-    margin-top: 1px;
+    font-size: 12px;
+    margin-top: 2px;
 }
 
 .explorer-separator {
     width: 1px;
-    height: 32px;
+    height: 40px;
     background: var(--window-border-dark);
-    margin: 0 4px;
+    margin: 0 6px;
 }
 
 /* Address Bar */
 .explorer-address {
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 2px 4px;
+    gap: 6px;
+    padding: 4px 6px;
     background: var(--window-bg);
     border-bottom: 1px solid var(--window-border-dark);
 }
 
 .explorer-address-label {
-    font-size: 11px;
+    font-size: 14px;
     padding: 0 4px;
 }
 
@@ -1836,26 +1836,26 @@ body::before {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 4px;
-    padding: 1px 4px;
+    gap: 6px;
+    padding: 3px 6px;
     background: white;
     border: 2px inset var(--window-bg);
 }
 
 .explorer-address-icon {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .explorer-address-path {
-    font-size: 11px;
+    font-size: 14px;
     font-family: 'MS Sans Serif', Tahoma, sans-serif;
 }
 
 .explorer-address-go {
-    padding: 2px 6px;
+    padding: 4px 10px;
     background: var(--window-bg);
     border: 1px outset var(--window-bg);
-    font-size: 8px;
+    font-size: 10px;
     cursor: pointer;
 }
 
@@ -1868,7 +1868,7 @@ body::before {
 
 /* Left Sidebar - Folder Tree */
 .explorer-sidebar {
-    width: 200px;
+    width: 290px;
     background: white;
     border-right: 2px groove var(--window-bg);
     display: flex;
@@ -1880,19 +1880,19 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2px 6px;
+    padding: 4px 8px;
     background: var(--window-bg);
     border-bottom: 1px solid var(--window-border-dark);
-    font-size: 11px;
+    font-size: 14px;
     font-weight: bold;
 }
 
 .explorer-sidebar-close {
     background: none;
     border: none;
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
-    padding: 0 4px;
+    padding: 2px 6px;
     font-weight: bold;
 }
 
@@ -1905,58 +1905,59 @@ body::before {
     flex: 1;
     overflow-y: auto;
     overflow-x: auto;
-    padding: 2px;
-    font-size: 11px;
+    padding: 6px;
+    font-size: 13px;
 }
 
 /* W98 Tree with dotted lines */
 .tree-node {
     position: relative;
+    margin-bottom: 2px;
 }
 
 .tree-row {
     display: flex;
     align-items: center;
-    padding: 1px 2px;
+    padding: 3px 4px;
     cursor: pointer;
     white-space: nowrap;
 }
 
 .tree-row:hover {
-    background: rgba(0, 0, 128, 0.1);
+    background: rgba(139, 92, 246, 0.15);
 }
 
 .tree-row.selected {
-    background: #000080;
+    background: var(--accent-purple);
     color: white;
 }
 
 /* The +/- box */
 .tree-box {
-    width: 9px;
-    height: 9px;
+    width: 11px;
+    height: 11px;
     border: 1px solid #808080;
     background: white;
-    font-size: 9px;
-    line-height: 7px;
+    font-size: 11px;
+    line-height: 9px;
     text-align: center;
-    margin-right: 3px;
+    margin-right: 4px;
     cursor: pointer;
     flex-shrink: 0;
 }
 
 .tree-box-empty {
-    width: 9px;
-    height: 9px;
-    margin-right: 3px;
+    width: 11px;
+    height: 11px;
+    margin-right: 4px;
     flex-shrink: 0;
 }
 
 /* Tree branch with dotted lines */
 .tree-branch {
     position: relative;
-    margin-left: 4px;
-    padding-left: 16px;
+    margin-left: 5px;
+    padding-left: 18px;
     border-left: 1px dotted #808080;
 }
 
@@ -1967,17 +1968,17 @@ body::before {
 .tree-branch .tree-node::before {
     content: '';
     position: absolute;
-    left: -16px;
-    top: 8px;
-    width: 12px;
+    left: -18px;
+    top: 10px;
+    width: 14px;
     border-top: 1px dotted #808080;
 }
 
 /* Tree icons - W98 style pixel icons */
 .tree-icon-img {
-    width: 16px;
-    height: 16px;
-    margin-right: 3px;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
     flex-shrink: 0;
     background-size: contain;
     background-repeat: no-repeat;
@@ -2173,7 +2174,7 @@ body::before {
 }
 
 .tree-label {
-    font-size: 11px;
+    font-size: 13px;
     font-family: 'MS Sans Serif', Tahoma, sans-serif;
 }
 
@@ -2206,13 +2207,14 @@ body::before {
 
 .explorer-list-header .list-col {
     border-right: 2px groove var(--window-bg);
-    padding: 2px 6px;
+    padding: 4px 8px;
     cursor: default;
+    font-size: 13px;
 }
 
 .list-col {
-    padding: 1px 6px;
-    font-size: 11px;
+    padding: 3px 8px;
+    font-size: 13px;
 }
 
 .list-col-name {
@@ -2221,44 +2223,51 @@ body::before {
 }
 
 .list-col-size {
-    width: 60px;
+    width: 70px;
     text-align: right;
 }
 
 .list-col-type {
-    width: 80px;
+    width: 90px;
 }
 
 .list-col-modified {
-    width: 70px;
+    width: 80px;
 }
 
 .explorer-list-item {
     display: flex;
-    font-size: 11px;
+    font-size: 14px;
     cursor: pointer;
     border-bottom: none;
+    padding: 4px 0;
 }
 
 .explorer-list-item:hover {
-    background: #000080;
+    background: var(--accent-purple);
     color: white;
 }
 
 .explorer-list-item.selected {
-    background: #000080;
+    background: var(--accent-purple);
     color: white;
 }
 
 .explorer-list-item .list-col {
     display: flex;
     align-items: center;
-    padding: 2px 6px;
+    padding: 4px 8px;
 }
 
 .list-icon {
-    margin-right: 4px;
+    margin-right: 8px;
     vertical-align: middle;
+}
+
+/* Bigger folder icon in list view */
+.list-icon.folder-icon-yellow {
+    width: 20px;
+    height: 18px;
 }
 
 /* Small folder icon for list view */
