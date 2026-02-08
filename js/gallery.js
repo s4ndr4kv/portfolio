@@ -103,6 +103,13 @@ let currentFolderId = null;
 let currentImageIndex = 0;
 let currentZoom = 100; // Zoom level percentage
 
+// Pan/drag state for zoomed images
+let isPanning = false;
+let panStartX = 0;
+let panStartY = 0;
+let panOffsetX = 0;
+let panOffsetY = 0;
+
 // DOM elements (initialized on load)
 let explorerList, viewerHeader, viewerMain, viewerThumbs;
 let viewerImage, viewerTitle, viewerCount;
@@ -252,8 +259,10 @@ function showImage(index) {
     const filePath = currentFolder.path + files[currentImageIndex];
     const filename = files[currentImageIndex];
 
-    // Reset zoom when changing images
+    // Reset zoom and pan when changing images
     currentZoom = 100;
+    panOffsetX = 0;
+    panOffsetY = 0;
 
     // Zoom controls HTML
     const zoomControlsHTML = `
@@ -290,6 +299,9 @@ function showImage(index) {
                 video.classList.add('vertical-crop');
             }
         });
+
+        // Attach pan listeners for video
+        attachPanListeners(video);
     } else {
         // Check if we need to replace video with img
         const currentMedia = viewerMain.querySelector('.viewer-image');
@@ -308,6 +320,9 @@ function showImage(index) {
             document.getElementById('zoom-out')?.addEventListener('click', zoomOut);
 
             viewerImage = viewerMain.querySelector('.viewer-image');
+
+            // Attach pan listeners for image
+            attachPanListeners(viewerImage);
         } else {
             viewerImage.src = filePath;
             viewerImage.classList.remove('vertical-crop');
@@ -370,6 +385,8 @@ function zoomOut() {
 
 function resetZoom() {
     currentZoom = 100;
+    panOffsetX = 0;
+    panOffsetY = 0;
     applyZoom();
 }
 
@@ -382,14 +399,81 @@ function applyZoom() {
             media.style.transform = '';
             media.style.maxWidth = '100%';
             media.style.maxHeight = '100%';
+            media.style.cursor = '';
+            panOffsetX = 0;
+            panOffsetY = 0;
         } else {
-            media.style.transform = `scale(${currentZoom / 100})`;
+            media.style.transform = `scale(${currentZoom / 100}) translate(${panOffsetX}px, ${panOffsetY}px)`;
             media.style.transformOrigin = 'center center';
+            media.style.cursor = 'grab';
         }
     }
 
     if (zoomLevel) {
         zoomLevel.textContent = `${currentZoom}%`;
+    }
+}
+
+// Pan/drag functionality for zoomed images
+function attachPanListeners(element) {
+    if (!element) return;
+
+    // Mouse events
+    element.addEventListener('mousedown', startPan);
+    element.addEventListener('mousemove', doPan);
+    element.addEventListener('mouseup', endPan);
+    element.addEventListener('mouseleave', endPan);
+
+    // Touch events for mobile
+    element.addEventListener('touchstart', startPanTouch, { passive: false });
+    element.addEventListener('touchmove', doPanTouch, { passive: false });
+    element.addEventListener('touchend', endPan);
+}
+
+function startPan(e) {
+    if (currentZoom <= 100) return;
+    isPanning = true;
+    panStartX = e.clientX - panOffsetX;
+    panStartY = e.clientY - panOffsetY;
+    e.target.style.cursor = 'grabbing';
+    e.preventDefault();
+}
+
+function startPanTouch(e) {
+    if (currentZoom <= 100) return;
+    if (e.touches.length === 1) {
+        isPanning = true;
+        panStartX = e.touches[0].clientX - panOffsetX;
+        panStartY = e.touches[0].clientY - panOffsetY;
+        e.preventDefault();
+    }
+}
+
+function doPan(e) {
+    if (!isPanning || currentZoom <= 100) return;
+    panOffsetX = e.clientX - panStartX;
+    panOffsetY = e.clientY - panStartY;
+    applyZoom();
+    e.preventDefault();
+}
+
+function doPanTouch(e) {
+    if (!isPanning || currentZoom <= 100) return;
+    if (e.touches.length === 1) {
+        panOffsetX = e.touches[0].clientX - panStartX;
+        panOffsetY = e.touches[0].clientY - panStartY;
+        applyZoom();
+        e.preventDefault();
+    }
+}
+
+function endPan(e) {
+    if (isPanning) {
+        isPanning = false;
+        const media = viewerMain?.querySelector('.viewer-image');
+        if (media && currentZoom > 100) {
+            media.style.cursor = 'grab';
+        }
     }
 }
 
