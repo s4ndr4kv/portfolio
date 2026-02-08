@@ -9,6 +9,11 @@ const isMobile = window.innerWidth <= 768;
 // Base paths - use smaller images on mobile
 const basePath = isMobile ? 'img/Illustration-mobile/' : 'img/Illustration/';
 
+// Helper to detect video files
+function isVideo(filename) {
+    return /\.(mp4|mov|webm)$/i.test(filename);
+}
+
 // Folder configuration with images
 const folderConfig = {
     'character-design': {
@@ -34,6 +39,12 @@ const folderConfig = {
         name: 'Kidcore',
         path: basePath + 'Kidcore/',
         images: [
+            // Videos first
+            '2464c640229a47539fbac38cc5032a06.mov',
+            'Project%20Name%201.mov',
+            'Untitled_Artwork%203.mp4',
+            'Untitled_Artwork.mp4',
+            // Images
             '9B6597D1-3B4C-4D4B-A877-054B152BDABD_1_102_o.jpeg',
             'Facetune_01-10-2025-13-14-00.jpeg',
             'Facetune_05-11-2025-18-10-18.jpeg',
@@ -54,6 +65,19 @@ const folderConfig = {
         name: 'Narrative',
         path: basePath + 'Narrative/',
         images: [
+            // Videos first
+            '44ce761d37924a7aafb5a8607fa65467.mov',
+            'Project%20Name%2038%202.mov',
+            'Project%20Name%2038%203.mov',
+            'Project%20Name%2041.mp4',
+            'Project%20Name%2043.mp4',
+            'Project%20Name%2044.mov',
+            'Project%20Name%2045.mov',
+            'Project%20Name%2045.mp4',
+            'Project%20Name%2047.mov',
+            'Project%20Name%2054.mp4',
+            'Project%20Name%2055.mp4',
+            // Images
             'C6D0EEAA-D0D9-4FB6-9E0C-6189B8C6F12C_1_102_o.jpeg',
             'Facetune_05-11-2025-18-10-18.jpeg',
             'Facetune_08-12-2024-22-49-05.jpeg',
@@ -77,6 +101,7 @@ const folderConfig = {
 let currentFolder = null;
 let currentFolderId = null;
 let currentImageIndex = 0;
+let currentZoom = 100; // Zoom level percentage
 
 // DOM elements (initialized on load)
 let explorerList, viewerHeader, viewerMain, viewerThumbs;
@@ -133,12 +158,18 @@ function initGallery() {
     document.querySelector('.viewer-prev')?.addEventListener('click', prevImage);
     document.querySelector('.viewer-next')?.addEventListener('click', nextImage);
 
+    // Zoom controls
+    document.getElementById('zoom-in')?.addEventListener('click', zoomIn);
+    document.getElementById('zoom-out')?.addEventListener('click', zoomOut);
+
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (!currentFolder) return;
         if (e.key === 'ArrowLeft') prevImage();
         if (e.key === 'ArrowRight') nextImage();
         if (e.key === 'Escape') closeFolder();
+        if (e.key === '+' || e.key === '=') zoomIn();
+        if (e.key === '-') zoomOut();
     });
 
     // Select Illustration (root) in tree by default
@@ -211,19 +242,97 @@ function closeFolder() {
 function showImage(index) {
     if (!currentFolder) return;
 
-    const images = currentFolder.images;
+    const files = currentFolder.images;
     currentImageIndex = index;
 
     // Wrap around
-    if (currentImageIndex < 0) currentImageIndex = images.length - 1;
-    if (currentImageIndex >= images.length) currentImageIndex = 0;
+    if (currentImageIndex < 0) currentImageIndex = files.length - 1;
+    if (currentImageIndex >= files.length) currentImageIndex = 0;
 
-    // Update main image
-    const imagePath = currentFolder.path + images[currentImageIndex];
-    viewerImage.src = imagePath;
+    const filePath = currentFolder.path + files[currentImageIndex];
+    const filename = files[currentImageIndex];
+
+    // Reset zoom when changing images
+    currentZoom = 100;
+
+    // Zoom controls HTML
+    const zoomControlsHTML = `
+        <div class="viewer-zoom-controls">
+            <button class="viewer-zoom-btn" id="zoom-out">−</button>
+            <span class="viewer-zoom-level" id="zoom-level">100%</span>
+            <button class="viewer-zoom-btn" id="zoom-in">+</button>
+        </div>
+    `;
+
+    // Check if it's a video or image
+    if (isVideo(filename)) {
+        // Replace img with video element
+        viewerMain.innerHTML = `
+            <button class="viewer-prev">◀</button>
+            <video class="viewer-image" src="${filePath}" loop autoplay muted playsinline></video>
+            <button class="viewer-next">▶</button>
+            ${zoomControlsHTML}
+        `;
+        // Re-attach navigation listeners
+        viewerMain.querySelector('.viewer-prev')?.addEventListener('click', prevImage);
+        viewerMain.querySelector('.viewer-next')?.addEventListener('click', nextImage);
+
+        // Attach zoom listeners
+        document.getElementById('zoom-in')?.addEventListener('click', zoomIn);
+        document.getElementById('zoom-out')?.addEventListener('click', zoomOut);
+
+        // Check if video is very vertical (reels format) and add crop class
+        const video = viewerMain.querySelector('video.viewer-image');
+        video.addEventListener('loadedmetadata', () => {
+            const aspectRatio = video.videoHeight / video.videoWidth;
+            // If taller than 4:3 vertical (ratio > 1.33), crop it
+            if (aspectRatio > 1.5) {
+                video.classList.add('vertical-crop');
+            }
+        });
+    } else {
+        // Check if we need to replace video with img
+        const currentMedia = viewerMain.querySelector('.viewer-image');
+        if (!currentMedia || currentMedia.tagName === 'VIDEO') {
+            viewerMain.innerHTML = `
+                <button class="viewer-prev">◀</button>
+                <img class="viewer-image" src="${filePath}" alt="illustration">
+                <button class="viewer-next">▶</button>
+                ${zoomControlsHTML}
+            `;
+            viewerMain.querySelector('.viewer-prev')?.addEventListener('click', prevImage);
+            viewerMain.querySelector('.viewer-next')?.addEventListener('click', nextImage);
+
+            // Attach zoom listeners
+            document.getElementById('zoom-in')?.addEventListener('click', zoomIn);
+            document.getElementById('zoom-out')?.addEventListener('click', zoomOut);
+
+            viewerImage = viewerMain.querySelector('.viewer-image');
+        } else {
+            viewerImage.src = filePath;
+            viewerImage.classList.remove('vertical-crop');
+            viewerImage.style.transform = '';
+            // Update zoom display
+            const zoomLevel = document.getElementById('zoom-level');
+            if (zoomLevel) zoomLevel.textContent = '100%';
+        }
+
+        // Check if image is very vertical and add crop class
+        const img = viewerMain.querySelector('img.viewer-image');
+        if (img) {
+            img.onload = () => {
+                const aspectRatio = img.naturalHeight / img.naturalWidth;
+                if (aspectRatio > 1.5) {
+                    img.classList.add('vertical-crop');
+                } else {
+                    img.classList.remove('vertical-crop');
+                }
+            };
+        }
+    }
 
     // Update counter
-    viewerCount.textContent = `${currentImageIndex + 1} / ${images.length}`;
+    viewerCount.textContent = `${currentImageIndex + 1} / ${files.length}`;
 
     // Update active thumbnail
     document.querySelectorAll('.viewer-thumb').forEach((thumb, i) => {
@@ -245,15 +354,67 @@ function nextImage() {
     showImage(currentImageIndex + 1);
 }
 
+function zoomIn() {
+    if (currentZoom < 200) {
+        currentZoom += 25;
+        applyZoom();
+    }
+}
+
+function zoomOut() {
+    if (currentZoom > 50) {
+        currentZoom -= 25;
+        applyZoom();
+    }
+}
+
+function resetZoom() {
+    currentZoom = 100;
+    applyZoom();
+}
+
+function applyZoom() {
+    const media = viewerMain?.querySelector('.viewer-image');
+    const zoomLevel = document.getElementById('zoom-level');
+
+    if (media) {
+        if (currentZoom === 100) {
+            media.style.transform = '';
+            media.style.maxWidth = '100%';
+            media.style.maxHeight = '100%';
+        } else {
+            media.style.transform = `scale(${currentZoom / 100})`;
+            media.style.transformOrigin = 'center center';
+        }
+    }
+
+    if (zoomLevel) {
+        zoomLevel.textContent = `${currentZoom}%`;
+    }
+}
+
 function buildThumbnails() {
     if (!currentFolder || !viewerThumbs) return;
 
     viewerThumbs.innerHTML = '';
 
-    currentFolder.images.forEach((img, index) => {
+    currentFolder.images.forEach((file, index) => {
         const thumb = document.createElement('div');
         thumb.className = 'viewer-thumb' + (index === 0 ? ' active' : '');
-        thumb.style.backgroundImage = `url('${currentFolder.path}${img}')`;
+
+        if (isVideo(file)) {
+            // Video thumbnail - use video element
+            thumb.classList.add('video-thumb');
+            const video = document.createElement('video');
+            video.src = currentFolder.path + file;
+            video.muted = true;
+            video.preload = 'metadata';
+            thumb.appendChild(video);
+        } else {
+            // Image thumbnail
+            thumb.style.backgroundImage = `url('${currentFolder.path}${file}')`;
+        }
+
         thumb.addEventListener('click', () => showImage(index));
         viewerThumbs.appendChild(thumb);
     });

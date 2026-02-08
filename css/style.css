@@ -2416,28 +2416,109 @@ body::before {
     object-fit: contain;
 }
 
+/* Very vertical content (reels format) - crop to show center */
+/* Aspect ratio > 4:3 vertical gets cropped */
+.viewer-image.vertical-crop {
+    object-fit: cover;
+    max-height: 100%;
+    width: auto;
+    aspect-ratio: 3 / 4;
+}
+
+/* Video in viewer - same styles as image */
+video.viewer-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+video.viewer-image.vertical-crop {
+    object-fit: cover;
+    max-height: 100%;
+    width: auto;
+    aspect-ratio: 3 / 4;
+}
+
+/* W98 style navigation buttons */
 .viewer-prev,
 .viewer-next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 60px;
-    font-size: 28px;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: white;
+    width: 28px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    background: var(--window-bg);
+    border: 2px outset var(--window-border-light);
+    color: var(--text-color);
     cursor: pointer;
-    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
 }
 
 .viewer-prev:hover,
 .viewer-next:hover {
-    background: rgba(255, 105, 180, 0.4);
+    background: var(--window-border-light);
 }
 
-.viewer-prev { left: 2px; }
-.viewer-next { right: 2px; }
+.viewer-prev:active,
+.viewer-next:active {
+    border-style: inset;
+    background: var(--window-border-dark);
+}
+
+.viewer-prev { left: 4px; }
+.viewer-next { right: 4px; }
+
+/* W98 style zoom controls */
+.viewer-zoom-controls {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: flex;
+    gap: 2px;
+    z-index: 10;
+}
+
+.viewer-zoom-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+    font-weight: bold;
+    background: var(--window-bg);
+    border: 2px outset var(--window-border-light);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
+}
+
+.viewer-zoom-btn:hover {
+    background: var(--window-border-light);
+}
+
+.viewer-zoom-btn:active {
+    border-style: inset;
+    background: var(--window-border-dark);
+}
+
+.viewer-zoom-level {
+    min-width: 42px;
+    height: 26px;
+    font-size: 11px;
+    background: white;
+    border: 2px inset var(--window-border-dark);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
+}
 
 /* Viewer thumbnails - anchored right above status bar */
 .viewer-thumbnails {
@@ -2469,6 +2550,19 @@ body::before {
 .viewer-thumb.active {
     opacity: 1;
     border-color: var(--accent-pink);
+}
+
+/* Video thumbnail */
+.viewer-thumb.video-thumb {
+    overflow: hidden;
+    position: relative;
+}
+
+.viewer-thumb.video-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
 }
 
 /* ===== DIALOG ===== */
@@ -3462,12 +3556,31 @@ input[type="submit"]:active {
         font-size: 18px !important;
     }
 
-    /* Viewer nav buttons: larger */
+    /* Viewer nav buttons: larger for mobile, keep W98 style */
     .viewer-prev,
     .viewer-next {
-        width: 54px !important;
-        height: 80px !important;
-        font-size: 36px !important;
+        width: 36px !important;
+        height: 70px !important;
+        font-size: 18px !important;
+    }
+
+    /* Zoom controls: larger for touch */
+    .viewer-zoom-controls {
+        bottom: 12px !important;
+        right: 12px !important;
+        gap: 4px !important;
+    }
+
+    .viewer-zoom-btn {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 18px !important;
+    }
+
+    .viewer-zoom-level {
+        min-width: 54px !important;
+        height: 36px !important;
+        font-size: 14px !important;
     }
 
     /* Thumbnails: larger */

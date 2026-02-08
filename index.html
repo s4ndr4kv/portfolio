@@ -547,7 +547,7 @@
         <!-- ============ WINDOWS ============ -->
 
         <!-- GALLERY: Ilustración Editorial — Windows Explorer style -->
-        <div class="window explorer-window" id="editorial-window" style="top: 20px; left: 80px; width: 880px; height: 680px;">
+        <div class="window explorer-window" id="editorial-window" style="top: 20px; left: 80px; width: 700px; height: 620px;">
             <div class="window-header">
                 <span class="window-title">📂 Exploring — C:\Sandra\Illustration ✧</span>
                 <div class="window-controls">
@@ -806,9 +806,14 @@
                     </div>
                     <!-- Image Viewer main area (hidden by default) -->
                     <div class="viewer-main hidden" id="editorial-viewer-main">
-                        <button class="viewer-prev">‹</button>
+                        <button class="viewer-prev">◀</button>
                         <img class="viewer-image" src="" alt="illustration">
-                        <button class="viewer-next">›</button>
+                        <button class="viewer-next">▶</button>
+                        <div class="viewer-zoom-controls">
+                            <button class="viewer-zoom-btn" id="zoom-out">−</button>
+                            <span class="viewer-zoom-level" id="zoom-level">100%</span>
+                            <button class="viewer-zoom-btn" id="zoom-in">+</button>
+                        </div>
                     </div>
                 </div>
             </div>
