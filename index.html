@@ -68,7 +68,7 @@
                 <span class="icon-text">Illustration</span>
             </div>
 
-            <div class="icon" data-window="personajes">
+            <div class="icon" data-window="personajes" style="display: none;">
                 <div class="icon-image">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
                         <rect x="22" y="2" width="4" height="3" fill="#8b5cf6"/>
@@ -171,7 +171,7 @@
                 <span class="icon-text">Winamp</span>
             </div>
 
-            <div class="icon" data-window="experimental">
+            <div class="icon" data-window="experimental" style="display: none;">
                 <div class="icon-image">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
                         <rect x="20" y="4" width="8" height="3" fill="#2a1a2e"/>
@@ -959,16 +959,67 @@
                 <span class="menu-item">Help</span>
             </div>
             <div class="window-content">
-                <div class="gallery-grid" id="fotografia-gallery">
-                    <div class="gallery-placeholder">
-                        <i class="fas fa-images"></i>
-                        <p>Aquí irán tus fotografías.</p>
-                        <p class="gallery-hint">Urbana, nocturna, mixed media...</p>
+                <div class="explorer-grid" id="fotografia-gallery">
+                    <!-- Photo file icons -->
+                    <div class="explorer-file">
+                        <div class="explorer-file-icon">
+                            <svg viewBox="0 0 32 32" width="48" height="48">
+                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
+                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
+                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
+                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
+                            </svg>
+                        </div>
+                        <span class="explorer-file-name">DSC82738.jpg</span>
+                    </div>
+                    <div class="explorer-file">
+                        <div class="explorer-file-icon">
+                            <svg viewBox="0 0 32 32" width="48" height="48">
+                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
+                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
+                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
+                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
+                            </svg>
+                        </div>
+                        <span class="explorer-file-name">DSC82739.jpg</span>
+                    </div>
+                    <div class="explorer-file">
+                        <div class="explorer-file-icon">
+                            <svg viewBox="0 0 32 32" width="48" height="48">
+                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
+                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
+                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
+                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
+                            </svg>
+                        </div>
+                        <span class="explorer-file-name">DSC82740.jpg</span>
+                    </div>
+                    <div class="explorer-file">
+                        <div class="explorer-file-icon">
+                            <svg viewBox="0 0 32 32" width="48" height="48">
+                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
+                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
+                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
+                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
+                            </svg>
+                        </div>
+                        <span class="explorer-file-name">DSC82741.jpg</span>
+                    </div>
+                    <div class="explorer-file">
+                        <div class="explorer-file-icon">
+                            <svg viewBox="0 0 32 32" width="48" height="48">
+                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
+                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
+                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
+                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
+                            </svg>
+                        </div>
+                        <span class="explorer-file-name">DSC82742.jpg</span>
                     </div>
                 </div>
             </div>
             <div class="window-status-bar">
-                <span>0 objects ✧</span>
+                <span>5 objects ✧</span>
             </div>
         </div>
 
@@ -1466,7 +1517,7 @@ hi@sandraku.com
                     <span class="start-icon">📖</span>
                     Illustration
                 </div>
-                <div class="start-menu-item" data-window="personajes">
+                <div class="start-menu-item" data-window="personajes" style="display: none;">
                     <span class="start-icon">🧙</span>
                     Characters
                 </div>
@@ -1474,7 +1525,11 @@ hi@sandraku.com
                     <span class="start-icon">🎵</span>
                     Winamp
                 </div>
-                <div class="start-menu-item" data-window="experimental">
+                <div class="start-menu-item" data-window="tamagotchi">
+                    <span class="start-icon">🥚</span>
+                    Tamagotchi
+                </div>
+                <div class="start-menu-item" data-window="experimental" style="display: none;">
                     <span class="start-icon">🧪</span>
                     Experimental
                 </div>

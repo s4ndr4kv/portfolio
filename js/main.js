@@ -24,7 +24,17 @@ const windowTitles = {
     'paint': '🎨 untitled — ペイント ♡',
     'recycle': '🗑️ Recycle Bin — ごみ箱',
     'kutv': '📺 KuTV — テレビ ♡',
-    'tamagotchi': '🥚 Tamagotchi — たまごっち ♡'
+    'tamagotchi': '🥚 Tamagotchi — たまごっち ♡',
+    'imageviewer': '🖼️ Image Viewer — 画像 ✧'
+};
+
+// Photo files mapping (filename -> actual image path)
+const photoFiles = {
+    'DSC82738.jpg': 'img/fotografia/IMG_1752825135453.JPEG',
+    'DSC82739.jpg': 'img/fotografia/IMG_1753169082772.JPEG',
+    'DSC82740.jpg': 'img/fotografia/IMG_1770068868969.JPEG',
+    'DSC82741.jpg': 'img/fotografia/IMG_1770068869192.JPEG',
+    'DSC82742.jpg': 'img/fotografia/IMG_1770072373044.jpg'
 };
 
 // ===== SPLASH SCREEN — BIOS BOOT =====
@@ -1340,3 +1350,114 @@ document.addEventListener('DOMContentLoaded', () => {
         initIconDrag();
     }
 });
+
+// ===== IMAGE VIEWER (for Photography) =====
+let imageViewerCount = 0;
+
+function openImageViewer(filename) {
+    const imagePath = photoFiles[filename];
+    if (!imagePath) return;
+
+    // Create unique window ID
+    imageViewerCount++;
+    const windowId = `photo-${imageViewerCount}`;
+
+    // Pre-load image to get dimensions
+    const img = new Image();
+    img.onload = function() {
+        // Calculate window size based on image
+        const maxWidth = window.innerWidth * 0.8;
+        const maxHeight = window.innerHeight * 0.8;
+        let imgWidth = img.naturalWidth;
+        let imgHeight = img.naturalHeight;
+
+        // Scale down if too big
+        if (imgWidth > maxWidth) {
+            const ratio = maxWidth / imgWidth;
+            imgWidth = maxWidth;
+            imgHeight *= ratio;
+        }
+        if (imgHeight > maxHeight) {
+            const ratio = maxHeight / imgHeight;
+            imgHeight = maxHeight;
+            imgWidth *= ratio;
+        }
+
+        // Window size = image + header + status bar
+        const winWidth = Math.round(imgWidth) + 4; // 2px border each side
+        const winHeight = Math.round(imgHeight) + 70; // header + menu + status
+
+        // Random position
+        const left = 100 + (imageViewerCount * 30) % 200;
+        const top = 50 + (imageViewerCount * 25) % 150;
+
+        // Create window HTML
+        const windowHTML = `
+            <div class="window visible" id="${windowId}-window" style="top: ${top}px; left: ${left}px; width: ${winWidth}px; height: ${winHeight}px;">
+                <div class="window-header">
+                    <span class="window-title">🖼️ ${filename}</span>
+                    <div class="window-controls">
+                        <button class="window-button minimize-btn" data-action="minimize" data-window="${windowId}">_</button>
+                        <button class="window-button maximize-btn" data-action="maximize" data-window="${windowId}">□</button>
+                        <button class="window-button close-btn" data-action="close" data-window="${windowId}">×</button>
+                    </div>
+                </div>
+                <div class="window-menu-bar">
+                    <span class="menu-item">File</span>
+                    <span class="menu-item">Edit</span>
+                    <span class="menu-item">View</span>
+                    <span class="menu-item">Help</span>
+                </div>
+                <div class="window-content imageviewer-content-fit">
+                    <img src="${imagePath}" alt="${filename}">
+                </div>
+                <div class="window-status-bar">
+                    <span>${filename} ✧</span>
+                </div>
+            </div>
+        `;
+
+        // Add to DOM
+        document.getElementById('desktop').insertAdjacentHTML('beforeend', windowHTML);
+
+        // Register window title
+        windowTitles[windowId] = `🖼️ ${filename}`;
+
+        // Setup window controls
+        const newWindow = document.getElementById(`${windowId}-window`);
+        newWindow.querySelectorAll('.window-button[data-action]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const action = btn.getAttribute('data-action');
+                const wId = btn.getAttribute('data-window');
+                if (action === 'close') {
+                    closeWindow(wId);
+                    newWindow.remove(); // Remove from DOM
+                }
+                if (action === 'minimize') minimizeWindow(wId);
+                if (action === 'maximize') maximizeWindow(wId);
+            });
+        });
+
+        // Add to open windows and taskbar
+        openWindows.add(windowId);
+        setActiveWindow(windowId);
+        addToTaskbar(windowId);
+    };
+    img.src = imagePath;
+}
+
+function initPhotoViewer() {
+    document.querySelectorAll('.explorer-file').forEach(file => {
+        file.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const filename = file.querySelector('.explorer-file-name').textContent;
+            openImageViewer(filename);
+        });
+    });
+}
+
+// Init photo viewer after DOM ready
+document.addEventListener('DOMContentLoaded', initPhotoViewer);
