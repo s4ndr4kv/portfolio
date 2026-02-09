@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // For now show a success dialog. When Formspree/EmailJS is set up,
             // this will convert canvas to image and send it.
-            showDialog('Paint', '¡Dibujo enviado a Sandra! ♡ Gracias por tu mensaje secreto.', 'fa-check-circle');
+            showDialog('Paint', 'Art sent!! ♡ Thank you for your secret message.', 'fa-check-circle');
 
             // Clear canvas after sending
             if (paintCtx) {
