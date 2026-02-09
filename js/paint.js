@@ -244,54 +244,33 @@ document.addEventListener('DOMContentLoaded', () => {
             sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
             try {
-                // Convert canvas to base64 image (remove data:image/png;base64, prefix for Imgur)
-                const imageData = paintCanvas.toDataURL('image/png');
-                const base64Data = imageData.replace(/^data:image\/png;base64,/, '');
+                // Convert canvas to blob
+                const blob = await new Promise(resolve => paintCanvas.toBlob(resolve, 'image/png'));
 
-                // Upload to Imgur first
-                const imgurResponse = await fetch('https://api.imgur.com/3/image', {
+                // Create FormData with file attachment
+                const formData = new FormData();
+                formData.append('_subject', '[Portfolio] Secret Paint Message ♡');
+                formData.append('from', 'Website Paint');
+                formData.append('message', 'Someone sent you a secret drawing!');
+                formData.append('drawing', blob, 'secret-drawing.png');
+
+                const response = await fetch('https://formspree.io/f/xqedawkv', {
                     method: 'POST',
                     headers: {
-                        'Authorization': 'Client-ID 546c25a59c58ad7',
-                        'Content-Type': 'application/json'
+                        'Accept': 'application/json'
                     },
-                    body: JSON.stringify({
-                        image: base64Data,
-                        type: 'base64',
-                        title: 'Secret Paint Message'
-                    })
+                    body: formData
                 });
 
-                const imgurData = await imgurResponse.json();
-
-                if (imgurData.success) {
-                    // Send email with image link
-                    const response = await fetch('https://formspree.io/f/xqedawkv', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            _subject: '[Portfolio] Secret Paint Message ♡',
-                            from: 'Website Paint',
-                            message: 'Someone sent you a secret drawing! View it here:',
-                            drawing_url: imgurData.data.link
-                        })
-                    });
-
-                    if (response.ok) {
-                        showDialog('Paint', 'Art sent!! ♡ Thank you for your secret message.', 'fa-check-circle');
-                        // Clear canvas after sending
-                        if (paintCtx) {
-                            paintCtx.fillStyle = '#ffffff';
-                            paintCtx.fillRect(0, 0, paintCanvas.width, paintCanvas.height);
-                        }
-                    } else {
-                        showDialog('Paint', 'Failed to send drawing. Please try again.', 'fa-exclamation-triangle');
+                if (response.ok) {
+                    showDialog('Paint', 'Art sent!! ♡ Thank you for your secret message.', 'fa-check-circle');
+                    // Clear canvas after sending
+                    if (paintCtx) {
+                        paintCtx.fillStyle = '#ffffff';
+                        paintCtx.fillRect(0, 0, paintCanvas.width, paintCanvas.height);
                     }
                 } else {
-                    showDialog('Paint', 'Failed to upload drawing. Please try again.', 'fa-exclamation-triangle');
+                    showDialog('Paint', 'Failed to send drawing. Please try again.', 'fa-exclamation-triangle');
                 }
             } catch (error) {
                 showDialog('Paint', 'Failed to send drawing. Please try again.', 'fa-exclamation-triangle');
