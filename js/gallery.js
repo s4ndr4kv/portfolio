@@ -15,15 +15,17 @@ function isVideo(filename) {
 }
 
 // Helper to get optimized video path (uses compressed version if available)
-function getOptimizedVideoPath(basePath, filename) {
+function getOptimizedVideoPath(folderPath, filename) {
     // For videos, try to use the -desktop.mp4 version
     if (isVideo(filename)) {
         const decoded = decodeURIComponent(filename);
         // Keep original extension in name to handle duplicates (e.g., file.mov and file.mp4)
         // Format: "originalname.originalext-desktop.mp4"
-        return basePath + encodeURIComponent(decoded + '-desktop') + '.mp4';
+        const videoPath = folderPath + encodeURIComponent(decoded + '-desktop') + '.mp4';
+        console.log('[Video] Loading:', videoPath);
+        return videoPath;
     }
-    return basePath + filename;
+    return folderPath + filename;
 }
 
 // Folder configuration with images
@@ -425,6 +427,9 @@ function showImage(index) {
 
         // Check if video is very vertical and apply real zoom
         const video = viewerMain.querySelector('video.viewer-image');
+        video.addEventListener('error', (e) => {
+            console.error('[Video Error] Failed to load video:', filePath, e);
+        });
         video.addEventListener('loadedmetadata', () => {
             // Store natural dimensions for pan limit calculations
             imageNaturalWidth = video.videoWidth;
@@ -763,7 +768,9 @@ function buildThumbnails() {
             const video = document.createElement('video');
             video.src = getOptimizedVideoPath(currentFolder.path, file);
             video.muted = true;
+            video.playsInline = true;
             video.preload = 'metadata';
+            video.onerror = () => console.error('[Video Error] Failed to load:', video.src);
             thumb.appendChild(video);
         } else {
             // Image thumbnail
