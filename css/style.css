@@ -3401,6 +3401,68 @@ input[type="submit"]:active {
     #crt-flicker {
         display: none;
     }
+
+    /* ===== DIALOG POPUP: MOBILE ===== */
+    .dialog-box {
+        min-width: 280px;
+        max-width: 90vw;
+        margin: 0 10px;
+    }
+
+    .dialog-header {
+        padding: 4px 6px;
+        font-size: 18px;
+        font-family: 'VT323', monospace;
+        min-height: 32px;
+    }
+
+    .dialog-content {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .dialog-icon {
+        font-size: 28px;
+    }
+
+    .dialog-content p {
+        font-size: 16px;
+        font-family: 'VT323', monospace;
+        line-height: 1.4;
+    }
+
+    .dialog-btn {
+        font-size: 16px;
+        font-family: 'VT323', monospace;
+        padding: 6px 28px;
+        min-width: 80px;
+    }
+
+    /* ===== ERROR DIALOG: MOBILE ===== */
+    .error-dialog {
+        max-width: 85vw;
+        width: auto;
+        min-width: 240px;
+    }
+
+    .error-dialog .error-titlebar {
+        padding: 4px 6px;
+        font-size: 18px;
+        font-family: 'VT323', monospace;
+        min-height: 32px;
+    }
+
+    .error-dialog .error-body {
+        font-size: 16px;
+        font-family: 'VT323', monospace;
+        padding: 14px 16px;
+    }
+
+    .error-dialog .error-ok {
+        font-size: 16px;
+        font-family: 'VT323', monospace;
+        padding: 5px 24px;
+    }
 }
 
 /* ===== SMALL MOBILE ===== */
