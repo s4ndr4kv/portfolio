@@ -3559,25 +3559,35 @@ input[type="submit"]:active {
         margin-right: 12px !important;
     }
 
-    /* Address bar: simplified */
+    /* Address bar: hide in viewer mode on mobile */
     .explorer-address {
         padding: 6px 10px !important;
         font-size: 15px !important;
     }
 
-    /* Viewer header: touch-friendly */
+    /* Hide address bar when viewing images */
+    .explorer-window.viewer-mode .explorer-address {
+        display: none !important;
+    }
+
+    /* Viewer header: compact for mobile */
     .viewer-header {
-        padding: 10px 14px !important;
+        padding: 4px 10px !important;
+        min-height: 32px !important;
     }
 
     .viewer-back {
-        padding: 10px 14px !important;
-        font-size: 18px !important;
-        min-height: 44px !important;
+        padding: 6px 10px !important;
+        font-size: 14px !important;
+        min-height: 32px !important;
     }
 
     .viewer-title {
-        font-size: 18px !important;
+        font-size: 14px !important;
+    }
+
+    .viewer-counter {
+        font-size: 12px !important;
     }
 
     /* Viewer nav buttons: larger for mobile, keep W98 style */

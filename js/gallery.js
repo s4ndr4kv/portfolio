@@ -284,8 +284,9 @@ function resizeWindowForViewer() {
     }
 
     if (isMobile) {
-        // Mobile: MAXIMIZE the window using the existing maximizeWindow function
+        // Mobile: MAXIMIZE the window and add viewer-mode class
         const windowId = 'editorial';
+        windowEl.classList.add('viewer-mode');
         if (typeof maximizeWindow === 'function' && !windowEl.classList.contains('maximized')) {
             maximizeWindow(windowId);
         }
@@ -312,6 +313,12 @@ function resizeWindowForViewer() {
 function closeFolder() {
     currentFolder = null;
     currentFolderId = null;
+
+    // Remove viewer-mode class
+    const windowEl = document.getElementById('editorial-window');
+    if (windowEl) {
+        windowEl.classList.remove('viewer-mode');
+    }
 
     // Restore original window size
     restoreWindowFromViewer();
