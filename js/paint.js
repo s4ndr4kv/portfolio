@@ -244,22 +244,21 @@ document.addEventListener('DOMContentLoaded', () => {
             sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
             try {
-                // Convert canvas to blob
-                const blob = await new Promise(resolve => paintCanvas.toBlob(resolve, 'image/png'));
-
-                // Create FormData with file attachment
-                const formData = new FormData();
-                formData.append('_subject', '[Portfolio] Secret Paint Message ♡');
-                formData.append('from', 'Website Paint');
-                formData.append('message', 'Someone sent you a secret drawing!');
-                formData.append('drawing', blob, 'secret-drawing.png');
+                // Convert canvas to smaller JPEG for email (base64 is long but works)
+                const imageData = paintCanvas.toDataURL('image/jpeg', 0.8);
 
                 const response = await fetch('https://formspree.io/f/xqedawkv', {
                     method: 'POST',
                     headers: {
+                        'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: formData
+                    body: JSON.stringify({
+                        _subject: '[Portfolio] Secret Paint Message ♡',
+                        from: 'Website Paint',
+                        message: 'Someone sent you a secret drawing! Copy and paste this link in your browser to see it:',
+                        image: imageData
+                    })
                 });
 
                 if (response.ok) {
