@@ -2422,29 +2422,14 @@ body::before {
 }
 
 .viewer-image {
-    min-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-/* Very vertical content (reels format) - now handled via JS transform:scale */
-/* The vertical-crop class is used as a marker, actual zoom is done via transform */
-.viewer-image.vertical-crop {
-    min-width: 100%;
+    max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 }
 
 /* Video in viewer - same styles as image */
 video.viewer-image {
-    min-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    pointer-events: none; /* Let clicks pass through to navigation buttons */
-}
-
-video.viewer-image.vertical-crop {
-    min-width: 100%;
+    max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 }

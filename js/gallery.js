@@ -601,8 +601,8 @@ function zoomIn() {
 }
 
 function zoomOut() {
-    // Min zoom is 25% to allow seeing full image
-    const minZoom = 25;
+    // Min zoom is 50% to allow seeing full image
+    const minZoom = 50;
     if (currentZoom > minZoom) {
         currentZoom -= 25;
         if (currentZoom < minZoom) currentZoom = minZoom;
