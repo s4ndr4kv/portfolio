@@ -622,7 +622,7 @@ function applyZoom() {
 
 // Calculate and clamp pan offsets so image doesn't go beyond its boundaries
 function clampPanOffsets() {
-    if (!viewerMain || currentZoom <= 100) {
+    if (!viewerMain) {
         panOffsetX = 0;
         panOffsetY = 0;
         return;
@@ -634,13 +634,19 @@ function clampPanOffsets() {
     const containerRect = viewerMain.getBoundingClientRect();
 
     // Use the element's client dimensions (size before transform)
-    // This is more reliable than calculating from natural dimensions
     const displayedWidth = media.clientWidth;
     const displayedHeight = media.clientHeight;
 
     const scaleValue = currentZoom / 100;
     const scaledWidth = displayedWidth * scaleValue;
     const scaledHeight = displayedHeight * scaleValue;
+
+    // If scaled image is smaller than container, no panning allowed
+    if (scaledWidth <= containerRect.width && scaledHeight <= containerRect.height) {
+        panOffsetX = 0;
+        panOffsetY = 0;
+        return;
+    }
 
     // Calculate max pan distances
     // With transform: scale(s) translate(x, y), the translate happens in unscaled space,
@@ -773,8 +779,13 @@ function buildThumbnails() {
             video.src = getOptimizedVideoPath(currentFolder.path, file);
             video.muted = true;
             video.playsInline = true;
-            video.preload = 'metadata';
-            video.onerror = () => console.error('[Video Error] Failed to load:', video.src);
+            video.preload = 'auto'; // Load more for thumbnail display
+            video.autoplay = false;
+            // Force load first frame for thumbnail
+            video.addEventListener('loadeddata', () => {
+                video.currentTime = 0.1; // Seek slightly to ensure frame renders
+            });
+            video.onerror = () => console.error('[Video Thumb Error]', video.src);
             thumb.appendChild(video);
         } else {
             // Image thumbnail

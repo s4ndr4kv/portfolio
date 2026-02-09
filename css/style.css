@@ -2467,7 +2467,7 @@ video.viewer-image.vertical-crop {
     align-items: center;
     justify-content: center;
     font-family: 'MS Sans Serif', Tahoma, sans-serif;
-    z-index: 100; /* High z-index to ensure buttons are above video/image */
+    z-index: 1000; /* Very high z-index to stay above scaled images */
     pointer-events: auto !important; /* Ensure clicks are received */
 }
 
