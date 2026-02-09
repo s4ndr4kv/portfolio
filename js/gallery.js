@@ -413,10 +413,14 @@ function showImage(index) {
         // Replace img with video element - use optimized compressed version
         viewerMain.innerHTML = `
             <button class="viewer-prev">◀</button>
-            <video class="viewer-image" src="${filePath}" loop autoplay muted playsinline></video>
+            <video class="viewer-image" src="${filePath}" loop autoplay muted playsinline webkit-playsinline preload="auto"></video>
             <button class="viewer-next">▶</button>
             ${zoomControlsHTML}
         `;
+
+        // Force play on mobile (some browsers need this)
+        const videoEl = viewerMain.querySelector('video.viewer-image');
+        videoEl.play().catch(e => console.log('Autoplay prevented:', e));
         // Re-attach navigation listeners
         viewerMain.querySelector('.viewer-prev')?.addEventListener('click', prevImage);
         viewerMain.querySelector('.viewer-next')?.addEventListener('click', nextImage);
