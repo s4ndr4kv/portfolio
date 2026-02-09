@@ -236,18 +236,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Send drawing
     const sendBtn = document.getElementById('paint-send-btn');
     if (sendBtn) {
-        sendBtn.addEventListener('click', () => {
+        sendBtn.addEventListener('click', async () => {
             if (!paintCanvas) return;
 
-            // For now show a success dialog. When Formspree/EmailJS is set up,
-            // this will convert canvas to image and send it.
-            showDialog('Paint', 'Art sent!! ♡ Thank you for your secret message.', 'fa-check-circle');
+            // Disable button while sending
+            sendBtn.disabled = true;
+            sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-            // Clear canvas after sending
-            if (paintCtx) {
-                paintCtx.fillStyle = '#ffffff';
-                paintCtx.fillRect(0, 0, paintCanvas.width, paintCanvas.height);
+            try {
+                // Convert canvas to base64 image
+                const imageData = paintCanvas.toDataURL('image/png');
+
+                const response = await fetch('https://formspree.io/f/xqedawkv', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: '[Portfolio] Secret Paint Message ♡',
+                        from: 'Website Paint',
+                        message: 'Someone sent you a secret drawing!',
+                        drawing: imageData
+                    })
+                });
+
+                if (response.ok) {
+                    showDialog('Paint', 'Art sent!! ♡ Thank you for your secret message.', 'fa-check-circle');
+                    // Clear canvas after sending
+                    if (paintCtx) {
+                        paintCtx.fillStyle = '#ffffff';
+                        paintCtx.fillRect(0, 0, paintCanvas.width, paintCanvas.height);
+                    }
+                } else {
+                    showDialog('Paint', 'Failed to send drawing. Please try again.', 'fa-exclamation-triangle');
+                }
+            } catch (error) {
+                showDialog('Paint', 'Failed to send drawing. Please try again.', 'fa-exclamation-triangle');
             }
+
+            // Re-enable button
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send to Sandra ♡';
         });
     }
 

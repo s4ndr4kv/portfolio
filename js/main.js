@@ -753,7 +753,7 @@ function lightboxNext() {
 // ===== EMAIL =====
 function initEmail() {
     const sendBtn = document.getElementById('email-send-btn');
-    sendBtn.addEventListener('click', () => {
+    sendBtn.addEventListener('click', async () => {
         const form = document.getElementById('email-form');
         const fromEmail = form.querySelector('[name="from_email"]').value;
         const subject = form.querySelector('[name="subject"]').value;
@@ -764,9 +764,39 @@ function initEmail() {
             return;
         }
 
-        // For now, show success dialog. When you set up Formspree/EmailJS, this will actually send.
-        showDialog('Outlook Express', 'Message sent!! 🐰 Sandra will get back to you asap', 'fa-check-circle');
-        form.reset();
+        // Disable button while sending
+        sendBtn.disabled = true;
+        sendBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+        try {
+            const response = await fetch('https://formspree.io/f/mdalkyoj', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: `[Portfolio] ${subject}`,
+                    from: 'Website Outlook Express',
+                    email: fromEmail,
+                    subject: subject,
+                    message: message
+                })
+            });
+
+            if (response.ok) {
+                showDialog('Outlook Express', 'Message sent!! 🐰 Sandra will get back to you asap', 'fa-check-circle');
+                form.reset();
+            } else {
+                showDialog('Outlook Express', 'Failed to send message. Please try again.', 'fa-exclamation-triangle');
+            }
+        } catch (error) {
+            showDialog('Outlook Express', 'Failed to send message. Please try again.', 'fa-exclamation-triangle');
+        }
+
+        // Re-enable button
+        sendBtn.disabled = false;
+        sendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send';
     });
 }
 
