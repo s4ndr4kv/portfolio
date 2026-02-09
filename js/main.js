@@ -765,7 +765,7 @@ function initEmail() {
         }
 
         // For now, show success dialog. When you set up Formspree/EmailJS, this will actually send.
-        showDialog('Outlook Express', '¡Mensaje enviado correctamente! ✉️ Sandra lo recibirá pronto.', 'fa-check-circle');
+        showDialog('Outlook Express', 'Message sent!! 🐰 Sandra will get back to you asap', 'fa-check-circle');
         form.reset();
     });
 }

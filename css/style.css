@@ -2602,12 +2602,13 @@ video.viewer-image {
 .dialog-header {
     background: linear-gradient(90deg, var(--active-titlebar-start) 0%, var(--active-titlebar-mid) 50%, var(--active-titlebar-end) 100%);
     color: white;
-    padding: 2px 4px;
+    padding: 3px 3px 3px 6px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    font-size: 11px;
+    font-size: 15px;
+    min-height: 22px;
 }
 
 .dialog-content {
@@ -2624,8 +2625,9 @@ video.viewer-image {
 }
 
 .dialog-content p {
-    padding-top: 8px;
-    line-height: 1.4;
+    padding-top: 6px;
+    line-height: 1.5;
+    font-size: 13px;
 }
 
 .dialog-buttons {
@@ -2637,7 +2639,7 @@ video.viewer-image {
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
     padding: 4px 24px;
-    font-size: 11px;
+    font-size: 13px;
     font-family: inherit;
     min-width: 75px;
     transition: background 0.1s;
