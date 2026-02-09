@@ -352,12 +352,13 @@ a, button, [role="button"] {
 .error-dialog .error-titlebar {
     background: linear-gradient(90deg, var(--active-titlebar-start), var(--active-titlebar-mid), var(--active-titlebar-end));
     color: white;
-    padding: 3px 5px;
+    padding: 3px 3px 3px 6px;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 22px;
 }
 
 .error-dialog .error-close {
@@ -385,6 +386,8 @@ a, button, [role="button"] {
     gap: 12px;
     text-align: center;
     color: var(--text-color);
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 .error-dialog .error-icon {
@@ -392,10 +395,10 @@ a, button, [role="button"] {
 }
 
 .error-dialog .error-ok {
-    padding: 3px 24px;
+    padding: 4px 24px;
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
-    font-size: 12px;
+    font-size: 13px;
     color: var(--text-color);
     outline: 1px dotted #333;
     outline-offset: -4px;

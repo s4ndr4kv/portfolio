@@ -760,7 +760,7 @@ function initEmail() {
         const message = form.querySelector('[name="message"]').value;
 
         if (!fromEmail || !subject || !message) {
-            showDialog('Outlook Express', 'Por favor, rellena todos los campos.', 'fa-exclamation-triangle');
+            showDialog('Outlook Express', 'Please fill in all fields.', 'fa-exclamation-triangle');
             return;
         }
 
