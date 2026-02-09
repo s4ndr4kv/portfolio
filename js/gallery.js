@@ -792,20 +792,28 @@ function buildThumbnails() {
         thumb.className = 'viewer-thumb' + (index === 0 ? ' active' : '');
 
         if (isVideo(file)) {
-            // Video thumbnail - use optimized video
+            // Video thumbnail - use video element with multiple load strategies
             thumb.classList.add('video-thumb');
             const video = document.createElement('video');
-            video.src = getOptimizedVideoPath(currentFolder.path, file);
+            const videoSrc = getOptimizedVideoPath(currentFolder.path, file);
+            video.src = videoSrc;
             video.muted = true;
             video.playsInline = true;
-            video.preload = 'auto'; // Load more for thumbnail display
-            video.autoplay = false;
-            // Force load first frame for thumbnail
-            video.addEventListener('loadeddata', () => {
-                video.currentTime = 0.1; // Seek slightly to ensure frame renders
+            video.setAttribute('playsinline', '');
+            video.setAttribute('webkit-playsinline', '');
+            video.preload = 'metadata';
+
+            // Try to load first frame
+            video.addEventListener('loadedmetadata', () => {
+                video.currentTime = 0.01;
             });
-            video.onerror = () => console.error('[Video Thumb Error]', video.src);
+
+            // Add play icon overlay for mobile (in case video doesn't render)
+            const playIcon = document.createElement('div');
+            playIcon.className = 'video-thumb-icon';
+            playIcon.innerHTML = '▶';
             thumb.appendChild(video);
+            thumb.appendChild(playIcon);
         } else {
             // Image thumbnail
             thumb.style.backgroundImage = `url('${currentFolder.path}${file}')`;

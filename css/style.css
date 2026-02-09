@@ -2577,6 +2577,32 @@ video.viewer-image.vertical-crop {
     pointer-events: none;
 }
 
+/* Play icon overlay for video thumbnails */
+.video-thumb-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.8);
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+/* Hide play icon if video loaded successfully */
+.viewer-thumb.video-thumb video:not([src=""]) ~ .video-thumb-icon {
+    display: none;
+}
+
+/* Show play icon as fallback - always visible on mobile for clarity */
+@media (max-width: 768px) {
+    .video-thumb-icon {
+        display: block !important;
+        font-size: 20px;
+    }
+}
+
 /* ===== DIALOG ===== */
 .dialog-overlay {
     display: none;
