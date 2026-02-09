@@ -594,11 +594,11 @@ function zoomIn() {
 }
 
 function zoomOut() {
-    // Min zoom is 100% (to see full image) even for cropped images
-    if (currentZoom > 100) {
+    // Min zoom is 25% to allow seeing full image
+    const minZoom = 25;
+    if (currentZoom > minZoom) {
         currentZoom -= 25;
-        // Don't go below 100
-        if (currentZoom < 100) currentZoom = 100;
+        if (currentZoom < minZoom) currentZoom = minZoom;
         applyZoom();
     }
 }
@@ -618,20 +618,18 @@ function applyZoom() {
     if (media) {
         const scaleValue = currentZoom / 100;
 
-        // At 100% zoom - show full image, no transform
-        if (currentZoom === 100) {
-            media.style.transform = '';
-            media.style.cursor = '';
-            panOffsetX = 0;
-            panOffsetY = 0;
-        } else {
-            // Any zoom > 100% uses real transform:scale()
-            // Clamp pan offsets to image boundaries
-            clampPanOffsets();
-            media.style.transform = `scale(${scaleValue}) translate(${panOffsetX}px, ${panOffsetY}px)`;
-            media.style.transformOrigin = 'center center';
-            media.style.cursor = 'grab';
-        }
+        // Clamp pan offsets to image boundaries
+        clampPanOffsets();
+
+        // Apply transform for any zoom level
+        media.style.transform = `scale(${scaleValue}) translate(${panOffsetX}px, ${panOffsetY}px)`;
+        media.style.transformOrigin = 'center center';
+
+        // Show grab cursor if panning is possible
+        const containerRect = viewerMain.getBoundingClientRect();
+        const canPan = (media.clientWidth * scaleValue > containerRect.width) ||
+                       (media.clientHeight * scaleValue > containerRect.height);
+        media.style.cursor = canPan ? 'grab' : '';
     }
 
     if (zoomLevel) {
@@ -660,25 +658,17 @@ function clampPanOffsets() {
     const scaledWidth = displayedWidth * scaleValue;
     const scaledHeight = displayedHeight * scaleValue;
 
-    // If scaled image is smaller than container, no panning allowed
-    if (scaledWidth <= containerRect.width && scaledHeight <= containerRect.height) {
-        panOffsetX = 0;
-        panOffsetY = 0;
-        return;
-    }
-
-    // Calculate max pan distances
+    // Calculate max pan distances for each axis independently
     // With transform: scale(s) translate(x, y), the translate happens in unscaled space,
     // then gets scaled. So the visual offset = x * s.
-    // We want to limit so the scaled image doesn't show empty space.
     // Max visual pan = (scaledSize - containerSize) / 2
     // Max translate value = maxVisualPan / scaleValue
     const maxPanX = Math.max(0, (scaledWidth - containerRect.width) / 2 / scaleValue);
     const maxPanY = Math.max(0, (scaledHeight - containerRect.height) / 2 / scaleValue);
 
-    // Clamp the offsets
-    panOffsetX = Math.max(-maxPanX, Math.min(maxPanX, panOffsetX));
-    panOffsetY = Math.max(-maxPanY, Math.min(maxPanY, panOffsetY));
+    // Clamp each axis - if image fits in that dimension, center it (0 offset)
+    panOffsetX = maxPanX > 0 ? Math.max(-maxPanX, Math.min(maxPanX, panOffsetX)) : 0;
+    panOffsetY = maxPanY > 0 ? Math.max(-maxPanY, Math.min(maxPanY, panOffsetY)) : 0;
 }
 
 // Pan/drag functionality for zoomed images
