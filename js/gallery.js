@@ -678,6 +678,20 @@ function clampPanOffsets() {
     panOffsetY = maxPanY > 0 ? Math.max(-maxPanY, Math.min(maxPanY, panOffsetY)) : 0;
 }
 
+// Check if panning is possible (image larger than container in any dimension)
+function canPanImage() {
+    if (!viewerMain) return false;
+    const media = viewerMain.querySelector('.viewer-image');
+    if (!media) return false;
+
+    const containerRect = viewerMain.getBoundingClientRect();
+    const scaleValue = currentZoom / 100;
+    const scaledWidth = media.clientWidth * scaleValue;
+    const scaledHeight = media.clientHeight * scaleValue;
+
+    return scaledWidth > containerRect.width || scaledHeight > containerRect.height;
+}
+
 // Pan/drag functionality for zoomed images
 function attachPanListeners(element) {
     if (!element) return;
@@ -695,7 +709,8 @@ function attachPanListeners(element) {
 }
 
 function startPan(e) {
-    if (currentZoom <= 100) return;
+    // Allow pan if image is larger than container in any dimension
+    if (!canPanImage()) return;
     isPanning = true;
     // Store start position compensated for current scale
     const scale = currentZoom / 100;
@@ -706,7 +721,8 @@ function startPan(e) {
 }
 
 function startPanTouch(e) {
-    if (currentZoom <= 100) return;
+    // Allow pan if image is larger than container in any dimension
+    if (!canPanImage()) return;
     if (e.touches.length === 1) {
         isPanning = true;
         // Store start position compensated for current scale
@@ -718,7 +734,7 @@ function startPanTouch(e) {
 }
 
 function doPan(e) {
-    if (!isPanning || currentZoom <= 100) return;
+    if (!isPanning) return;
     // Compensate for zoom scale - higher zoom = less movement needed
     const scale = currentZoom / 100;
     const newOffsetX = (e.clientX - panStartX) / scale;
@@ -746,7 +762,7 @@ function doPan(e) {
 }
 
 function doPanTouch(e) {
-    if (!isPanning || currentZoom <= 100) return;
+    if (!isPanning) return;
     if (e.touches.length === 1) {
         const scale = currentZoom / 100;
         const newOffsetX = (e.touches[0].clientX - panStartX) / scale;
