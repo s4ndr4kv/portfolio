@@ -3431,17 +3431,9 @@ input[type="submit"]:active {
 
 /* ===== IMAGE VIEWER: MOBILE FULLSCREEN ===== */
 @media (max-width: 768px) {
-    /* Maximized window: image fills entire viewer area */
+    /* Maximized window on mobile: gray background, no forced sizing */
     .window.maximized .viewer-main {
-        background: #000;
-    }
-
-    .window.maximized .viewer-image {
-        width: 100%;
-        height: 100%;
-        max-width: none;
-        max-height: none;
-        object-fit: cover;
+        background: var(--window-bg);
     }
 }
 

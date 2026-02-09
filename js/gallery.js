@@ -436,13 +436,13 @@ function showImage(index) {
         document.getElementById('zoom-in')?.addEventListener('click', zoomIn);
         document.getElementById('zoom-out')?.addEventListener('click', zoomOut);
 
-        // Check if video is very vertical and apply real zoom
+        // Set up zoom based on video dimensions
         const video = viewerMain.querySelector('video.viewer-image');
         video.addEventListener('error', (e) => {
             console.error('[Video Error] Failed to load video:', filePath, e);
         });
         video.addEventListener('loadedmetadata', () => {
-            // Store natural dimensions for pan limit calculations
+            // Store natural dimensions
             imageNaturalWidth = video.videoWidth;
             imageNaturalHeight = video.videoHeight;
 
@@ -450,34 +450,13 @@ function showImage(index) {
             containerWidth = viewerMain.clientWidth;
             containerHeight = viewerMain.clientHeight;
 
-            // On mobile, don't apply automatic zoom - let user control it
-            const isMobileView = window.innerWidth <= 768;
-            if (isMobileView) {
-                isVerticalCrop = false;
-                baseZoom = 100;
-                currentZoom = 100;
-                return;
-            }
+            // Calculate scale needed to fill container width
+            const scaleToFillWidth = containerWidth / video.videoWidth;
+            baseZoom = Math.round(scaleToFillWidth * 100);
+            currentZoom = 100; // Start at "fill width"
 
-            const aspectRatio = video.videoHeight / video.videoWidth;
-
-            if (aspectRatio > 1.5) {
-                video.classList.add('vertical-crop');
-                isVerticalCrop = true;
-
-                // Calculate zoom needed to fill the container width
-                const containerAspect = containerWidth / containerHeight;
-                const videoAspect = video.videoWidth / video.videoHeight;
-                baseZoom = Math.round((containerAspect / videoAspect) * 100);
-                baseZoom = Math.max(100, baseZoom);
-
-                currentZoom = baseZoom;
-                applyZoom();
-            } else {
-                isVerticalCrop = false;
-                baseZoom = 100;
-                currentZoom = 100;
-            }
+            // Apply zoom
+            applyZoom();
         });
 
         // Attach pan listeners for video
@@ -512,11 +491,11 @@ function showImage(index) {
             if (zoomLevel) zoomLevel.textContent = '100%';
         }
 
-        // Check if image is very vertical and apply real zoom
+        // Set up zoom based on image dimensions
         const img = viewerMain.querySelector('img.viewer-image');
         if (img) {
             img.onload = () => {
-                // Store natural dimensions for pan limit calculations
+                // Store natural dimensions
                 imageNaturalWidth = img.naturalWidth;
                 imageNaturalHeight = img.naturalHeight;
 
@@ -525,45 +504,17 @@ function showImage(index) {
                 containerWidth = container.clientWidth;
                 containerHeight = container.clientHeight;
 
-                // On mobile, don't apply automatic zoom - let user control it
-                const isMobileView = window.innerWidth <= 768;
-                if (isMobileView) {
-                    img.classList.remove('vertical-crop');
-                    isVerticalCrop = false;
-                    baseZoom = 100;
-                    currentZoom = 100;
-                    return;
-                }
+                // Calculate scale needed to fill container width
+                const scaleToFillWidth = containerWidth / img.naturalWidth;
 
-                const aspectRatio = img.naturalHeight / img.naturalWidth;
+                // baseZoom = scale (as %) that makes image fill width
+                // currentZoom = 100 means "show at fill-width size"
+                // currentZoom = 50 means "show at half of fill-width size" (smaller, see more)
+                baseZoom = Math.round(scaleToFillWidth * 100);
+                currentZoom = 100; // Start at "fill width"
 
-                // If image is very vertical (taller than 3:2), auto-zoom to fill width
-                if (aspectRatio > 1.5) {
-                    img.classList.add('vertical-crop');
-                    isVerticalCrop = true;
-
-                    // Calculate zoom needed to fill the container width
-                    // First, find what the displayed height would be at 100% (contain mode)
-                    const containerAspect = containerWidth / containerHeight;
-                    const imageAspect = img.naturalWidth / img.naturalHeight;
-
-                    // At 100%, the image fits by height (since it's very tall)
-                    // We want to zoom so it fills by width instead
-                    // Zoom factor = container aspect / image aspect
-                    baseZoom = Math.round((containerAspect / imageAspect) * 100);
-                    // Ensure minimum base zoom of 100
-                    baseZoom = Math.max(100, baseZoom);
-
-                    currentZoom = baseZoom;
-
-                    // Apply the zoom immediately
-                    applyZoom();
-                } else {
-                    img.classList.remove('vertical-crop');
-                    isVerticalCrop = false;
-                    baseZoom = 100;
-                    currentZoom = 100;
-                }
+                // Apply zoom
+                applyZoom();
             };
         }
     }
@@ -622,20 +573,24 @@ function applyZoom() {
     const media = viewerMain?.querySelector('.viewer-image');
     const zoomLevel = document.getElementById('zoom-level');
 
-    if (media) {
-        const scaleValue = currentZoom / 100;
+    if (media && imageNaturalWidth && imageNaturalHeight) {
+        // Calculate actual scale: currentZoom is relative to "fill width" (100% = fill width)
+        // baseZoom is the scale (as %) needed to fill width
+        // So actual scale = (currentZoom / 100) * (baseZoom / 100)
+        const scaleValue = (currentZoom / 100) * (baseZoom / 100);
 
         // Clamp pan offsets to image boundaries
         clampPanOffsets();
 
-        // Apply transform for any zoom level
+        // Apply transform
         media.style.transform = `scale(${scaleValue}) translate(${panOffsetX}px, ${panOffsetY}px)`;
         media.style.transformOrigin = 'center center';
 
-        // Show grab cursor if panning is possible
+        // Calculate actual displayed size for pan check
+        const scaledWidth = imageNaturalWidth * scaleValue;
+        const scaledHeight = imageNaturalHeight * scaleValue;
         const containerRect = viewerMain.getBoundingClientRect();
-        const canPan = (media.clientWidth * scaleValue > containerRect.width) ||
-                       (media.clientHeight * scaleValue > containerRect.height);
+        const canPan = (scaledWidth > containerRect.width) || (scaledHeight > containerRect.height);
         media.style.cursor = canPan ? 'grab' : '';
     }
 
@@ -646,48 +601,37 @@ function applyZoom() {
 
 // Calculate and clamp pan offsets so image doesn't go beyond its boundaries
 function clampPanOffsets() {
-    if (!viewerMain) {
+    if (!viewerMain || !imageNaturalWidth || !imageNaturalHeight) {
         panOffsetX = 0;
         panOffsetY = 0;
         return;
     }
 
-    const media = viewerMain.querySelector('.viewer-image');
-    if (!media) return;
-
     const containerRect = viewerMain.getBoundingClientRect();
 
-    // Use the element's client dimensions (size before transform)
-    const displayedWidth = media.clientWidth;
-    const displayedHeight = media.clientHeight;
+    // Calculate actual scale
+    const scaleValue = (currentZoom / 100) * (baseZoom / 100);
+    const scaledWidth = imageNaturalWidth * scaleValue;
+    const scaledHeight = imageNaturalHeight * scaleValue;
 
-    const scaleValue = currentZoom / 100;
-    const scaledWidth = displayedWidth * scaleValue;
-    const scaledHeight = displayedHeight * scaleValue;
-
-    // Calculate max pan distances for each axis independently
-    // With transform: scale(s) translate(x, y), the translate happens in unscaled space,
-    // then gets scaled. So the visual offset = x * s.
-    // Max visual pan = (scaledSize - containerSize) / 2
-    // Max translate value = maxVisualPan / scaleValue
+    // Calculate max pan distances for each axis
+    // Max pan = how much the image exceeds the container / 2
     const maxPanX = Math.max(0, (scaledWidth - containerRect.width) / 2 / scaleValue);
     const maxPanY = Math.max(0, (scaledHeight - containerRect.height) / 2 / scaleValue);
 
-    // Clamp each axis - if image fits in that dimension, center it (0 offset)
+    // Clamp each axis
     panOffsetX = maxPanX > 0 ? Math.max(-maxPanX, Math.min(maxPanX, panOffsetX)) : 0;
     panOffsetY = maxPanY > 0 ? Math.max(-maxPanY, Math.min(maxPanY, panOffsetY)) : 0;
 }
 
 // Check if panning is possible (image larger than container in any dimension)
 function canPanImage() {
-    if (!viewerMain) return false;
-    const media = viewerMain.querySelector('.viewer-image');
-    if (!media) return false;
+    if (!viewerMain || !imageNaturalWidth || !imageNaturalHeight) return false;
 
     const containerRect = viewerMain.getBoundingClientRect();
-    const scaleValue = currentZoom / 100;
-    const scaledWidth = media.clientWidth * scaleValue;
-    const scaledHeight = media.clientHeight * scaleValue;
+    const scaleValue = (currentZoom / 100) * (baseZoom / 100);
+    const scaledWidth = imageNaturalWidth * scaleValue;
+    const scaledHeight = imageNaturalHeight * scaleValue;
 
     return scaledWidth > containerRect.width || scaledHeight > containerRect.height;
 }
