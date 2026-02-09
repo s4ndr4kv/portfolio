@@ -443,6 +443,15 @@ function showImage(index) {
             containerWidth = viewerMain.clientWidth;
             containerHeight = viewerMain.clientHeight;
 
+            // On mobile, don't apply automatic zoom - let user control it
+            const isMobileView = window.innerWidth <= 768;
+            if (isMobileView) {
+                isVerticalCrop = false;
+                baseZoom = 100;
+                currentZoom = 100;
+                return;
+            }
+
             const aspectRatio = video.videoHeight / video.videoWidth;
 
             if (aspectRatio > 1.5) {
@@ -508,6 +517,16 @@ function showImage(index) {
                 const container = viewerMain;
                 containerWidth = container.clientWidth;
                 containerHeight = container.clientHeight;
+
+                // On mobile, don't apply automatic zoom - let user control it
+                const isMobileView = window.innerWidth <= 768;
+                if (isMobileView) {
+                    img.classList.remove('vertical-crop');
+                    isVerticalCrop = false;
+                    baseZoom = 100;
+                    currentZoom = 100;
+                    return;
+                }
 
                 const aspectRatio = img.naturalHeight / img.naturalWidth;
 
