@@ -2577,6 +2577,18 @@ video.viewer-image.vertical-crop {
     pointer-events: none;
 }
 
+/* Play icon overlay for video thumbnails */
+.video-thumb-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    text-shadow: 0 0 3px rgba(0,0,0,0.9);
+    pointer-events: none;
+}
+
 /* ===== DIALOG ===== */
 .dialog-overlay {
     display: none;

@@ -801,24 +801,21 @@ function buildThumbnails() {
             video.setAttribute('playsinline', '');
             video.setAttribute('webkit-playsinline', '');
             video.preload = 'auto';
-
-            // Set source and force load
             video.src = videoSrc;
             video.load();
 
             // When data loads, seek to show first frame
             video.addEventListener('loadeddata', () => {
                 video.currentTime = 0.1;
-                // On mobile, try brief play/pause to force frame render
-                const isMobile = window.innerWidth <= 768;
-                if (isMobile) {
-                    video.play().then(() => {
-                        setTimeout(() => video.pause(), 100);
-                    }).catch(() => {});
-                }
             });
 
+            // Add play icon overlay
+            const playIcon = document.createElement('div');
+            playIcon.className = 'video-thumb-icon';
+            playIcon.innerHTML = '▶';
+
             thumb.appendChild(video);
+            thumb.appendChild(playIcon);
         } else {
             // Image thumbnail
             thumb.style.backgroundImage = `url('${currentFolder.path}${file}')`;
