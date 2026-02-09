@@ -1895,6 +1895,17 @@ body::before {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    transition: width 0.2s ease, opacity 0.15s ease;
+}
+
+/* Collapsed sidebar - hidden with smooth transition */
+.explorer-sidebar.collapsed {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+    border-right: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .explorer-sidebar-header {
@@ -2416,13 +2427,12 @@ body::before {
     object-fit: contain;
 }
 
-/* Very vertical content (reels format) - crop to show center */
-/* Aspect ratio > 4:3 vertical gets cropped */
+/* Very vertical content (reels format) - now handled via JS transform:scale */
+/* The vertical-crop class is used as a marker, actual zoom is done via transform */
 .viewer-image.vertical-crop {
-    object-fit: cover;
+    object-fit: contain;
+    max-width: 100%;
     max-height: 100%;
-    width: auto;
-    aspect-ratio: 3 / 4;
 }
 
 /* Video in viewer - same styles as image */
@@ -2430,13 +2440,13 @@ video.viewer-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    pointer-events: none; /* Let clicks pass through to navigation buttons */
 }
 
 video.viewer-image.vertical-crop {
-    object-fit: cover;
+    object-fit: contain;
+    max-width: 100%;
     max-height: 100%;
-    width: auto;
-    aspect-ratio: 3 / 4;
 }
 
 /* W98 style navigation buttons */
@@ -2457,6 +2467,8 @@ video.viewer-image.vertical-crop {
     align-items: center;
     justify-content: center;
     font-family: 'MS Sans Serif', Tahoma, sans-serif;
+    z-index: 100; /* High z-index to ensure buttons are above video/image */
+    pointer-events: auto !important; /* Ensure clicks are received */
 }
 
 .viewer-prev:hover,
@@ -2470,8 +2482,8 @@ video.viewer-image.vertical-crop {
     background: var(--window-border-dark);
 }
 
-.viewer-prev { left: 4px; }
-.viewer-next { right: 4px; }
+.viewer-prev { left: 12px; }
+.viewer-next { right: 12px; }
 
 /* W98 style zoom controls */
 .viewer-zoom-controls {
@@ -3436,18 +3448,18 @@ input[type="submit"]:active {
     }
 }
 
-/* ===== BUNNY: MOBILE SIZE ===== */
+/* ===== BUNNY: MOBILE SIZE (4x desktop = 2x current mobile) ===== */
 @media (max-width: 768px) {
     .bunny-container {
-        bottom: 50px;
-        right: 4px;
-        width: 124px;   /* 62 × 2 */
-        height: 130px;  /* 65 × 2 */
+        bottom: 54px;
+        right: 8px;
+        width: 248px;   /* 62 × 4 */
+        height: 260px;  /* 65 × 4 */
     }
 
     .bunny-sprite {
-        width: 620px;   /* 310 × 2 (5 frames × 124px) */
-        height: 130px;  /* 65 × 2 */
+        width: 1240px;  /* 310 × 4 (5 frames × 248px) */
+        height: 260px;  /* 65 × 4 */
     }
 
     /* Hover state: bunny1 (frame 0) — mobile */
@@ -3457,16 +3469,16 @@ input[type="submit"]:active {
 
     /* Dragging state: bunny4 (frame 2) — mobile */
     .bunny-container.dragging .bunny-sprite {
-        transform: translateX(-248px);  /* bunny4 */
+        transform: translateX(-496px);  /* bunny4 = frame 2 × 248px */
     }
 
-    /* Keyframes para 2x scale (124px por frame) */
+    /* Keyframes para 4x scale (248px por frame) */
     @keyframes bunnyExpressions {
         0%     { transform: translateX(0); }
-        20%    { transform: translateX(-124px); }
-        40%    { transform: translateX(-248px); }
-        60%    { transform: translateX(-372px); }
-        80%    { transform: translateX(-496px); }
+        20%    { transform: translateX(-248px); }
+        40%    { transform: translateX(-496px); }
+        60%    { transform: translateX(-744px); }
+        80%    { transform: translateX(-992px); }
     }
 }
 

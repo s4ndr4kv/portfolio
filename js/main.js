@@ -294,6 +294,15 @@ function maximizeWindow(windowId) {
             windowEl.style.left = '0';
         }
     }
+
+    // Recalculate gallery zoom after maximize/restore (with small delay for CSS to apply)
+    if (windowId === 'editorial') {
+        setTimeout(() => {
+            if (window.recalculateGalleryZoom) {
+                window.recalculateGalleryZoom();
+            }
+        }, 100);
+    }
 }
 
 // Winamp: add/remove separators between tracks + empty placeholder slots when maximized
@@ -432,6 +441,24 @@ function initDrag() {
     document.addEventListener('touchstart', onTouchStart, { passive: false });
     document.addEventListener('touchmove', onTouchMove, { passive: false });
     document.addEventListener('touchend', onDragEnd);
+
+    // Double-click on window header to maximize/restore
+    document.addEventListener('dblclick', onHeaderDoubleClick);
+}
+
+// Double-click on title bar to maximize/restore window
+function onHeaderDoubleClick(e) {
+    const header = e.target.closest('.window-header');
+    if (!header) return;
+
+    // Don't trigger if clicking on window controls
+    if (e.target.closest('.window-controls')) return;
+
+    const windowEl = header.closest('.window');
+    if (!windowEl) return;
+
+    const windowId = windowEl.id.replace('-window', '');
+    maximizeWindow(windowId);
 }
 
 function onDragStart(e) {
@@ -1355,8 +1382,13 @@ document.addEventListener('DOMContentLoaded', () => {
 let imageViewerCount = 0;
 
 function openImageViewer(filename) {
+    console.log('openImageViewer called with:', filename);
     const imagePath = photoFiles[filename];
-    if (!imagePath) return;
+    if (!imagePath) {
+        console.error('No path found for:', filename);
+        return;
+    }
+    console.log('Loading image from:', imagePath);
 
     // Create unique window ID
     imageViewerCount++;
@@ -1364,7 +1396,11 @@ function openImageViewer(filename) {
 
     // Pre-load image to get dimensions
     const img = new Image();
+    img.onerror = function() {
+        console.error('Failed to load image:', imagePath);
+    };
     img.onload = function() {
+        console.log('Image loaded successfully:', imagePath);
         // Calculate window size based on image
         const maxWidth = window.innerWidth * 0.8;
         const maxHeight = window.innerHeight * 0.8;
@@ -1383,13 +1419,25 @@ function openImageViewer(filename) {
             imgWidth *= ratio;
         }
 
-        // Window size = image + header + status bar
-        const winWidth = Math.round(imgWidth) + 4; // 2px border each side
-        const winHeight = Math.round(imgHeight) + 70; // header + menu + status
+        // Detect mobile
+        const isMobile = window.innerWidth <= 768;
 
-        // Random position
-        const left = 100 + (imageViewerCount * 30) % 200;
-        const top = 50 + (imageViewerCount * 25) % 150;
+        let winWidth, winHeight, left, top;
+        if (isMobile) {
+            // Mobile: centered window that fits in viewport
+            winWidth = Math.min(window.innerWidth - 20, 360);
+            winHeight = Math.min(window.innerHeight - 80, 600);
+            left = Math.max(10, (window.innerWidth - winWidth) / 2);
+            top = 10;
+        } else {
+            // Desktop: window size based on image + header + status bar
+            winWidth = Math.round(imgWidth) + 4; // 2px border each side
+            winHeight = Math.round(imgHeight) + 70; // header + menu + status
+
+            // Random position
+            left = 100 + (imageViewerCount * 30) % 200;
+            top = 50 + (imageViewerCount * 25) % 150;
+        }
 
         // Create window HTML
         const windowHTML = `
@@ -1449,11 +1497,14 @@ function openImageViewer(filename) {
 }
 
 function initPhotoViewer() {
-    document.querySelectorAll('.explorer-file').forEach(file => {
+    const files = document.querySelectorAll('.explorer-file');
+    console.log('initPhotoViewer: Found', files.length, 'explorer-file elements');
+    files.forEach((file, i) => {
         file.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             const filename = file.querySelector('.explorer-file-name').textContent;
+            console.log('Photo clicked:', filename);
             openImageViewer(filename);
         });
     });
