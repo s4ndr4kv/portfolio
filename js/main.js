@@ -25,6 +25,7 @@ const windowTitles = {
     'recycle': '🗑️ Recycle Bin — ごみ箱',
     'kutv': '📺 KuTV — テレビ ♡',
     'tamagotchi': '🥚 Tamagotchi — たまごっち ♡',
+    'ie-browser': 'Internet Explorer ✧',
     'imageviewer': '🖼️ Image Viewer — 画像 ✧'
 };
 
@@ -195,6 +196,10 @@ function openWindow(windowId) {
     // Initialize KuTV canvas when kutv window opens
     if (windowId === 'kutv') {
         setTimeout(() => { if (typeof initKuTV === 'function') initKuTV(); }, 50);
+    }
+    // Initialize IE Browser when window opens
+    if (windowId === 'ie-browser') {
+        setTimeout(() => { if (typeof initIEBrowser === 'function') initIEBrowser(); }, 50);
     }
 }
 

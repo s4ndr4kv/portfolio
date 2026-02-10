@@ -498,6 +498,7 @@ body::before {
 .icon[data-window="email"]        { grid-column: 12; grid-row: 2; }
 .icon[data-window="paint"]        { grid-column: 5; grid-row: 6; }
 .icon[data-window="recycle"]      { grid-column: 1; grid-row: 7; }
+.icon[data-window="ie-browser"]   { grid-column: 2; grid-row: 2; }
 
 .icon {
     display: flex;
@@ -2756,6 +2757,444 @@ input[type="submit"]:active {
     100% { transform: scale(1.2); opacity: 1; }
 }
 
+/* ===== IE BROWSER — Brand Design ===== */
+
+.ie-browser-window.visible {
+    flex-direction: column;
+}
+
+/* IE Toolbar — simple like Illustration explorer */
+.ie-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 6px;
+    background: var(--window-bg);
+    border-bottom: 1px solid var(--window-border-dark);
+}
+
+.ie-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 8px;
+    background: var(--window-bg);
+    border: none;
+    cursor: pointer;
+    min-width: 50px;
+}
+
+.ie-nav-btn:hover:not(:disabled) {
+    background: var(--window-border-light);
+}
+
+.ie-nav-btn:active:not(:disabled) {
+    background: var(--window-border-dark);
+}
+
+.ie-nav-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.ie-nav-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.ie-nav-label {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+/* IE Address Bar — same style as Illustration explorer */
+.ie-address-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    background: var(--window-bg);
+    border-bottom: 1px solid var(--window-border-dark);
+}
+
+.ie-address-label {
+    font-size: 14px;
+    padding: 0 4px;
+}
+
+.ie-address-field {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 6px;
+    background: white;
+    border: 2px inset var(--window-bg);
+}
+
+.ie-address-icon {
+    font-size: 16px;
+}
+
+.ie-address-path {
+    font-size: 14px;
+    font-family: 'MS Sans Serif', Tahoma, sans-serif;
+}
+
+/* IE Content Area — Y2K pink grid background */
+.ie-content {
+    flex: 1;
+    overflow-y: auto;
+    background: url('../img/Screenshot 2026-02-10 at 14.20.53.png') center / cover no-repeat fixed, #d4789b;
+    border: 2px inset var(--window-bg);
+    margin: 0;
+    position: relative;
+}
+
+/* === Snowfall === */
+.ie-snow-container {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.ie-snowflake {
+    position: absolute;
+    top: -20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'VT323', monospace;
+    animation: ieSnowFall linear forwards;
+    pointer-events: none;
+    user-select: none;
+}
+
+@keyframes ieSnowFall {
+    0% { top: -20px; transform: translateX(0); }
+    25% { transform: translateX(8px); }
+    50% { transform: translateX(-6px); }
+    75% { transform: translateX(4px); }
+    100% { top: 100%; transform: translateX(0); }
+}
+
+/* === GeoCities Home Page === */
+.ie-home {
+    padding: 24px 28px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header — scrolling cursive text */
+.ie-home-header {
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+}
+
+.ie-header-scroll {
+    display: inline-block;
+    animation: ieHeaderScroll 8s linear infinite;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 32px;
+    color: white;
+    white-space: nowrap;
+}
+
+@keyframes ieHeaderScroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.ie-header-line {
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+}
+
+.ie-hr-stars {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    padding: 8px 0;
+    font-family: 'VT323', monospace;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Directory */
+.ie-directory-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 6px 0;
+}
+
+.ie-directory {
+    flex: 1;
+}
+
+.ie-directory-gif {
+    flex-shrink: 0;
+    width: 220px;
+}
+
+.ie-directory-header {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 0;
+    color: white;
+}
+
+.ie-link-row {
+    padding: 6px 0;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+}
+
+.ie-link-arrows {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+}
+
+.ie-project-link {
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'VT323', monospace;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+a.ie-project-link:visited {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+a.ie-project-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.ie-link-row.ie-coming-soon {
+    opacity: 0.4;
+}
+
+.ie-link-text {
+    font-size: 18px;
+}
+
+.ie-under-construction {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.ie-more-link {
+    font-weight: bold;
+}
+
+/* Home Footer */
+.ie-home-footer {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.ie-visitor-counter {
+    display: inline-block;
+    background: white;
+    color: #f48fb1;
+    padding: 4px 14px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    border: 2px inset var(--window-bg);
+    margin-bottom: 8px;
+}
+
+.ie-counter-digits {
+    letter-spacing: 3px;
+}
+
+.ie-home-badges {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.ie-badge {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 3px 10px;
+}
+
+.ie-copyright {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* === Project Page === */
+.ie-project-page {
+    padding: 24px 28px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+.ie-back-link {
+    display: inline-block;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'VT323', monospace;
+    margin-bottom: 12px;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.ie-back-link:hover {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.ie-project-banner {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px 0;
+    color: white;
+}
+
+.ie-project-icon {
+    font-size: inherit;
+}
+
+.ie-project-name {
+    font-weight: bold;
+}
+
+.ie-project-meta {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    padding-bottom: 8px;
+}
+
+.ie-project-meta-inline {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: normal;
+}
+
+.ie-project-description {
+    padding: 8px 0;
+    line-height: 1.6;
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Under construction placeholder */
+.ie-under-construction-page {
+    text-align: center;
+    padding: 40px 0;
+    font-family: 'VT323', monospace;
+    color: white;
+}
+
+.ie-construction-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.ie-construction-text {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.ie-construction-sub {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+}
+
+/* Project Images - vertical scroll */
+.ie-project-images {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 0;
+}
+
+.ie-project-images img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+/* Sub-projects (More projects page) */
+.ie-sub-project {
+    margin-bottom: 12px;
+}
+
+.ie-sub-project-header {
+    font-size: 20px;
+    padding: 8px 0;
+    color: white;
+}
+
+/* === IE Browser Responsive === */
+@media (max-width: 768px) {
+    .ie-toolbar {
+        padding: 2px 4px;
+    }
+
+    .ie-nav-label {
+        display: none;
+    }
+
+    .ie-nav-btn {
+        min-width: 36px;
+        padding: 4px 6px;
+    }
+
+    .ie-address-label {
+        display: none;
+    }
+
+    .ie-address-path {
+        font-size: 12px;
+    }
+
+    .ie-home {
+        padding: 14px;
+    }
+
+    .ie-header-scroll {
+        font-size: 24px;
+    }
+
+    .ie-project-link {
+        font-size: 18px;
+    }
+
+    .ie-project-page {
+        padding: 14px;
+    }
+
+    .ie-project-images img {
+        border-width: 1px;
+    }
+}
+
 /* ===== TAMAGOTCHI — Winamp Style ===== */
 .tamagotchi-container {
     display: flex;
@@ -3107,6 +3546,7 @@ input[type="submit"]:active {
     .icon[data-window="email"]        { grid-column: 8; grid-row: 2; }
     .icon[data-window="paint"]        { grid-column: 4; grid-row: 5; }
     .icon[data-window="recycle"]      { grid-column: 1; grid-row: 6; }
+    .icon[data-window="ie-browser"]   { grid-column: 2; grid-row: 2; }
 
     .icon {
         width: 72px;
