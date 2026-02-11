@@ -498,7 +498,7 @@ body::before {
 .icon[data-window="email"]        { grid-column: 12; grid-row: 2; }
 .icon[data-window="paint"]        { grid-column: 5; grid-row: 6; }
 .icon[data-window="recycle"]      { grid-column: 1; grid-row: 7; }
-.icon[data-window="ie-browser"]   { grid-column: 2; grid-row: 2; }
+.icon[data-window="ie-browser"]   { grid-column: 1; grid-row: 2; }
 
 .icon {
     display: flex;
@@ -3710,7 +3710,7 @@ a.ie-project-link:hover {
     .icon[data-window="email"]        { grid-column: 8; grid-row: 2; }
     .icon[data-window="paint"]        { grid-column: 4; grid-row: 5; }
     .icon[data-window="recycle"]      { grid-column: 1; grid-row: 6; }
-    .icon[data-window="ie-browser"]   { grid-column: 2; grid-row: 2; }
+    .icon[data-window="ie-browser"]   { grid-column: 1; grid-row: 2; }
 
     .icon {
         width: 72px;
@@ -3762,6 +3762,10 @@ a.ie-project-link:hover {
         grid-column: auto;
         grid-row: auto;
     }
+
+    /* Mobile icon order: Illustration first, Brand Design second */
+    .icon[data-window="editorial"]  { order: -2; }
+    .icon[data-window="ie-browser"] { order: -1; }
 
     .icon {
         width: auto;
