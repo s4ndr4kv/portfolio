@@ -7,6 +7,7 @@
 const IE_PROJECTS = {
     'rebellion': {
         name: 'Rebellion',
+        nameJp: 'レベリオン',
         icon: '*',
         year: '2019',
         category: 'Branding, UI Design',
@@ -30,6 +31,7 @@ const IE_PROJECTS = {
     },
     'cabify': {
         name: 'Cabify',
+        nameJp: 'キャビファイ',
         icon: '*',
         year: '2018',
         category: 'Branding, Marketing',
@@ -51,6 +53,7 @@ const IE_PROJECTS = {
     },
     'carto': {
         name: 'CARTO',
+        nameJp: 'カルト',
         icon: '*',
         year: '2017',
         category: 'Marketing, Branding',
@@ -74,6 +77,7 @@ const IE_PROJECTS = {
     },
     'carbono': {
         name: 'Carbono',
+        nameJp: 'カルボノ',
         icon: '*',
         year: '2021',
         category: 'Crypto, Web Design',
@@ -84,6 +88,7 @@ const IE_PROJECTS = {
     },
     'nenakawaii': {
         name: 'Nenakawaii',
+        nameJp: 'ネナカワイイ',
         icon: '*',
         year: '2017',
         category: 'Branding, E-commerce',
@@ -98,6 +103,7 @@ const IE_PROJECTS = {
     },
     'raul-marcos': {
         name: 'Raul Marcos',
+        nameJp: 'ラウル・マルコス',
         icon: '*',
         year: '2018',
         category: 'Personal Branding',
@@ -114,6 +120,7 @@ const IE_PROJECTS = {
     },
     'lab-terapeutico': {
         name: 'Lab Terapeutico',
+        nameJp: 'ラボ・テラペウティコ',
         icon: '*',
         year: '2019',
         category: 'Branding',
@@ -241,13 +248,13 @@ function renderIEHome(container) {
         if (comingSoon) {
             html += '<div class="ie-link-row ie-coming-soon">';
             html += '<span class="ie-link-arrows">&gt;&gt;</span> ';
-            html += '<span class="ie-link-text">' + p.name + '</span>';
+            html += '<span class="ie-link-text" data-name="' + p.name + '" data-name-jp="' + p.nameJp + '">' + p.name + '</span>';
             html += ' <span class="ie-under-construction">[under construction]</span>';
             html += '</div>';
         } else {
             html += '<div class="ie-link-row">';
             html += '<span class="ie-link-arrows">&gt;&gt;</span> ';
-            html += '<a class="ie-project-link" href="#" onclick="ieNavigate(\'' + slug + '\'); return false;">';
+            html += '<a class="ie-project-link" href="#" data-name="' + p.name + '" data-name-jp="' + p.nameJp + '" onclick="ieNavigate(\'' + slug + '\'); return false;">';
             html += p.name + '</a>';
             html += '</div>';
         }
@@ -256,7 +263,7 @@ function renderIEHome(container) {
     // More projects link
     html += '<div class="ie-link-row">';
     html += '<span class="ie-link-arrows">&gt;&gt;</span> ';
-    html += '<a class="ie-project-link ie-more-link" href="#" onclick="ieNavigate(\'more-projects\'); return false;">';
+    html += '<a class="ie-project-link ie-more-link" href="#" data-name="More projects..." data-name-jp="もっとプロジェクト..." onclick="ieNavigate(\'more-projects\'); return false;">';
     html += 'More projects...</a>';
     html += '</div>';
 
@@ -280,6 +287,16 @@ function renderIEHome(container) {
 
     container.innerHTML = html;
     container.scrollTop = 0;
+
+    // Hover: swap name to Japanese
+    container.querySelectorAll('[data-name-jp]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            el.textContent = el.dataset.nameJp;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.textContent = el.dataset.name;
+        });
+    });
 
     // Start snowfall
     ieStartSnow();

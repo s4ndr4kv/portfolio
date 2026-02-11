@@ -2849,7 +2849,6 @@ input[type="submit"]:active {
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
     background: url('../img/Screenshot 2026-02-10 at 14.20.53.png') center / cover no-repeat fixed, #d4789b;
     border: 2px inset var(--window-bg);
     margin: 0;
@@ -3158,6 +3157,18 @@ a.ie-project-link:hover {
 
 /* === IE Browser Responsive === */
 @media (max-width: 768px) {
+    .ie-browser-window.visible {
+        height: 70vh !important;
+        max-height: 70vh !important;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .ie-browser-window.visible.maximized {
+        height: 80vh !important;
+        max-height: none !important;
+    }
 
     .ie-toolbar {
         padding: 2px 4px;
@@ -3190,7 +3201,6 @@ a.ie-project-link:hover {
         min-height: 0;
         overflow-y: auto;
         overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
     }
 
     .ie-home {
