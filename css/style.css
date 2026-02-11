@@ -751,6 +751,14 @@ body::before {
     font-size: 14px;
     flex-shrink: 0;
     color: #6a5870;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#explorer-filename {
+    color: #6a5870;
+    font-size: 14px;
 }
 
 /* ===== GALLERY ===== */

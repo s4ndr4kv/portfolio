@@ -35,81 +35,75 @@ const folderConfig = {
         name: 'Character Design',
         path: basePath + 'Character%20Design/',
         images: [
-            // Videos first (replaces static versions of same illustrations)
-            'copy_537F05B4-9A80-4703-9BAF-CA29B5E69A51.MOV',
-            'Project%20Name%2026.MP4',
-            // Images (all .jpg)
-            '29223947-303D-42AA-9289-8C5F68B5662F_1_201_a.jpg',
-            '3A99DE5A-1EAD-4946-8C5C-F00B95592FF5_1_105_c.jpg',
-            '61006B33-0100-4B51-9E01-9A133295D919_1_102_o.jpg',
-            '7664EE13-9DF0-4FBC-B651-1C8404A29B5C_1_201_a.jpg',
-            '97A24059-1B1E-49DC-86B1-D827A7548B79_1_105_c.jpg',
-            '9975D294-C7EB-4757-9665-B4975F37575B_1_105_c.jpg',
-            'CD7B311C-3CDB-4B15-B984-3836269FB3AE.jpg',
-            'CEE58645-C6C9-40EE-8288-99C58986B33F_1_105_c.jpg',
-            'E835B217-81B6-4924-8890-04D933EA78CB_1_105_c.jpg',
-            'F0FC2259-337F-4136-8EFC-96DD06BECFC8_1_105_c.jpg',
-            'FE9F58FA-49DB-421B-9F22-293C43B18786_1_102_o.jpg'
+            '1sandraku-bunnyvroom.MOV',
+            '2sandraku-joyful.MP4',
+            '3sandraku-killboll.jpg',
+            '4sandraku-bunwalk.jpg',
+            '5sandraku-yoongi.jpg',
+            '6sandraku-fedexangel.jpg',
+            '7sandraku-alma.jpg',
+            '8sandraku-lookingfor.jpg',
+            '9sandraku-angelordevil.jpg',
+            '10sandraku-demons.jpg',
+            '11sandraku-halloweencats.jpg',
+            '12sandraku-poing.jpg',
+            '13sandraku-hyunjin.jpg'
         ]
     },
     'kidcore': {
         name: 'Kidcore',
         path: basePath + 'Kidcore/',
         images: [
-            // Videos first (use compressed -desktop.mp4 versions)
-            '2464c640229a47539fbac38cc5032a06.mov',
-            'Project%20Name%201.mov',
-            'Untitled_Artwork%203.mp4',
-            'Untitled_Artwork.mp4',
-            // Images (optimized JPGs)
-            '9B6597D1-3B4C-4D4B-A877-054B152BDABD_1_102_o.jpg',
-            'Facetune_01-10-2025-13-14-00.jpg',
-            'Facetune_05-11-2025-18-10-18.jpg',
-            'IMG_4083.jpg',
-            'IMG_5056.jpg',
-            'IMG_6311.jpg',
-            'IMG_6841.jpg',
-            'IMG_6846.jpg',
-            'Untitled_Artwork%2011.jpg',
-            'Untitled_Artwork%2015.jpg',
-            'Untitled_Artwork%202.jpg',
-            'Untitled_Artwork%203.jpg',
-            'Untitled_Artwork%205.jpg',
-            'Untitled_Artwork%209.jpg'
+            '1sandraku-stepinto.mov',
+            '2sandraku-sakura.mov',
+            '3sandraku-restincolors.mp4',
+            '4sandraku-bunnyskel.mp4',
+            '5sandraku-alice.jpg',
+            '6sandraku-leavemealone.jpg',
+            '7sandraku-foxfound.jpg',
+            '8sandraku-xmascats.jpg',
+            '9sandraku-watercolor.jpg',
+            '10sandraku-imaplant.jpg',
+            '11sandraku-scared.jpg',
+            '12sandraku-scared2.jpg',
+            '13sandraku-corner.jpg',
+            '14sandraku-sketch.jpg',
+            '15sandraku-protector.jpg',
+            '16sandraku-bdayfrogs.jpg',
+            '17sandraku-memecats.jpg',
+            '18sandraku-ohmymymy.jpg'
         ]
     },
     'narrative': {
         name: 'Narrative',
         path: basePath + 'Narrative/',
         images: [
-            // Videos first (use compressed -desktop.mp4 versions)
-            '44ce761d37924a7aafb5a8607fa65467.mov',
-            'Project%20Name%2038%202.mov',
-            'Project%20Name%2038%203.mov',
-            'Project%20Name%2041.mp4',
-            'Project%20Name%2043.mp4',
-            'Project%20Name%2044.mov',
-            'Project%20Name%2045.mov',
-            'Project%20Name%2045.mp4',
-            'Project%20Name%2047.mov',
-            'Project%20Name%2054.mp4',
-            'Project%20Name%2055.mp4',
-            // Images (optimized JPGs)
-            'C6D0EEAA-D0D9-4FB6-9E0C-6189B8C6F12C_1_102_o.jpg',
-            'Facetune_05-11-2025-18-10-18.jpg',
-            'Facetune_08-12-2024-22-49-05.jpg',
-            'Facetune_10-12-2024-16-18-51.jpg',
-            'Facetune_18-12-2024-12-39-41.jpg',
-            'Facetune_19-12-2024-15-10-00.jpg',
-            'Facetune_21-12-2024-21-33-39.jpg',
-            'Facetune_22-12-2024-19-40-04.jpg',
-            'Facetune_26-12-2024-01-11-44.jpg',
-            'IMG_3978.jpg',
-            'IMG_4008.jpg',
-            'IMG_4024.jpg',
-            'IMG_4083.jpg',
-            'IMG_4199.jpg',
-            'Untitled_Artwork%203.jpg'
+            '1sandraku-killbollcity.mov',
+            '2sandraku-yaoisearch.mov',
+            '3sandraku-goodgirl.mov',
+            '4sandraku-lookingfor.mp4',
+            '5sandraku-lostmyself.mp4',
+            '6sandraku-coffeeshop.mov',
+            '7sandraku-light.mov',
+            '8sandraku-creatures.mp4',
+            '9sandraku-apocalypse.mov',
+            '10sandraku-freedom.mp4',
+            '11sandraku-plath.mp4',
+            '12sandraku-laundromat.jpg',
+            '13sandraku-foxfound.jpg',
+            '14sandraku-alice.jpg',
+            '15sandraku-aquarium.jpg',
+            '16sandraku-strawberries.jpg',
+            '17sandraku-journey.jpg',
+            '18sandraku-planets.jpg',
+            '19sandraku-encounter.jpg',
+            '20sandraku-hospital.jpg',
+            '21sandraku-angelcat.jpg',
+            '22sandraku-subway.jpg',
+            '23sandraku-duckiebath.jpg',
+            '24sandraku-xmascats.jpg',
+            '25sandraku-gasstation.jpg',
+            '26sandraku-wedding.jpg'
         ]
     },
     'photography': {
@@ -149,7 +143,14 @@ let containerHeight = 0;
 // DOM elements (initialized on load)
 let explorerList, viewerHeader, viewerMain, viewerThumbs;
 let viewerImage, viewerTitle, viewerCount;
-let explorerPath, explorerStatus;
+let explorerPath, explorerStatus, explorerFilename;
+
+// Extract display name from filename: "3sandraku-killboll.jpg" → "killboll.jpg"
+function getDisplayName(filename) {
+    const decoded = decodeURIComponent(filename);
+    const match = decoded.match(/^\d+sandraku-(.+)$/);
+    return match ? match[1] : decoded;
+}
 
 function initGallery() {
     explorerList = document.getElementById('editorial-folders');
@@ -161,6 +162,7 @@ function initGallery() {
     viewerCount = document.querySelector('.viewer-count');
     explorerPath = document.getElementById('explorer-path');
     explorerStatus = document.getElementById('explorer-status');
+    explorerFilename = document.getElementById('explorer-filename');
 
     if (!explorerList) return;
 
@@ -336,6 +338,11 @@ function closeFolder() {
     // Update status bar
     if (explorerStatus) {
         explorerStatus.textContent = '3 object(s) ✧';
+    }
+
+    // Clear filename
+    if (explorerFilename) {
+        explorerFilename.textContent = '';
     }
 
     // Show folder list, hide viewer
@@ -525,6 +532,11 @@ function showImage(index) {
 
     // Update counter
     viewerCount.textContent = `${currentImageIndex + 1} / ${files.length}`;
+
+    // Update filename display
+    if (explorerFilename) {
+        explorerFilename.textContent = getDisplayName(filename);
+    }
 
     // Update active thumbnail
     document.querySelectorAll('.viewer-thumb').forEach((thumb, i) => {
