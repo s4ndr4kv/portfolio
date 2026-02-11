@@ -39,16 +39,16 @@ const IE_PROJECTS = {
         description: 'Cabify is a technological mobility platform operating in 38 cities across Spain, Portugal and Latin America. I worked on the complete rebranding, creating graphic global assets for international use: digital advertising templates, offline materials, merchandising and events.',
         path: 'img/brand-design/cabify/',
         images: [
-            'wfh_shh_1000.png',
-            'box_1000.png',
-            'infog_854.png',
-            'cabify_layout_buildup25_0_1000.jpg',
-            'cabify_layout_buildup28_1000.jpg',
-            'cabify_layout_buildup29_1000.jpg',
-            'forward-materials_1000.png',
-            'forward-mug_1000.png',
-            'forward-stickers_1000.png',
-            'rollup-forward_1000.png'
+            'logo.svg',
+            '1.jpg',
+            '2.png',
+            '3.jpg',
+            '4.jpg',
+            '5.png',
+            '6.png',
+            '7.png',
+            '8.png',
+            '9.png'
         ]
     },
     'carto': {
@@ -248,9 +248,9 @@ function ieNavigate(page, addToHistory = true) {
     // Update status bar
     document.getElementById('ie-status').textContent = 'Done';
 
-    // Swap background for rebellion (solid black)
+    // Swap background for project pages (solid black)
     const content = document.getElementById('ie-content');
-    if (page === 'rebellion') {
+    if (page === 'rebellion' || page === 'cabify') {
         content.style.backgroundImage = 'none';
         content.style.backgroundColor = '#000';
     } else {
@@ -371,9 +371,13 @@ function renderIEProject(container, slug) {
     const project = IE_PROJECTS[slug];
     if (!project) { ieNavigate('home'); return; }
 
-    // Rebellion has its own designed page
+    // Projects with custom designed pages
     if (slug === 'rebellion') {
         renderRebellionProject(container);
+        return;
+    }
+    if (slug === 'cabify') {
+        renderCabifyProject(container);
         return;
     }
 
@@ -453,6 +457,68 @@ function renderRebellionProject(container) {
     html += '<p class="ie-project-text">We are a glitch in the system. And we love it.</p>';
     html += '<img src="' + imgPath + 'montsemouse-invertido.gif" alt="Montsemouse">';
     html += '<img src="' + imgPath + 'fullbody_1000.png" alt="Full Body">';
+
+    html += '</div>'; // close ie-project-content
+
+    // Back link at bottom
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
+
+    html += '</div>'; // close ie-project-page
+
+    container.innerHTML = html;
+    container.scrollTop = 0;
+
+    // Japanese hover on back links
+    container.querySelectorAll('.ie-back-text').forEach(el => {
+        el.addEventListener('mouseenter', () => { el.textContent = el.dataset.jp; });
+        el.addEventListener('mouseleave', () => { el.textContent = el.dataset.en; });
+    });
+}
+
+// ===== CABIFY PROJECT PAGE =====
+function renderCabifyProject(container) {
+    const imgPath = 'img/brand-design/cabify/';
+    let html = '<div class="ie-project-page">';
+
+    // Back link
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
+
+    // Centered content
+    html += '<div class="ie-project-content">';
+
+    // Logo (centered)
+    html += '<img class="ie-project-logo" src="' + imgPath + 'logo.svg" alt="Cabify">';
+
+    // Intro text
+    html += '<p class="ie-project-text">Cabify is a technological mobility platform created in Madrid. It operates in 6 countries and more than 40 cities around the world.</p>';
+
+    // Main image
+    html += '<img src="' + imgPath + '1.jpg" alt="Cabify Branding">';
+    html += '<div class="ie-project-spacer"></div>';
+
+    // Description
+    html += '<p class="ie-project-text">I worked alongside a few colleagues in the complete rebranding of Cabify. On my day to day, I created graphic global assets for international use and, as Brand Guardian, I worked closely with every local designer, making sure the Cabify brand was coherent and solid in every city.</p>';
+
+    // Brandemia link
+    html += '<p class="ie-project-text">If you want to know more, <a class="ie-project-link" href="https://brandemia.org/la-marca-cabify-se-renueva-redefiniendo-su-estrategia-y-evolucionando-su-identidad-visual" target="_blank" rel="noopener">Brandemia</a> talked about the rebranding in this article.</p>';
+
+    // Images 2-5
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<img src="' + imgPath + '2.png" alt="Cabify">';
+    html += '<img src="' + imgPath + '3.jpg" alt="Cabify">';
+    html += '<img src="' + imgPath + '4.jpg" alt="Cabify">';
+    html += '<img src="' + imgPath + '5.png" alt="Cabify">';
+
+    // Forward section
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<p class="ie-project-text">Cabify also hosts \'Forward\', an internal technologic event, and our team was in charge of creating its brand.</p>';
+
+    // Images 6-9
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<img src="' + imgPath + '6.png" alt="Forward">';
+    html += '<img src="' + imgPath + '7.png" alt="Forward">';
+    html += '<img src="' + imgPath + '8.png" alt="Forward">';
+    html += '<img src="' + imgPath + '9.png" alt="Forward">';
 
     html += '</div>'; // close ie-project-content
 
