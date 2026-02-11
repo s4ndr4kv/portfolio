@@ -371,30 +371,33 @@ function renderRebellionProject(container) {
     // Centered content
     html += '<div class="ie-project-content">';
 
-    // Logo
+    // Logo (centered, 2x size)
     html += '<img class="ie-project-logo" src="' + imgPath + 'logo-rebellion-white.svg" alt="Rebellion">';
 
     // Intro text
-    html += '<p class="ie-project-text">Rebellion is a Spanish mobile-first fintech that challenges the status quo offering payment services to the younger generations. So, in short: Rebellion is the money app for Gen Z. It has now been acquired by a larger fintech.</p>';
+    html += '<p class="ie-project-text">Rebellion is a Spanish mobile-first fintech that challenges the status quo offering payment services to the younger generations. So, in short: Rebellion is the money app for Gen Z.</p>';
 
     // WHAT WE NEEDED
     html += '<div class="ie-project-section-header">&gt;&gt; WHAT WE NEEDED</div>';
-    html += '<p class="ie-project-text">When I first joined the Rebellion team, it was already an unconventional bank: the colors and tone of voice spoke to a young audience, and they were cool, no doubt. But I still saw that some changes were due: illustration scalability, coherence of the brand image between product and marketing, readability on different platforms\u2026</p>';
-    html += '<p class="ie-project-text">The brand\u2019s very soul also had room for improvement: it could use an in-depth identity, a personality with enough shades to connect with our target. We needed to make banking cool. Easy. Young. Fun.</p>';
+    html += '<p class="ie-project-text">Scalability, coherence, readability and a rebel soul.</p>';
 
     // HOW WE DID IT
     html += '<div class="ie-project-section-header">&gt;&gt; HOW WE DID IT</div>';
-    html += '<p class="ie-project-text">Our work here began by identifying the design requirements that every area of the company had. Afterwards, with extensive research about our audience and competitors, we got to really understand our market niche. And like that, we were finally able to start creating a brand that really spoke their language.</p>';
+    html += '<p class="ie-project-text">First, we identified all the design requirements and researched the audience and competitors extensively. And then, we had fun with it!</p>';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<img src="' + imgPath + 'audience.png" alt="Audience">';
+    html += '<div class="ie-project-spacer"></div>';
     html += '<img src="' + imgPath + 'logobuild.png" alt="Logo Build">';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<p class="ie-project-text">This logo is how we perceive the world:<br>An unfinished city.<br>Technological, generative, geometric.<br>Always in motion.</p>';
     html += '<img src="' + imgPath + 'angels.png" alt="Angels">';
 
     // A BRAND FULL OF NEON
     html += '<div class="ie-project-section-header">&gt;&gt; A BRAND FULL OF NEON</div>';
-    html += '<p class="ie-project-text">Our carefully chosen photography - always showing a big city, neon lights and/or a young rebel - is essential for our brand. It shows our personality better than anything else.</p>';
-    html += '<p class="ie-project-text">Also, with our fresh new vector doodles it is effortless to maintain coherence between marketing and product assets. With them, we can create illustrations, videos, decorate assets giving them more meaning, or even explain difficult concepts within the app.</p>';
+    html += '<p class="ie-project-text">The carefully chosen photography is essential for the brand.</p>';
+    html += '<p class="ie-project-text">&amp; with a vibrant palette &amp; vector doodles we show our attitude towards this world:<br>Defiant.<br>Disruptive.<br>Irreverent.</p>';
     html += '<img src="' + imgPath + 'rebelliongifs.gif" alt="Rebellion GIFs">';
-    html += '<p class="ie-project-text">We chose Montserrat as our main typography. Simple, geometric, beautiful, and useful. With it, we improved legibility, scalability and coherence across platforms. In order to make a difference in titles, we glitched it - creating Montsemouse.</p>';
-    html += '<p class="ie-project-text">Finally, once we established a design system, we started creating every asset, template, and module we needed. With this done, the website and blog were a piece of cake.</p>';
+    html += '<p class="ie-project-text">We are a glitch in the system. And we love it.</p>';
     html += '<img src="' + imgPath + 'montsemouse-invertido.gif" alt="Montsemouse">';
     html += '<img src="' + imgPath + 'fullbody_1000.png" alt="Full Body">';
 

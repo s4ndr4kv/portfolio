@@ -3233,8 +3233,9 @@ a.ie-project-link:hover {
 
 .ie-project-logo {
     display: block;
-    max-width: 200px;
-    margin: 20px auto 30px;
+    max-width: 400px;
+    width: 100%;
+    margin: 30px auto 40px;
 }
 
 .ie-project-section-header {
@@ -3258,6 +3259,10 @@ a.ie-project-link:hover {
     height: auto;
     display: block;
     margin: 8px 0;
+}
+
+.ie-project-spacer {
+    height: 24px;
 }
 
 /* Sub-projects (More projects page) */
