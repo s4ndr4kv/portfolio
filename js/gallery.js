@@ -107,7 +107,7 @@ const folderConfig = {
         ]
     },
     'photography': {
-        name: 'Photography',
+        name: 'Photos',
         path: 'img/fotografia/',
         images: [
             'IMG_1752825135453.JPEG',
@@ -241,9 +241,9 @@ function openFolder(folderId) {
 
     // Update address bar
     if (explorerPath) {
-        // Photography has its own path, others are under Illustration
+        // Photos has its own path, others are under Illustration
         const addressPath = folderId === 'photography'
-            ? `C:\\Sandra\\Photography`
+            ? `C:\\Sandra\\Photos`
             : `C:\\Sandra\\Illustration\\${folder.name}`;
         explorerPath.textContent = addressPath;
     }

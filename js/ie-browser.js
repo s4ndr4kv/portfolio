@@ -143,6 +143,57 @@ let ieHistory = [];
 let ieHistoryIndex = -1;
 let ieBrowserInitialized = false;
 
+// ===== IMAGE PRELOADER =====
+let ieImagesPreloaded = false;
+
+function iePreloadAllImages() {
+    if (ieImagesPreloaded) return;
+    ieImagesPreloaded = true;
+
+    // Collect all image URLs from all projects
+    const allImages = [];
+    Object.keys(IE_PROJECTS).forEach(slug => {
+        const project = IE_PROJECTS[slug];
+        if (!project.path || !project.images) return;
+        project.images.forEach(img => {
+            // Skip videos — only preload actual images
+            if (/\.(mp4|mov|webm)$/i.test(img)) return;
+            allImages.push(project.path + img);
+        });
+    });
+
+    // Also preload Rebellion's hardcoded images (not all are in the images array)
+    const rebellionExtras = [
+        'img/brand-design/rebellion/logo-rebellion-white.svg',
+        'img/brand-design/rebellion/audience.png',
+        'img/brand-design/rebellion/logobuild.png',
+        'img/brand-design/rebellion/angels.png',
+        'img/brand-design/rebellion/rebelliongifs.gif',
+        'img/brand-design/rebellion/montsemouse-invertido.gif',
+        'img/brand-design/rebellion/fullbody_1000.png'
+    ];
+    rebellionExtras.forEach(src => {
+        if (!allImages.includes(src)) allImages.push(src);
+    });
+
+    // Preload with staggered loading to avoid blocking the main thread
+    let i = 0;
+    function loadNext() {
+        if (i >= allImages.length) return;
+        const img = new Image();
+        img.src = allImages[i];
+        i++;
+        // Load next image after a small delay or when this one loads/errors
+        img.onload = img.onerror = () => setTimeout(loadNext, 50);
+        // Fallback timeout in case onload/onerror don't fire
+        setTimeout(loadNext, 500);
+    }
+    // Start loading 3 images in parallel
+    loadNext();
+    loadNext();
+    loadNext();
+}
+
 // ===== INIT =====
 function initIEBrowser() {
     if (ieBrowserInitialized) return;
@@ -153,6 +204,9 @@ function initIEBrowser() {
     document.getElementById('ie-home-btn').addEventListener('click', () => ieNavigate('home'));
 
     ieNavigate('home');
+
+    // Start preloading all project images in the background
+    iePreloadAllImages();
 }
 
 // ===== NAVIGATION =====

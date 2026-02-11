@@ -17,8 +17,8 @@ const windowTitles = {
     'personajes': '🧙 Characters — キャラクター ✧',
     'winamp': '🎵 Winamp — ウィンアンプ ♡',
     'experimental': '🧪 Experimental — 実験的 ✧',
-    'fotografia': '📷 Photography — 写真 ✧',
-    'about': '🖥️ My Computer — マイコンピュータ',
+    'fotografia': '📷 Photos — 写真 ✧',
+    'about': '🖥️ My PC — マイコンピュータ',
     'notepad': '📝 CV.txt — メモ帳 ✧',
     'email': '📧 New Message — メール ♡',
     'paint': '🎨 untitled — ペイント ♡',
@@ -1413,7 +1413,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// ===== IMAGE VIEWER (for Photography) =====
+// ===== IMAGE VIEWER (for Photos) =====
 let imageViewerCount = 0;
 
 function openImageViewer(filename) {
