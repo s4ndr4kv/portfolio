@@ -195,8 +195,15 @@ function ieNavigate(page, addToHistory = true) {
     // Update status bar
     document.getElementById('ie-status').textContent = 'Done';
 
-    // Render
+    // Swap background for rebellion
     const content = document.getElementById('ie-content');
+    if (page === 'rebellion') {
+        content.style.backgroundImage = "url('img/Screenshot 2026-02-10 at 14.20.53-2.png')";
+    } else {
+        content.style.backgroundImage = '';
+    }
+
+    // Render
     if (page === 'home') {
         renderIEHome(content);
     } else if (page === 'more-projects') {
