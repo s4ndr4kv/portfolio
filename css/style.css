@@ -2448,6 +2448,11 @@ body::before {
     transform-origin: center center;
 }
 
+.viewer-image.loading {
+    visibility: hidden !important;
+    position: absolute !important;
+}
+
 /* Video in viewer - same styles as image */
 video.viewer-image {
     max-width: none;

@@ -14,6 +14,7 @@ function isVideo(filename) {
     return /\.(mp4|mov|webm)$/i.test(filename);
 }
 
+
 // Helper to get optimized video path (uses compressed version if available)
 function getOptimizedVideoPath(folderPath, filename) {
     // For videos, try to use the -desktop.mp4 version
@@ -36,18 +37,18 @@ const folderConfig = {
         images: [
             // Videos first (replaces static versions of same illustrations)
             'copy_537F05B4-9A80-4703-9BAF-CA29B5E69A51.MOV',
-            'Project%20Name%2026.MP4',  // Replaces E0081877-255B-41D1-AED1-D813EBDE2B53_1_102_o.jpeg
-            // Optimized JPGs (max 2000px, quality 85)
-            '29223947-303D-42AA-9289-8C5F68B5662F_1_201_a.jpeg',
-            '3A99DE5A-1EAD-4946-8C5C-F00B95592FF5_1_105_c.jpeg',
-            '61006B33-0100-4B51-9E01-9A133295D919_1_102_o.jpeg',
-            '7664EE13-9DF0-4FBC-B651-1C8404A29B5C_1_201_a.jpeg',
-            '97A24059-1B1E-49DC-86B1-D827A7548B79_1_105_c.jpeg',
-            '9975D294-C7EB-4757-9665-B4975F37575B_1_105_c.jpeg',
+            'Project%20Name%2026.MP4',
+            // Images (all .jpg)
+            '29223947-303D-42AA-9289-8C5F68B5662F_1_201_a.jpg',
+            '3A99DE5A-1EAD-4946-8C5C-F00B95592FF5_1_105_c.jpg',
+            '61006B33-0100-4B51-9E01-9A133295D919_1_102_o.jpg',
+            '7664EE13-9DF0-4FBC-B651-1C8404A29B5C_1_201_a.jpg',
+            '97A24059-1B1E-49DC-86B1-D827A7548B79_1_105_c.jpg',
+            '9975D294-C7EB-4757-9665-B4975F37575B_1_105_c.jpg',
             'CD7B311C-3CDB-4B15-B984-3836269FB3AE.jpg',
-            'CEE58645-C6C9-40EE-8288-99C58986B33F_1_105_c.jpeg',
-            'E835B217-81B6-4924-8890-04D933EA78CB_1_105_c.jpeg',
-            'F0FC2259-337F-4136-8EFC-96DD06BECFC8_1_105_c.jpeg',
+            'CEE58645-C6C9-40EE-8288-99C58986B33F_1_105_c.jpg',
+            'E835B217-81B6-4924-8890-04D933EA78CB_1_105_c.jpg',
+            'F0FC2259-337F-4136-8EFC-96DD06BECFC8_1_105_c.jpg',
             'FE9F58FA-49DB-421B-9F22-293C43B18786_1_102_o.jpg'
         ]
     },
@@ -419,9 +420,9 @@ function showImage(index) {
     if (isVideo(filename)) {
         // Replace img with video element - use optimized compressed version
         viewerMain.innerHTML = `
-            <button class="viewer-prev">◀</button>
-            <video class="viewer-image" src="${filePath}" loop autoplay muted playsinline webkit-playsinline preload="auto"></video>
-            <button class="viewer-next">▶</button>
+            <button class="viewer-prev">&#10094;</button>
+            <video class="viewer-image loading" src="${filePath}" loop autoplay muted playsinline webkit-playsinline preload="auto"></video>
+            <button class="viewer-next">&#10095;</button>
             ${zoomControlsHTML}
         `;
 
@@ -455,8 +456,9 @@ function showImage(index) {
             baseZoom = Math.round(scaleToFillWidth * 100);
             currentZoom = 100; // Start at "fill width"
 
-            // Apply zoom
+            // Apply zoom and reveal
             applyZoom();
+            video.classList.remove('loading');
         });
 
         // Attach pan listeners for video
@@ -466,9 +468,9 @@ function showImage(index) {
         const currentMedia = viewerMain.querySelector('.viewer-image');
         if (!currentMedia || currentMedia.tagName === 'VIDEO') {
             viewerMain.innerHTML = `
-                <button class="viewer-prev">◀</button>
-                <img class="viewer-image" src="${filePath}" alt="illustration">
-                <button class="viewer-next">▶</button>
+                <button class="viewer-prev">&#10094;</button>
+                <img class="viewer-image loading" src="${filePath}" alt="illustration">
+                <button class="viewer-next">&#10095;</button>
                 ${zoomControlsHTML}
             `;
             viewerMain.querySelector('.viewer-prev')?.addEventListener('click', prevImage);
@@ -483,6 +485,7 @@ function showImage(index) {
             // Attach pan listeners for image
             attachPanListeners(viewerImage);
         } else {
+            viewerImage.classList.add('loading');
             viewerImage.src = filePath;
             viewerImage.classList.remove('vertical-crop');
             viewerImage.style.transform = '';
@@ -513,8 +516,9 @@ function showImage(index) {
                 baseZoom = Math.round(scaleToFillWidth * 100);
                 currentZoom = 100; // Start at "fill width"
 
-                // Apply zoom
+                // Apply zoom and reveal
                 applyZoom();
+                img.classList.remove('loading');
             };
         }
     }
