@@ -24,7 +24,7 @@ const windowTitles = {
     'paint': '🎨 untitled — ペイント ♡',
     'recycle': '🗑️ Recycle Bin — ごみ箱',
     'kutv': '📺 KuTV — テレビ ♡',
-    'tamagotchi': '🥚 Tamagotchi — たまごっち ♡',
+    'tamagotchi': '🐰 Tamagotchi — たまごっち ♡',
     'ie-browser': '🪐 Internet Explorer ✧',
     'imageviewer': '🖼️ Image Viewer — 画像 ✧'
 };

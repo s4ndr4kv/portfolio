@@ -179,12 +179,12 @@ function ieNavigate(page, addToHistory = true) {
     const titleEl = document.querySelector('#ie-browser-window .window-title');
     if (titleEl) {
         if (page === 'home') {
-            titleEl.textContent = 'Internet Explorer -- sandraku://brand-design/';
+            titleEl.textContent = '\uD83E\uDE90 Internet Explorer -- sandraku://brand-design/';
         } else if (page === 'more-projects') {
-            titleEl.textContent = 'More Projects -- Internet Explorer';
+            titleEl.textContent = '\uD83E\uDE90 More Projects -- Internet Explorer';
         } else {
             const proj = IE_PROJECTS[page];
-            titleEl.textContent = (proj ? proj.name : page) + ' -- Internet Explorer';
+            titleEl.textContent = '\uD83E\uDE90 ' + (proj ? proj.name : page) + ' -- Internet Explorer';
         }
     }
 
