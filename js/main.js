@@ -25,7 +25,7 @@ const windowTitles = {
     'recycle': '🗑️ Recycle Bin — ごみ箱',
     'kutv': '📺 KuTV — テレビ ♡',
     'tamagotchi': '🥚 Tamagotchi — たまごっち ♡',
-    'ie-browser': 'Internet Explorer ✧',
+    'ie-browser': '🪐 Internet Explorer ✧',
     'imageviewer': '🖼️ Image Viewer — 画像 ✧'
 };
 
