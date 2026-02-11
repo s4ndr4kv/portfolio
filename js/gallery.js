@@ -3,29 +3,30 @@
  * Windows Explorer style with folder navigation
  */
 
-// Detect mobile
-const isMobile = window.innerWidth <= 768;
-
-// Base paths - use smaller images on mobile
-const basePath = isMobile ? 'img/Illustration-mobile/' : 'img/Illustration/';
+// Base path for all illustrations
+const basePath = 'img/Illustration/';
 
 // Helper to detect video files
 function isVideo(filename) {
     return /\.(mp4|mov|webm)$/i.test(filename);
 }
 
-
-// Helper to get optimized video path (uses compressed version if available)
-function getOptimizedVideoPath(folderPath, filename) {
-    // For videos, try to use the -desktop.mp4 version
-    if (isVideo(filename)) {
-        const decoded = decodeURIComponent(filename);
-        // Keep original extension in name to handle duplicates (e.g., file.mov and file.mp4)
-        // Format: "originalname.originalext-desktop.mp4"
-        const videoPath = folderPath + encodeURIComponent(decoded + '-desktop') + '.mp4';
-        console.log('[Video] Loading:', videoPath);
-        return videoPath;
+// Helper to get optimized file path
+// Illustration folders: files live in optimized/ subfolder
+// Photos: files live directly in folder
+function getOptimizedPath(folderPath, filename) {
+    const isIllustration = folderPath.startsWith(basePath);
+    const decoded = decodeURIComponent(filename);
+    if (isIllustration) {
+        if (isVideo(decoded)) {
+            // Strip original extension, use .mp4
+            const nameWithoutExt = decoded.replace(/\.[^.]+$/, '');
+            const optimizedPath = folderPath + 'optimized/' + encodeURIComponent(nameWithoutExt) + '.mp4';
+            return optimizedPath;
+        }
+        return folderPath + 'optimized/' + filename;
     }
+    // Non-illustration folders (Photos) — load directly
     return folderPath + filename;
 }
 
@@ -106,9 +107,31 @@ const folderConfig = {
             '26sandraku-wedding.jpg'
         ]
     },
+    'mystery': {
+        name: '???',
+        path: basePath + '%3F%3F%3F/',
+        images: [
+            '1sandraku-hyunjin.MOV',
+            '2sandraku-zine.mp4',
+            '4sandraku-animation.mp4',
+            '5sandraku-artjournal.MOV',
+            '7sandraku-peace.mp4',
+            '8sandraku-poetry.mp4',
+            '9sandraku-stopmotion1.mov',
+            '10sandraku-stopmotion2.MP4',
+            '11sandraku-man.mp4',
+            '12sandraku-journal.MP4',
+            '13sandraku-akihabara.MOV',
+            '14sandraku-gouache.jpg',
+            '15sandraku-angels.mp4',
+            '16sandraku-bungirls.mp4',
+            '17sandraku-shibuya.mp4',
+            '18sandraku-journalpink.MP4'
+        ]
+    },
     'photography': {
         name: 'Photos',
-        path: 'img/fotografia/',
+        path: 'img/Photos/',
         images: [
             'IMG_1752825135453.JPEG',
             'IMG_1753169082772.JPEG',
@@ -402,10 +425,8 @@ function showImage(index) {
     if (currentImageIndex >= files.length) currentImageIndex = 0;
 
     const filename = files[currentImageIndex];
-    // Use optimized video path if available, otherwise use original
-    const filePath = isVideo(filename)
-        ? getOptimizedVideoPath(currentFolder.path, filename)
-        : currentFolder.path + filename;
+    // Get optimized path (videos and images both in optimized/)
+    const filePath = getOptimizedPath(currentFolder.path, filename);
 
     // Reset zoom and pan when changing images
     currentZoom = 100;
@@ -428,7 +449,7 @@ function showImage(index) {
         // Replace img with video element + loader
         viewerMain.innerHTML = `
             <button class="viewer-prev">&#10094;</button>
-            <img class="video-loader" src="img/loader.gif" alt="Loading...">
+            <img class="video-loader" src="img/icons/loader.gif" alt="Loading...">
             <video class="viewer-image loading" src="${filePath}" loop autoplay muted playsinline webkit-playsinline preload="auto"></video>
             <button class="viewer-next">&#10095;</button>
             ${zoomControlsHTML}
@@ -777,7 +798,7 @@ function buildThumbnails() {
             // Video thumbnail
             thumb.classList.add('video-thumb');
             const video = document.createElement('video');
-            const videoSrc = getOptimizedVideoPath(currentFolder.path, file);
+            const videoSrc = getOptimizedPath(currentFolder.path, file);
             video.muted = true;
             video.playsInline = true;
             video.setAttribute('playsinline', '');
@@ -800,7 +821,7 @@ function buildThumbnails() {
             thumb.appendChild(playIcon);
         } else {
             // Image thumbnail
-            thumb.style.backgroundImage = `url('${currentFolder.path}${file}')`;
+            thumb.style.backgroundImage = `url('${getOptimizedPath(currentFolder.path, file)}')`;
         }
 
         thumb.addEventListener('click', () => showImage(index));

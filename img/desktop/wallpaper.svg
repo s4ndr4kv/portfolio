@@ -1,0 +1,615 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540">
+  <title>Vaporwave Pixel Art Landscape</title>
+
+  <!-- ===== LAYER 1: SKY GRADIENT BANDS ===== -->
+  <!-- Top band: light blue -->
+  <rect x="0" y="0" width="960" height="60" fill="#7BA8E0"/>
+  <rect x="0" y="60" width="960" height="40" fill="#8A9EDA"/>
+  <!-- Transition blue to purple -->
+  <rect x="0" y="100" width="960" height="40" fill="#9590D0"/>
+  <rect x="0" y="140" width="960" height="40" fill="#9B7BCC"/>
+  <rect x="0" y="180" width="960" height="40" fill="#A882D0"/>
+  <!-- Purple/lavender zone -->
+  <rect x="0" y="220" width="960" height="40" fill="#B88BD4"/>
+  <rect x="0" y="260" width="960" height="40" fill="#C890D0"/>
+  <!-- Transition purple to pink -->
+  <rect x="0" y="300" width="960" height="40" fill="#D88CCC"/>
+  <rect x="0" y="340" width="960" height="40" fill="#E88BC4"/>
+  <rect x="0" y="380" width="960" height="30" fill="#F0A0D0"/>
+  <!-- Warm pink/peach near horizon -->
+  <rect x="0" y="410" width="960" height="30" fill="#F5B0D8"/>
+  <rect x="0" y="440" width="960" height="100" fill="#F8C0E0"/>
+
+  <!-- ===== LAYER 2: DITHERING TRANSITION ZONES ===== -->
+  <!-- Blue-to-purple dithering (y=80..120) -->
+  <g fill="#9B7BCC" opacity="0.6">
+    <rect x="8" y="84" width="4" height="4"/><rect x="24" y="88" width="4" height="4"/>
+    <rect x="48" y="80" width="4" height="4"/><rect x="72" y="92" width="4" height="4"/>
+    <rect x="100" y="84" width="4" height="4"/><rect x="128" y="88" width="4" height="4"/>
+    <rect x="160" y="80" width="4" height="4"/><rect x="188" y="92" width="4" height="4"/>
+    <rect x="220" y="84" width="4" height="4"/><rect x="248" y="88" width="4" height="4"/>
+    <rect x="280" y="80" width="4" height="4"/><rect x="312" y="92" width="4" height="4"/>
+    <rect x="340" y="84" width="4" height="4"/><rect x="368" y="88" width="4" height="4"/>
+    <rect x="400" y="80" width="4" height="4"/><rect x="428" y="92" width="4" height="4"/>
+    <rect x="460" y="84" width="4" height="4"/><rect x="492" y="88" width="4" height="4"/>
+    <rect x="520" y="80" width="4" height="4"/><rect x="548" y="92" width="4" height="4"/>
+    <rect x="580" y="84" width="4" height="4"/><rect x="608" y="88" width="4" height="4"/>
+    <rect x="640" y="80" width="4" height="4"/><rect x="672" y="92" width="4" height="4"/>
+    <rect x="700" y="84" width="4" height="4"/><rect x="728" y="88" width="4" height="4"/>
+    <rect x="760" y="80" width="4" height="4"/><rect x="792" y="92" width="4" height="4"/>
+    <rect x="820" y="84" width="4" height="4"/><rect x="852" y="88" width="4" height="4"/>
+    <rect x="880" y="80" width="4" height="4"/><rect x="912" y="92" width="4" height="4"/>
+    <rect x="940" y="84" width="4" height="4"/>
+  </g>
+  <!-- Purple-to-pink dithering (y=280..320) -->
+  <g fill="#E88BC4" opacity="0.5">
+    <rect x="4" y="284" width="4" height="4"/><rect x="20" y="292" width="4" height="4"/>
+    <rect x="36" y="280" width="4" height="4"/><rect x="60" y="296" width="4" height="4"/>
+    <rect x="80" y="284" width="4" height="4"/><rect x="108" y="292" width="4" height="4"/>
+    <rect x="132" y="280" width="4" height="4"/><rect x="156" y="296" width="4" height="4"/>
+    <rect x="184" y="284" width="4" height="4"/><rect x="212" y="292" width="4" height="4"/>
+    <rect x="240" y="280" width="4" height="4"/><rect x="268" y="296" width="4" height="4"/>
+    <rect x="296" y="284" width="4" height="4"/><rect x="324" y="292" width="4" height="4"/>
+    <rect x="352" y="280" width="4" height="4"/><rect x="380" y="296" width="4" height="4"/>
+    <rect x="408" y="284" width="4" height="4"/><rect x="436" y="292" width="4" height="4"/>
+    <rect x="464" y="280" width="4" height="4"/><rect x="492" y="296" width="4" height="4"/>
+    <rect x="520" y="284" width="4" height="4"/><rect x="548" y="292" width="4" height="4"/>
+    <rect x="576" y="280" width="4" height="4"/><rect x="604" y="296" width="4" height="4"/>
+    <rect x="632" y="284" width="4" height="4"/><rect x="660" y="292" width="4" height="4"/>
+    <rect x="688" y="280" width="4" height="4"/><rect x="716" y="296" width="4" height="4"/>
+    <rect x="744" y="284" width="4" height="4"/><rect x="772" y="292" width="4" height="4"/>
+    <rect x="800" y="280" width="4" height="4"/><rect x="828" y="296" width="4" height="4"/>
+    <rect x="856" y="284" width="4" height="4"/><rect x="884" y="292" width="4" height="4"/>
+    <rect x="912" y="280" width="4" height="4"/><rect x="940" y="296" width="4" height="4"/>
+  </g>
+  <g fill="#C890D0" opacity="0.4">
+    <rect x="12" y="288" width="4" height="4"/><rect x="44" y="296" width="4" height="4"/>
+    <rect x="76" y="284" width="4" height="4"/><rect x="116" y="300" width="4" height="4"/>
+    <rect x="148" y="288" width="4" height="4"/><rect x="188" y="300" width="4" height="4"/>
+    <rect x="228" y="288" width="4" height="4"/><rect x="260" y="300" width="4" height="4"/>
+    <rect x="300" y="288" width="4" height="4"/><rect x="340" y="300" width="4" height="4"/>
+    <rect x="380" y="288" width="4" height="4"/><rect x="420" y="300" width="4" height="4"/>
+    <rect x="460" y="288" width="4" height="4"/><rect x="500" y="300" width="4" height="4"/>
+    <rect x="540" y="288" width="4" height="4"/><rect x="580" y="300" width="4" height="4"/>
+    <rect x="620" y="288" width="4" height="4"/><rect x="660" y="300" width="4" height="4"/>
+    <rect x="700" y="288" width="4" height="4"/><rect x="740" y="300" width="4" height="4"/>
+    <rect x="780" y="288" width="4" height="4"/><rect x="820" y="300" width="4" height="4"/>
+    <rect x="860" y="288" width="4" height="4"/><rect x="900" y="300" width="4" height="4"/>
+  </g>
+  <!-- Pink horizon dithering (y=390..420) - sparkle effect -->
+  <g fill="#FFFFFF" opacity="0.15">
+    <rect x="16" y="396" width="4" height="4"/><rect x="56" y="400" width="4" height="4"/>
+    <rect x="96" y="392" width="4" height="4"/><rect x="144" y="404" width="4" height="4"/>
+    <rect x="192" y="396" width="4" height="4"/><rect x="240" y="400" width="4" height="4"/>
+    <rect x="296" y="392" width="4" height="4"/><rect x="344" y="404" width="4" height="4"/>
+    <rect x="392" y="396" width="4" height="4"/><rect x="448" y="400" width="4" height="4"/>
+    <rect x="504" y="392" width="4" height="4"/><rect x="552" y="404" width="4" height="4"/>
+    <rect x="600" y="396" width="4" height="4"/><rect x="656" y="400" width="4" height="4"/>
+    <rect x="712" y="392" width="4" height="4"/><rect x="760" y="404" width="4" height="4"/>
+    <rect x="816" y="396" width="4" height="4"/><rect x="864" y="400" width="4" height="4"/>
+    <rect x="920" y="392" width="4" height="4"/>
+  </g>
+
+  <!-- ===== LAYER 3: PIXEL ART CLOUDS (puffy with bumps) ===== -->
+
+  <!-- Cloud 1: Large cloud, upper-left (~120px wide) -->
+  <g fill="#FFFFFF" opacity="0.9">
+    <!-- Left bump top -->
+    <rect x="80" y="28" width="4" height="4"/><rect x="84" y="28" width="4" height="4"/>
+    <rect x="88" y="28" width="4" height="4"/>
+    <rect x="76" y="32" width="4" height="4"/><rect x="80" y="32" width="4" height="4"/>
+    <rect x="84" y="32" width="4" height="4"/><rect x="88" y="32" width="4" height="4"/>
+    <rect x="92" y="32" width="4" height="4"/>
+    <!-- Center bump top (taller) -->
+    <rect x="108" y="24" width="4" height="4"/><rect x="112" y="24" width="4" height="4"/>
+    <rect x="116" y="24" width="4" height="4"/>
+    <rect x="104" y="28" width="4" height="4"/><rect x="108" y="28" width="4" height="4"/>
+    <rect x="112" y="28" width="4" height="4"/><rect x="116" y="28" width="4" height="4"/>
+    <rect x="120" y="28" width="4" height="4"/>
+    <rect x="100" y="32" width="4" height="4"/><rect x="104" y="32" width="4" height="4"/>
+    <rect x="108" y="32" width="4" height="4"/><rect x="112" y="32" width="4" height="4"/>
+    <rect x="116" y="32" width="4" height="4"/><rect x="120" y="32" width="4" height="4"/>
+    <rect x="124" y="32" width="4" height="4"/>
+    <!-- Right bump top -->
+    <rect x="140" y="28" width="4" height="4"/><rect x="144" y="28" width="4" height="4"/>
+    <rect x="136" y="32" width="4" height="4"/><rect x="140" y="32" width="4" height="4"/>
+    <rect x="144" y="32" width="4" height="4"/><rect x="148" y="32" width="4" height="4"/>
+    <!-- Merged body row -->
+    <rect x="72" y="36" width="4" height="4"/><rect x="76" y="36" width="4" height="4"/>
+    <rect x="80" y="36" width="4" height="4"/><rect x="84" y="36" width="4" height="4"/>
+    <rect x="88" y="36" width="4" height="4"/><rect x="92" y="36" width="4" height="4"/>
+    <rect x="96" y="36" width="4" height="4"/><rect x="100" y="36" width="4" height="4"/>
+    <rect x="104" y="36" width="4" height="4"/><rect x="108" y="36" width="4" height="4"/>
+    <rect x="112" y="36" width="4" height="4"/><rect x="116" y="36" width="4" height="4"/>
+    <rect x="120" y="36" width="4" height="4"/><rect x="124" y="36" width="4" height="4"/>
+    <rect x="128" y="36" width="4" height="4"/><rect x="132" y="36" width="4" height="4"/>
+    <rect x="136" y="36" width="4" height="4"/><rect x="140" y="36" width="4" height="4"/>
+    <rect x="144" y="36" width="4" height="4"/><rect x="148" y="36" width="4" height="4"/>
+    <rect x="152" y="36" width="4" height="4"/>
+    <!-- Base row 1 -->
+    <rect x="72" y="40" width="4" height="4"/><rect x="76" y="40" width="4" height="4"/>
+    <rect x="80" y="40" width="4" height="4"/><rect x="84" y="40" width="4" height="4"/>
+    <rect x="88" y="40" width="4" height="4"/><rect x="92" y="40" width="4" height="4"/>
+    <rect x="96" y="40" width="4" height="4"/><rect x="100" y="40" width="4" height="4"/>
+    <rect x="104" y="40" width="4" height="4"/><rect x="108" y="40" width="4" height="4"/>
+    <rect x="112" y="40" width="4" height="4"/><rect x="116" y="40" width="4" height="4"/>
+    <rect x="120" y="40" width="4" height="4"/><rect x="124" y="40" width="4" height="4"/>
+    <rect x="128" y="40" width="4" height="4"/><rect x="132" y="40" width="4" height="4"/>
+    <rect x="136" y="40" width="4" height="4"/><rect x="140" y="40" width="4" height="4"/>
+    <rect x="144" y="40" width="4" height="4"/><rect x="148" y="40" width="4" height="4"/>
+    <rect x="152" y="40" width="4" height="4"/>
+    <!-- Base row 2 -->
+    <rect x="76" y="44" width="4" height="4"/><rect x="80" y="44" width="4" height="4"/>
+    <rect x="84" y="44" width="4" height="4"/><rect x="88" y="44" width="4" height="4"/>
+    <rect x="92" y="44" width="4" height="4"/><rect x="96" y="44" width="4" height="4"/>
+    <rect x="100" y="44" width="4" height="4"/><rect x="104" y="44" width="4" height="4"/>
+    <rect x="108" y="44" width="4" height="4"/><rect x="112" y="44" width="4" height="4"/>
+    <rect x="116" y="44" width="4" height="4"/><rect x="120" y="44" width="4" height="4"/>
+    <rect x="124" y="44" width="4" height="4"/><rect x="128" y="44" width="4" height="4"/>
+    <rect x="132" y="44" width="4" height="4"/><rect x="136" y="44" width="4" height="4"/>
+    <rect x="140" y="44" width="4" height="4"/><rect x="144" y="44" width="4" height="4"/>
+    <rect x="148" y="44" width="4" height="4"/>
+  </g>
+  <!-- Cloud 1 pink highlights (bottom/edges) -->
+  <g fill="#F0C8E0" opacity="0.5">
+    <rect x="76" y="44" width="4" height="4"/><rect x="80" y="44" width="4" height="4"/>
+    <rect x="84" y="44" width="4" height="4"/>
+    <rect x="140" y="44" width="4" height="4"/><rect x="144" y="44" width="4" height="4"/>
+    <rect x="148" y="44" width="4" height="4"/>
+    <rect x="72" y="40" width="4" height="4"/><rect x="152" y="40" width="4" height="4"/>
+  </g>
+
+  <!-- Cloud 2: Large cloud, center-right (~100px wide) -->
+  <g fill="#FFFFFF" opacity="0.85">
+    <!-- Left bump -->
+    <rect x="580" y="48" width="4" height="4"/><rect x="584" y="48" width="4" height="4"/>
+    <rect x="576" y="52" width="4" height="4"/><rect x="580" y="52" width="4" height="4"/>
+    <rect x="584" y="52" width="4" height="4"/><rect x="588" y="52" width="4" height="4"/>
+    <!-- Center bump (tallest) -->
+    <rect x="604" y="44" width="4" height="4"/><rect x="608" y="44" width="4" height="4"/>
+    <rect x="612" y="44" width="4" height="4"/>
+    <rect x="600" y="48" width="4" height="4"/><rect x="604" y="48" width="4" height="4"/>
+    <rect x="608" y="48" width="4" height="4"/><rect x="612" y="48" width="4" height="4"/>
+    <rect x="616" y="48" width="4" height="4"/>
+    <rect x="596" y="52" width="4" height="4"/><rect x="600" y="52" width="4" height="4"/>
+    <rect x="604" y="52" width="4" height="4"/><rect x="608" y="52" width="4" height="4"/>
+    <rect x="612" y="52" width="4" height="4"/><rect x="616" y="52" width="4" height="4"/>
+    <rect x="620" y="52" width="4" height="4"/>
+    <!-- Right bump -->
+    <rect x="636" y="48" width="4" height="4"/><rect x="640" y="48" width="4" height="4"/>
+    <rect x="632" y="52" width="4" height="4"/><rect x="636" y="52" width="4" height="4"/>
+    <rect x="640" y="52" width="4" height="4"/><rect x="644" y="52" width="4" height="4"/>
+    <!-- Merged body -->
+    <rect x="572" y="56" width="4" height="4"/><rect x="576" y="56" width="4" height="4"/>
+    <rect x="580" y="56" width="4" height="4"/><rect x="584" y="56" width="4" height="4"/>
+    <rect x="588" y="56" width="4" height="4"/><rect x="592" y="56" width="4" height="4"/>
+    <rect x="596" y="56" width="4" height="4"/><rect x="600" y="56" width="4" height="4"/>
+    <rect x="604" y="56" width="4" height="4"/><rect x="608" y="56" width="4" height="4"/>
+    <rect x="612" y="56" width="4" height="4"/><rect x="616" y="56" width="4" height="4"/>
+    <rect x="620" y="56" width="4" height="4"/><rect x="624" y="56" width="4" height="4"/>
+    <rect x="628" y="56" width="4" height="4"/><rect x="632" y="56" width="4" height="4"/>
+    <rect x="636" y="56" width="4" height="4"/><rect x="640" y="56" width="4" height="4"/>
+    <rect x="644" y="56" width="4" height="4"/><rect x="648" y="56" width="4" height="4"/>
+    <!-- Base row 1 -->
+    <rect x="572" y="60" width="4" height="4"/><rect x="576" y="60" width="4" height="4"/>
+    <rect x="580" y="60" width="4" height="4"/><rect x="584" y="60" width="4" height="4"/>
+    <rect x="588" y="60" width="4" height="4"/><rect x="592" y="60" width="4" height="4"/>
+    <rect x="596" y="60" width="4" height="4"/><rect x="600" y="60" width="4" height="4"/>
+    <rect x="604" y="60" width="4" height="4"/><rect x="608" y="60" width="4" height="4"/>
+    <rect x="612" y="60" width="4" height="4"/><rect x="616" y="60" width="4" height="4"/>
+    <rect x="620" y="60" width="4" height="4"/><rect x="624" y="60" width="4" height="4"/>
+    <rect x="628" y="60" width="4" height="4"/><rect x="632" y="60" width="4" height="4"/>
+    <rect x="636" y="60" width="4" height="4"/><rect x="640" y="60" width="4" height="4"/>
+    <rect x="644" y="60" width="4" height="4"/><rect x="648" y="60" width="4" height="4"/>
+    <!-- Base row 2 -->
+    <rect x="576" y="64" width="4" height="4"/><rect x="580" y="64" width="4" height="4"/>
+    <rect x="584" y="64" width="4" height="4"/><rect x="588" y="64" width="4" height="4"/>
+    <rect x="592" y="64" width="4" height="4"/><rect x="596" y="64" width="4" height="4"/>
+    <rect x="600" y="64" width="4" height="4"/><rect x="604" y="64" width="4" height="4"/>
+    <rect x="608" y="64" width="4" height="4"/><rect x="612" y="64" width="4" height="4"/>
+    <rect x="616" y="64" width="4" height="4"/><rect x="620" y="64" width="4" height="4"/>
+    <rect x="624" y="64" width="4" height="4"/><rect x="628" y="64" width="4" height="4"/>
+    <rect x="632" y="64" width="4" height="4"/><rect x="636" y="64" width="4" height="4"/>
+    <rect x="640" y="64" width="4" height="4"/><rect x="644" y="64" width="4" height="4"/>
+  </g>
+  <!-- Cloud 2 pink highlights -->
+  <g fill="#F0C8E0" opacity="0.45">
+    <rect x="576" y="64" width="4" height="4"/><rect x="580" y="64" width="4" height="4"/>
+    <rect x="640" y="64" width="4" height="4"/><rect x="644" y="64" width="4" height="4"/>
+    <rect x="572" y="60" width="4" height="4"/><rect x="648" y="60" width="4" height="4"/>
+  </g>
+
+  <!-- Cloud 3: Medium cloud, upper-center (~80px wide) -->
+  <g fill="#FFFFFF" opacity="0.85">
+    <!-- Left bump -->
+    <rect x="340" y="16" width="4" height="4"/><rect x="344" y="16" width="4" height="4"/>
+    <rect x="336" y="20" width="4" height="4"/><rect x="340" y="20" width="4" height="4"/>
+    <rect x="344" y="20" width="4" height="4"/><rect x="348" y="20" width="4" height="4"/>
+    <!-- Right bump (taller) -->
+    <rect x="364" y="12" width="4" height="4"/><rect x="368" y="12" width="4" height="4"/>
+    <rect x="360" y="16" width="4" height="4"/><rect x="364" y="16" width="4" height="4"/>
+    <rect x="368" y="16" width="4" height="4"/><rect x="372" y="16" width="4" height="4"/>
+    <rect x="356" y="20" width="4" height="4"/><rect x="360" y="20" width="4" height="4"/>
+    <rect x="364" y="20" width="4" height="4"/><rect x="368" y="20" width="4" height="4"/>
+    <rect x="372" y="20" width="4" height="4"/><rect x="376" y="20" width="4" height="4"/>
+    <!-- Far right bump -->
+    <rect x="388" y="16" width="4" height="4"/><rect x="392" y="16" width="4" height="4"/>
+    <rect x="384" y="20" width="4" height="4"/><rect x="388" y="20" width="4" height="4"/>
+    <rect x="392" y="20" width="4" height="4"/><rect x="396" y="20" width="4" height="4"/>
+    <!-- Body -->
+    <rect x="332" y="24" width="4" height="4"/><rect x="336" y="24" width="4" height="4"/>
+    <rect x="340" y="24" width="4" height="4"/><rect x="344" y="24" width="4" height="4"/>
+    <rect x="348" y="24" width="4" height="4"/><rect x="352" y="24" width="4" height="4"/>
+    <rect x="356" y="24" width="4" height="4"/><rect x="360" y="24" width="4" height="4"/>
+    <rect x="364" y="24" width="4" height="4"/><rect x="368" y="24" width="4" height="4"/>
+    <rect x="372" y="24" width="4" height="4"/><rect x="376" y="24" width="4" height="4"/>
+    <rect x="380" y="24" width="4" height="4"/><rect x="384" y="24" width="4" height="4"/>
+    <rect x="388" y="24" width="4" height="4"/><rect x="392" y="24" width="4" height="4"/>
+    <rect x="396" y="24" width="4" height="4"/><rect x="400" y="24" width="4" height="4"/>
+    <!-- Base row 1 -->
+    <rect x="332" y="28" width="4" height="4"/><rect x="336" y="28" width="4" height="4"/>
+    <rect x="340" y="28" width="4" height="4"/><rect x="344" y="28" width="4" height="4"/>
+    <rect x="348" y="28" width="4" height="4"/><rect x="352" y="28" width="4" height="4"/>
+    <rect x="356" y="28" width="4" height="4"/><rect x="360" y="28" width="4" height="4"/>
+    <rect x="364" y="28" width="4" height="4"/><rect x="368" y="28" width="4" height="4"/>
+    <rect x="372" y="28" width="4" height="4"/><rect x="376" y="28" width="4" height="4"/>
+    <rect x="380" y="28" width="4" height="4"/><rect x="384" y="28" width="4" height="4"/>
+    <rect x="388" y="28" width="4" height="4"/><rect x="392" y="28" width="4" height="4"/>
+    <rect x="396" y="28" width="4" height="4"/><rect x="400" y="28" width="4" height="4"/>
+    <!-- Base row 2 -->
+    <rect x="336" y="32" width="4" height="4"/><rect x="340" y="32" width="4" height="4"/>
+    <rect x="344" y="32" width="4" height="4"/><rect x="348" y="32" width="4" height="4"/>
+    <rect x="352" y="32" width="4" height="4"/><rect x="356" y="32" width="4" height="4"/>
+    <rect x="360" y="32" width="4" height="4"/><rect x="364" y="32" width="4" height="4"/>
+    <rect x="368" y="32" width="4" height="4"/><rect x="372" y="32" width="4" height="4"/>
+    <rect x="376" y="32" width="4" height="4"/><rect x="380" y="32" width="4" height="4"/>
+    <rect x="384" y="32" width="4" height="4"/><rect x="388" y="32" width="4" height="4"/>
+    <rect x="392" y="32" width="4" height="4"/><rect x="396" y="32" width="4" height="4"/>
+  </g>
+  <!-- Cloud 3 pink highlights -->
+  <g fill="#F0C8E0" opacity="0.45">
+    <rect x="336" y="32" width="4" height="4"/><rect x="340" y="32" width="4" height="4"/>
+    <rect x="392" y="32" width="4" height="4"/><rect x="396" y="32" width="4" height="4"/>
+  </g>
+
+  <!-- Cloud 4: Medium cloud, far right (~72px wide) -->
+  <g fill="#FFFFFF" opacity="0.8">
+    <!-- Left bump -->
+    <rect x="828" y="32" width="4" height="4"/><rect x="832" y="32" width="4" height="4"/>
+    <rect x="824" y="36" width="4" height="4"/><rect x="828" y="36" width="4" height="4"/>
+    <rect x="832" y="36" width="4" height="4"/><rect x="836" y="36" width="4" height="4"/>
+    <!-- Center bump (taller) -->
+    <rect x="852" y="28" width="4" height="4"/><rect x="856" y="28" width="4" height="4"/>
+    <rect x="848" y="32" width="4" height="4"/><rect x="852" y="32" width="4" height="4"/>
+    <rect x="856" y="32" width="4" height="4"/><rect x="860" y="32" width="4" height="4"/>
+    <rect x="844" y="36" width="4" height="4"/><rect x="848" y="36" width="4" height="4"/>
+    <rect x="852" y="36" width="4" height="4"/><rect x="856" y="36" width="4" height="4"/>
+    <rect x="860" y="36" width="4" height="4"/>
+    <!-- Right bump -->
+    <rect x="876" y="32" width="4" height="4"/><rect x="880" y="32" width="4" height="4"/>
+    <rect x="872" y="36" width="4" height="4"/><rect x="876" y="36" width="4" height="4"/>
+    <rect x="880" y="36" width="4" height="4"/><rect x="884" y="36" width="4" height="4"/>
+    <!-- Body -->
+    <rect x="820" y="40" width="4" height="4"/><rect x="824" y="40" width="4" height="4"/>
+    <rect x="828" y="40" width="4" height="4"/><rect x="832" y="40" width="4" height="4"/>
+    <rect x="836" y="40" width="4" height="4"/><rect x="840" y="40" width="4" height="4"/>
+    <rect x="844" y="40" width="4" height="4"/><rect x="848" y="40" width="4" height="4"/>
+    <rect x="852" y="40" width="4" height="4"/><rect x="856" y="40" width="4" height="4"/>
+    <rect x="860" y="40" width="4" height="4"/><rect x="864" y="40" width="4" height="4"/>
+    <rect x="868" y="40" width="4" height="4"/><rect x="872" y="40" width="4" height="4"/>
+    <rect x="876" y="40" width="4" height="4"/><rect x="880" y="40" width="4" height="4"/>
+    <rect x="884" y="40" width="4" height="4"/><rect x="888" y="40" width="4" height="4"/>
+    <!-- Base row -->
+    <rect x="824" y="44" width="4" height="4"/><rect x="828" y="44" width="4" height="4"/>
+    <rect x="832" y="44" width="4" height="4"/><rect x="836" y="44" width="4" height="4"/>
+    <rect x="840" y="44" width="4" height="4"/><rect x="844" y="44" width="4" height="4"/>
+    <rect x="848" y="44" width="4" height="4"/><rect x="852" y="44" width="4" height="4"/>
+    <rect x="856" y="44" width="4" height="4"/><rect x="860" y="44" width="4" height="4"/>
+    <rect x="864" y="44" width="4" height="4"/><rect x="868" y="44" width="4" height="4"/>
+    <rect x="872" y="44" width="4" height="4"/><rect x="876" y="44" width="4" height="4"/>
+    <rect x="880" y="44" width="4" height="4"/><rect x="884" y="44" width="4" height="4"/>
+  </g>
+  <!-- Cloud 4 pink highlights -->
+  <g fill="#F0C8E0" opacity="0.45">
+    <rect x="824" y="44" width="4" height="4"/><rect x="828" y="44" width="4" height="4"/>
+    <rect x="880" y="44" width="4" height="4"/><rect x="884" y="44" width="4" height="4"/>
+  </g>
+
+  <!-- Cloud 5: Small cloud, mid-left area (~60px wide) -->
+  <g fill="#FFFFFF" opacity="0.75">
+    <!-- Left bump -->
+    <rect x="220" y="76" width="4" height="4"/><rect x="224" y="76" width="4" height="4"/>
+    <rect x="216" y="80" width="4" height="4"/><rect x="220" y="80" width="4" height="4"/>
+    <rect x="224" y="80" width="4" height="4"/><rect x="228" y="80" width="4" height="4"/>
+    <!-- Right bump (taller) -->
+    <rect x="244" y="72" width="4" height="4"/><rect x="248" y="72" width="4" height="4"/>
+    <rect x="240" y="76" width="4" height="4"/><rect x="244" y="76" width="4" height="4"/>
+    <rect x="248" y="76" width="4" height="4"/><rect x="252" y="76" width="4" height="4"/>
+    <rect x="236" y="80" width="4" height="4"/><rect x="240" y="80" width="4" height="4"/>
+    <rect x="244" y="80" width="4" height="4"/><rect x="248" y="80" width="4" height="4"/>
+    <rect x="252" y="80" width="4" height="4"/><rect x="256" y="80" width="4" height="4"/>
+    <!-- Body -->
+    <rect x="212" y="84" width="4" height="4"/><rect x="216" y="84" width="4" height="4"/>
+    <rect x="220" y="84" width="4" height="4"/><rect x="224" y="84" width="4" height="4"/>
+    <rect x="228" y="84" width="4" height="4"/><rect x="232" y="84" width="4" height="4"/>
+    <rect x="236" y="84" width="4" height="4"/><rect x="240" y="84" width="4" height="4"/>
+    <rect x="244" y="84" width="4" height="4"/><rect x="248" y="84" width="4" height="4"/>
+    <rect x="252" y="84" width="4" height="4"/><rect x="256" y="84" width="4" height="4"/>
+    <rect x="260" y="84" width="4" height="4"/><rect x="264" y="84" width="4" height="4"/>
+    <!-- Base -->
+    <rect x="216" y="88" width="4" height="4"/><rect x="220" y="88" width="4" height="4"/>
+    <rect x="224" y="88" width="4" height="4"/><rect x="228" y="88" width="4" height="4"/>
+    <rect x="232" y="88" width="4" height="4"/><rect x="236" y="88" width="4" height="4"/>
+    <rect x="240" y="88" width="4" height="4"/><rect x="244" y="88" width="4" height="4"/>
+    <rect x="248" y="88" width="4" height="4"/><rect x="252" y="88" width="4" height="4"/>
+    <rect x="256" y="88" width="4" height="4"/><rect x="260" y="88" width="4" height="4"/>
+  </g>
+  <!-- Cloud 5 pink highlights -->
+  <g fill="#F0C8E0" opacity="0.4">
+    <rect x="216" y="88" width="4" height="4"/><rect x="220" y="88" width="4" height="4"/>
+    <rect x="256" y="88" width="4" height="4"/><rect x="260" y="88" width="4" height="4"/>
+  </g>
+
+  <!-- Cloud 6: Small wispy cloud, lower in purple zone (~64px wide) -->
+  <g fill="#F0D0E8" opacity="0.55">
+    <!-- Left bump -->
+    <rect x="480" y="136" width="4" height="4"/><rect x="484" y="136" width="4" height="4"/>
+    <rect x="476" y="140" width="4" height="4"/><rect x="480" y="140" width="4" height="4"/>
+    <rect x="484" y="140" width="4" height="4"/><rect x="488" y="140" width="4" height="4"/>
+    <!-- Right bump -->
+    <rect x="504" y="132" width="4" height="4"/><rect x="508" y="132" width="4" height="4"/>
+    <rect x="500" y="136" width="4" height="4"/><rect x="504" y="136" width="4" height="4"/>
+    <rect x="508" y="136" width="4" height="4"/><rect x="512" y="136" width="4" height="4"/>
+    <rect x="496" y="140" width="4" height="4"/><rect x="500" y="140" width="4" height="4"/>
+    <rect x="504" y="140" width="4" height="4"/><rect x="508" y="140" width="4" height="4"/>
+    <rect x="512" y="140" width="4" height="4"/><rect x="516" y="140" width="4" height="4"/>
+    <!-- Body -->
+    <rect x="472" y="144" width="4" height="4"/><rect x="476" y="144" width="4" height="4"/>
+    <rect x="480" y="144" width="4" height="4"/><rect x="484" y="144" width="4" height="4"/>
+    <rect x="488" y="144" width="4" height="4"/><rect x="492" y="144" width="4" height="4"/>
+    <rect x="496" y="144" width="4" height="4"/><rect x="500" y="144" width="4" height="4"/>
+    <rect x="504" y="144" width="4" height="4"/><rect x="508" y="144" width="4" height="4"/>
+    <rect x="512" y="144" width="4" height="4"/><rect x="516" y="144" width="4" height="4"/>
+    <rect x="520" y="144" width="4" height="4"/>
+    <!-- Base -->
+    <rect x="476" y="148" width="4" height="4"/><rect x="480" y="148" width="4" height="4"/>
+    <rect x="484" y="148" width="4" height="4"/><rect x="488" y="148" width="4" height="4"/>
+    <rect x="492" y="148" width="4" height="4"/><rect x="496" y="148" width="4" height="4"/>
+    <rect x="500" y="148" width="4" height="4"/><rect x="504" y="148" width="4" height="4"/>
+    <rect x="508" y="148" width="4" height="4"/><rect x="512" y="148" width="4" height="4"/>
+    <rect x="516" y="148" width="4" height="4"/>
+  </g>
+
+  <!-- ===== LAYER 4: SUN — REMOVED PER USER REQUEST ===== -->
+
+  <!-- ===== LAYER 5: DISTANT MOUNTAINS (back layer) ===== -->
+  <!-- Far mountain range - darker teal -->
+  <g fill="#2A8888">
+    <!-- Mountain 1 (left) peak around x=120 -->
+    <rect x="0" y="440" width="960" height="4"/>
+    <rect x="80" y="436" width="8" height="4"/><rect x="88" y="436" width="8" height="4"/>
+    <rect x="96" y="436" width="8" height="4"/><rect x="104" y="436" width="8" height="4"/>
+    <rect x="112" y="436" width="8" height="4"/><rect x="120" y="436" width="8" height="4"/>
+    <rect x="128" y="436" width="8" height="4"/><rect x="136" y="436" width="8" height="4"/>
+    <rect x="144" y="436" width="8" height="4"/><rect x="152" y="436" width="8" height="4"/>
+    <rect x="160" y="436" width="8" height="4"/>
+    <rect x="96" y="432" width="8" height="4"/><rect x="104" y="432" width="8" height="4"/>
+    <rect x="112" y="432" width="8" height="4"/><rect x="120" y="432" width="8" height="4"/>
+    <rect x="128" y="432" width="8" height="4"/><rect x="136" y="432" width="8" height="4"/>
+    <rect x="144" y="432" width="8" height="4"/>
+    <rect x="104" y="428" width="8" height="4"/><rect x="112" y="428" width="8" height="4"/>
+    <rect x="120" y="428" width="8" height="4"/><rect x="128" y="428" width="8" height="4"/>
+    <rect x="136" y="428" width="8" height="4"/>
+    <rect x="112" y="424" width="8" height="4"/><rect x="120" y="424" width="8" height="4"/>
+    <rect x="128" y="424" width="8" height="4"/>
+    <rect x="116" y="420" width="8" height="4"/><rect x="124" y="420" width="8" height="4"/>
+    <!-- Mountain 2 (center-right) peak around x=620 -->
+    <rect x="540" y="436" width="8" height="4"/><rect x="548" y="436" width="8" height="4"/>
+    <rect x="556" y="436" width="8" height="4"/><rect x="564" y="436" width="8" height="4"/>
+    <rect x="572" y="436" width="8" height="4"/><rect x="580" y="436" width="8" height="4"/>
+    <rect x="588" y="436" width="8" height="4"/><rect x="596" y="436" width="8" height="4"/>
+    <rect x="604" y="436" width="8" height="4"/><rect x="612" y="436" width="8" height="4"/>
+    <rect x="620" y="436" width="8" height="4"/><rect x="628" y="436" width="8" height="4"/>
+    <rect x="636" y="436" width="8" height="4"/><rect x="644" y="436" width="8" height="4"/>
+    <rect x="652" y="436" width="8" height="4"/><rect x="660" y="436" width="8" height="4"/>
+    <rect x="668" y="436" width="8" height="4"/><rect x="676" y="436" width="8" height="4"/>
+    <rect x="684" y="436" width="8" height="4"/><rect x="692" y="436" width="8" height="4"/>
+    <rect x="700" y="436" width="8" height="4"/>
+    <rect x="564" y="432" width="8" height="4"/><rect x="572" y="432" width="8" height="4"/>
+    <rect x="580" y="432" width="8" height="4"/><rect x="588" y="432" width="8" height="4"/>
+    <rect x="596" y="432" width="8" height="4"/><rect x="604" y="432" width="8" height="4"/>
+    <rect x="612" y="432" width="8" height="4"/><rect x="620" y="432" width="8" height="4"/>
+    <rect x="628" y="432" width="8" height="4"/><rect x="636" y="432" width="8" height="4"/>
+    <rect x="644" y="432" width="8" height="4"/><rect x="652" y="432" width="8" height="4"/>
+    <rect x="660" y="432" width="8" height="4"/><rect x="668" y="432" width="8" height="4"/>
+    <rect x="676" y="432" width="8" height="4"/><rect x="684" y="432" width="8" height="4"/>
+    <rect x="580" y="428" width="8" height="4"/><rect x="588" y="428" width="8" height="4"/>
+    <rect x="596" y="428" width="8" height="4"/><rect x="604" y="428" width="8" height="4"/>
+    <rect x="612" y="428" width="8" height="4"/><rect x="620" y="428" width="8" height="4"/>
+    <rect x="628" y="428" width="8" height="4"/><rect x="636" y="428" width="8" height="4"/>
+    <rect x="644" y="428" width="8" height="4"/><rect x="652" y="428" width="8" height="4"/>
+    <rect x="660" y="428" width="8" height="4"/><rect x="668" y="428" width="8" height="4"/>
+    <rect x="596" y="424" width="8" height="4"/><rect x="604" y="424" width="8" height="4"/>
+    <rect x="612" y="424" width="8" height="4"/><rect x="620" y="424" width="8" height="4"/>
+    <rect x="628" y="424" width="8" height="4"/><rect x="636" y="424" width="8" height="4"/>
+    <rect x="644" y="424" width="8" height="4"/><rect x="652" y="424" width="8" height="4"/>
+    <rect x="608" y="420" width="8" height="4"/><rect x="616" y="420" width="8" height="4"/>
+    <rect x="624" y="420" width="8" height="4"/><rect x="632" y="420" width="8" height="4"/>
+    <rect x="640" y="420" width="8" height="4"/>
+    <rect x="616" y="416" width="8" height="4"/><rect x="624" y="416" width="8" height="4"/>
+    <rect x="632" y="416" width="8" height="4"/>
+    <rect x="620" y="412" width="8" height="4"/><rect x="628" y="412" width="8" height="4"/>
+  </g>
+
+  <!-- ===== LAYER 6: CLOSER HILLS (mid-ground) ===== -->
+  <!-- Rolling hills - medium teal -->
+  <g fill="#40A8A0">
+    <rect x="0" y="444" width="960" height="96"/>
+  </g>
+  <!-- Hill contour variations -->
+  <g fill="#30B0B8">
+    <!-- Hill bump 1 -->
+    <rect x="40" y="436" width="8" height="8"/><rect x="48" y="436" width="8" height="8"/>
+    <rect x="56" y="436" width="8" height="8"/><rect x="64" y="436" width="8" height="8"/>
+    <rect x="32" y="440" width="8" height="4"/><rect x="72" y="440" width="8" height="4"/>
+    <!-- Hill bump 2 -->
+    <rect x="240" y="436" width="8" height="8"/><rect x="248" y="436" width="8" height="8"/>
+    <rect x="256" y="436" width="8" height="8"/><rect x="264" y="436" width="8" height="8"/>
+    <rect x="272" y="436" width="8" height="8"/><rect x="280" y="436" width="8" height="8"/>
+    <rect x="248" y="432" width="8" height="4"/><rect x="256" y="432" width="8" height="4"/>
+    <rect x="264" y="432" width="8" height="4"/><rect x="272" y="432" width="8" height="4"/>
+    <rect x="232" y="440" width="8" height="4"/><rect x="288" y="440" width="8" height="4"/>
+    <!-- Hill bump 3 -->
+    <rect x="760" y="436" width="8" height="8"/><rect x="768" y="436" width="8" height="8"/>
+    <rect x="776" y="436" width="8" height="8"/><rect x="784" y="436" width="8" height="8"/>
+    <rect x="792" y="436" width="8" height="8"/><rect x="800" y="436" width="8" height="8"/>
+    <rect x="808" y="436" width="8" height="8"/><rect x="816" y="436" width="8" height="8"/>
+    <rect x="824" y="436" width="8" height="8"/>
+    <rect x="776" y="432" width="8" height="4"/><rect x="784" y="432" width="8" height="4"/>
+    <rect x="792" y="432" width="8" height="4"/><rect x="800" y="432" width="8" height="4"/>
+    <rect x="808" y="432" width="8" height="4"/>
+    <rect x="788" y="428" width="8" height="4"/><rect x="796" y="428" width="8" height="4"/>
+    <rect x="752" y="440" width="8" height="4"/><rect x="832" y="440" width="8" height="4"/>
+  </g>
+  <!-- Lighter teal highlights on hills -->
+  <g fill="#50C8C0" opacity="0.6">
+    <rect x="48" y="436" width="8" height="4"/><rect x="56" y="436" width="8" height="4"/>
+    <rect x="256" y="432" width="8" height="4"/><rect x="264" y="432" width="8" height="4"/>
+    <rect x="792" y="428" width="8" height="4"/>
+  </g>
+
+  <!-- ===== LAYER 7: GROUND / BEACH ===== -->
+  <g fill="#358E88">
+    <rect x="0" y="480" width="960" height="60"/>
+  </g>
+  <!-- Ground texture dithering -->
+  <g fill="#2A7878" opacity="0.5">
+    <rect x="8" y="484" width="4" height="4"/><rect x="32" y="488" width="4" height="4"/>
+    <rect x="64" y="484" width="4" height="4"/><rect x="96" y="492" width="4" height="4"/>
+    <rect x="128" y="488" width="4" height="4"/><rect x="168" y="484" width="4" height="4"/>
+    <rect x="200" y="492" width="4" height="4"/><rect x="240" y="484" width="4" height="4"/>
+    <rect x="280" y="488" width="4" height="4"/><rect x="320" y="492" width="4" height="4"/>
+    <rect x="360" y="484" width="4" height="4"/><rect x="400" y="488" width="4" height="4"/>
+    <rect x="440" y="492" width="4" height="4"/><rect x="480" y="484" width="4" height="4"/>
+    <rect x="520" y="488" width="4" height="4"/><rect x="560" y="492" width="4" height="4"/>
+    <rect x="600" y="484" width="4" height="4"/><rect x="640" y="488" width="4" height="4"/>
+    <rect x="680" y="492" width="4" height="4"/><rect x="720" y="484" width="4" height="4"/>
+    <rect x="760" y="488" width="4" height="4"/><rect x="800" y="492" width="4" height="4"/>
+    <rect x="840" y="484" width="4" height="4"/><rect x="880" y="488" width="4" height="4"/>
+    <rect x="920" y="492" width="4" height="4"/>
+    <rect x="20" y="500" width="4" height="4"/><rect x="60" y="504" width="4" height="4"/>
+    <rect x="108" y="500" width="4" height="4"/><rect x="152" y="508" width="4" height="4"/>
+    <rect x="196" y="504" width="4" height="4"/><rect x="244" y="500" width="4" height="4"/>
+    <rect x="292" y="508" width="4" height="4"/><rect x="340" y="504" width="4" height="4"/>
+    <rect x="388" y="500" width="4" height="4"/><rect x="436" y="508" width="4" height="4"/>
+    <rect x="484" y="504" width="4" height="4"/><rect x="532" y="500" width="4" height="4"/>
+    <rect x="580" y="508" width="4" height="4"/><rect x="628" y="504" width="4" height="4"/>
+    <rect x="676" y="500" width="4" height="4"/><rect x="724" y="508" width="4" height="4"/>
+    <rect x="772" y="504" width="4" height="4"/><rect x="820" y="500" width="4" height="4"/>
+    <rect x="868" y="508" width="4" height="4"/><rect x="916" y="504" width="4" height="4"/>
+  </g>
+
+  <!-- ===== LAYER 8: VEGETATION (bushes & grass) ===== -->
+  <!-- Bush cluster 1 (left) -->
+  <g fill="#40B890">
+    <rect x="60" y="460" width="4" height="4"/><rect x="64" y="460" width="4" height="4"/>
+    <rect x="68" y="460" width="4" height="4"/>
+    <rect x="56" y="464" width="4" height="4"/><rect x="60" y="464" width="4" height="4"/>
+    <rect x="64" y="464" width="4" height="4"/><rect x="68" y="464" width="4" height="4"/>
+    <rect x="72" y="464" width="4" height="4"/>
+    <rect x="52" y="468" width="4" height="4"/><rect x="56" y="468" width="4" height="4"/>
+    <rect x="60" y="468" width="4" height="4"/><rect x="64" y="468" width="4" height="4"/>
+    <rect x="68" y="468" width="4" height="4"/><rect x="72" y="468" width="4" height="4"/>
+    <rect x="76" y="468" width="4" height="4"/>
+    <rect x="52" y="472" width="4" height="4"/><rect x="56" y="472" width="4" height="4"/>
+    <rect x="60" y="472" width="4" height="4"/><rect x="64" y="472" width="4" height="4"/>
+    <rect x="68" y="472" width="4" height="4"/><rect x="72" y="472" width="4" height="4"/>
+    <rect x="76" y="472" width="4" height="4"/>
+  </g>
+  <g fill="#50C8A0">
+    <rect x="64" y="460" width="4" height="4"/>
+    <rect x="60" y="464" width="4" height="4"/><rect x="68" y="464" width="4" height="4"/>
+  </g>
+
+  <!-- Bush cluster 2 (center-left) -->
+  <g fill="#40B890">
+    <rect x="320" y="464" width="4" height="4"/><rect x="324" y="464" width="4" height="4"/>
+    <rect x="316" y="468" width="4" height="4"/><rect x="320" y="468" width="4" height="4"/>
+    <rect x="324" y="468" width="4" height="4"/><rect x="328" y="468" width="4" height="4"/>
+    <rect x="316" y="472" width="4" height="4"/><rect x="320" y="472" width="4" height="4"/>
+    <rect x="324" y="472" width="4" height="4"/><rect x="328" y="472" width="4" height="4"/>
+    <rect x="312" y="476" width="4" height="4"/><rect x="316" y="476" width="4" height="4"/>
+    <rect x="320" y="476" width="4" height="4"/><rect x="324" y="476" width="4" height="4"/>
+    <rect x="328" y="476" width="4" height="4"/><rect x="332" y="476" width="4" height="4"/>
+  </g>
+
+  <!-- Bush cluster 3 (right) -->
+  <g fill="#40B890">
+    <rect x="860" y="456" width="4" height="4"/><rect x="864" y="456" width="4" height="4"/>
+    <rect x="868" y="456" width="4" height="4"/>
+    <rect x="856" y="460" width="4" height="4"/><rect x="860" y="460" width="4" height="4"/>
+    <rect x="864" y="460" width="4" height="4"/><rect x="868" y="460" width="4" height="4"/>
+    <rect x="872" y="460" width="4" height="4"/>
+    <rect x="852" y="464" width="4" height="4"/><rect x="856" y="464" width="4" height="4"/>
+    <rect x="860" y="464" width="4" height="4"/><rect x="864" y="464" width="4" height="4"/>
+    <rect x="868" y="464" width="4" height="4"/><rect x="872" y="464" width="4" height="4"/>
+    <rect x="876" y="464" width="4" height="4"/>
+    <rect x="852" y="468" width="4" height="4"/><rect x="856" y="468" width="4" height="4"/>
+    <rect x="860" y="468" width="4" height="4"/><rect x="864" y="468" width="4" height="4"/>
+    <rect x="868" y="468" width="4" height="4"/><rect x="872" y="468" width="4" height="4"/>
+    <rect x="876" y="468" width="4" height="4"/>
+  </g>
+  <g fill="#50C8A0">
+    <rect x="860" y="456" width="4" height="4"/><rect x="864" y="456" width="4" height="4"/>
+    <rect x="860" y="460" width="4" height="4"/>
+  </g>
+
+  <!-- Small grass tufts -->
+  <g fill="#50C8A0" opacity="0.7">
+    <rect x="180" y="472" width="4" height="4"/><rect x="184" y="472" width="4" height="4"/>
+    <rect x="184" y="468" width="4" height="4"/>
+    <rect x="440" y="472" width="4" height="4"/><rect x="444" y="472" width="4" height="4"/>
+    <rect x="444" y="468" width="4" height="4"/>
+    <rect x="560" y="476" width="4" height="4"/><rect x="564" y="476" width="4" height="4"/>
+    <rect x="564" y="472" width="4" height="4"/>
+    <rect x="720" y="472" width="4" height="4"/><rect x="724" y="472" width="4" height="4"/>
+    <rect x="724" y="468" width="4" height="4"/>
+  </g>
+
+  <!-- ===== LAYER 10: WATER REFLECTION HINTS ===== -->
+  <g fill="#50C8C0" opacity="0.25">
+    <rect x="380" y="456" width="24" height="4"/>
+    <rect x="420" y="460" width="16" height="4"/>
+    <rect x="460" y="452" width="32" height="4"/>
+    <rect x="500" y="460" width="20" height="4"/>
+    <rect x="540" y="456" width="28" height="4"/>
+  </g>
+
+  <!-- ===== LAYER 11: STARS (tiny pixel dots in upper sky) ===== -->
+  <g fill="#FFFFFF" opacity="0.6">
+    <rect x="40" y="12" width="2" height="2"/><rect x="120" y="24" width="2" height="2"/>
+    <rect x="200" y="8" width="2" height="2"/><rect x="280" y="32" width="2" height="2"/>
+    <rect x="340" y="16" width="2" height="2"/><rect x="420" y="4" width="2" height="2"/>
+    <rect x="500" y="20" width="2" height="2"/><rect x="580" y="12" width="2" height="2"/>
+    <rect x="640" y="28" width="2" height="2"/><rect x="720" y="8" width="2" height="2"/>
+    <rect x="800" y="24" width="2" height="2"/><rect x="880" y="16" width="2" height="2"/>
+    <rect x="940" y="32" width="2" height="2"/>
+    <rect x="60" y="52" width="2" height="2"/><rect x="300" y="48" width="2" height="2"/>
+    <rect x="460" y="44" width="2" height="2"/><rect x="620" y="48" width="2" height="2"/>
+    <rect x="840" y="44" width="2" height="2"/>
+  </g>
+  <g fill="#FFE8F0" opacity="0.4">
+    <rect x="160" y="16" width="2" height="2"/><rect x="380" y="8" width="2" height="2"/>
+    <rect x="560" y="24" width="2" height="2"/><rect x="760" y="16" width="2" height="2"/>
+    <rect x="900" y="8" width="2" height="2"/>
+  </g>
+
+  <!-- ===== LAYER 12: VAPORWAVE ACCENT LINES ===== -->
+  <!-- Thin horizontal lines across the ground (retro grid feel) -->
+  <g fill="#50C8C0" opacity="0.2">
+    <rect x="0" y="480" width="960" height="1"/>
+    <rect x="0" y="496" width="960" height="1"/>
+    <rect x="0" y="512" width="960" height="1"/>
+    <rect x="0" y="528" width="960" height="1"/>
+  </g>
+</svg>

@@ -13,7 +13,7 @@ const IE_PROJECTS = {
         category: 'Branding, UI Design',
         tagline: 'The money app for Gen Z',
         description: 'Rebellion is a Spanish mobile-first fintech that challenges the status quo offering payment services to the younger generations. The brand needed an in-depth identity with enough shades to connect with Gen Z. We made banking cool, easy, young and fun.',
-        path: 'img/brand-design/rebellion/',
+        path: 'img/Branding/rebellion/',
         images: [
             '1header_10_1000.png',
             '2text1b_1000.png',
@@ -37,7 +37,7 @@ const IE_PROJECTS = {
         category: 'Branding, Marketing',
         tagline: 'Mobility platform rebrand',
         description: 'Cabify is a technological mobility platform operating in 38 cities across Spain, Portugal and Latin America. I worked on the complete rebranding, creating graphic global assets for international use: digital advertising templates, offline materials, merchandising and events.',
-        path: 'img/brand-design/cabify/',
+        path: 'img/Branding/cabify/',
         images: [
             'logo.svg',
             '1.jpg',
@@ -59,7 +59,7 @@ const IE_PROJECTS = {
         category: 'Marketing, Branding',
         tagline: 'Location intelligence platform',
         description: 'CARTO is an open, powerful, and intuitive platform for discovering and predicting key insights underlying the location data in our world. I created graphic assets for the marketing team: digital banners, event brochures, roll-ups and marketing collateral.',
-        path: 'img/brand-design/carto/',
+        path: 'img/Branding/carto/',
         images: [
             'logo.svg',
             '1.png',
@@ -79,7 +79,7 @@ const IE_PROJECTS = {
         category: 'Crypto, Web Design',
         tagline: 'Crypto advisory',
         description: '',
-        path: 'img/brand-design/carbono/',
+        path: 'img/Branding/carbono/',
         images: []
     },
     'nenakawaii': {
@@ -90,7 +90,7 @@ const IE_PROJECTS = {
         category: 'Branding, E-commerce',
         tagline: 'Kawaii e-commerce',
         description: 'Nenakawaii is an ongoing personal project. A curated kawaii products e-commerce with Facebook, Instagram and website design.',
-        path: 'img/brand-design/nenakawaii/',
+        path: 'img/Branding/nenakawaii/',
         images: [
             'nenamockup_1000.png',
             'iphonex-nenakawaii-ig.gif',
@@ -105,7 +105,7 @@ const IE_PROJECTS = {
         category: 'Personal Branding',
         tagline: 'Crypto analyst branding',
         description: 'Personal branding for crypto analyst Raul Marcos. Avatar, scalable design system for social networks, conferences and cards. Also redesigned his Chrome ETH price widget.',
-        path: 'img/brand-design/raul-marcos/',
+        path: 'img/Branding/raul-marcos/',
         images: [
             'business-card-raul_1000.png',
             'Artboard-12x_1000.png',
@@ -122,7 +122,7 @@ const IE_PROJECTS = {
         category: 'Branding',
         tagline: 'Psychology office branding',
         description: 'Laboratorio Terapeutico is a psychological office targeting young people and the LGBTQ community. Modern and colorful branding with heart icons and a fresh color palette.',
-        path: 'img/brand-design/lab-terapeutico/',
+        path: 'img/Branding/lab-terapeutico/',
         images: []
     }
 };
@@ -160,13 +160,13 @@ function iePreloadAllImages() {
 
     // Also preload Rebellion's hardcoded images (not all are in the images array)
     const rebellionExtras = [
-        'img/brand-design/rebellion/logo-rebellion-white.svg',
-        'img/brand-design/rebellion/audience.png',
-        'img/brand-design/rebellion/logobuild.png',
-        'img/brand-design/rebellion/angels.png',
-        'img/brand-design/rebellion/rebelliongifs.gif',
-        'img/brand-design/rebellion/montsemouse-invertido.gif',
-        'img/brand-design/rebellion/fullbody_1000.png'
+        'img/Branding/rebellion/logo-rebellion-white.svg',
+        'img/Branding/rebellion/audience.png',
+        'img/Branding/rebellion/logobuild.png',
+        'img/Branding/rebellion/angels.png',
+        'img/Branding/rebellion/rebelliongifs.gif',
+        'img/Branding/rebellion/montsemouse-invertido.gif',
+        'img/Branding/rebellion/fullbody_1000.png'
     ];
     rebellionExtras.forEach(src => {
         if (!allImages.includes(src)) allImages.push(src);
@@ -174,12 +174,12 @@ function iePreloadAllImages() {
 
     // More-projects images (not in IE_PROJECTS)
     const moreProjectsImages = [
-        'img/brand-design/more-projects/2.gif',
-        'img/brand-design/more-projects/3.png',
-        'img/brand-design/more-projects/4.png',
-        'img/brand-design/more-projects/5.png',
-        'img/brand-design/more-projects/6.png',
-        'img/brand-design/more-projects/7.png'
+        'img/Branding/more-projects/2.gif',
+        'img/Branding/more-projects/3.png',
+        'img/Branding/more-projects/4.png',
+        'img/Branding/more-projects/5.png',
+        'img/Branding/more-projects/6.png',
+        'img/Branding/more-projects/7.png'
     ];
     moreProjectsImages.forEach(src => {
         if (!allImages.includes(src)) allImages.push(src);
@@ -339,7 +339,7 @@ function renderIEHome(container) {
     html += '</div>';
 
     html += '</div>';
-    html += '<img class="ie-directory-gif" src="img/welcome2.gif" alt="welcome">';
+    html += '<img class="ie-directory-gif" src="img/Branding/welcome2.gif" alt="welcome">';
     html += '</div>';
 
     html += '<div class="ie-hr-stars">*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*</div>';
@@ -432,7 +432,7 @@ function renderIEProject(container, slug) {
 
 // ===== REBELLION PROJECT PAGE =====
 function renderRebellionProject(container) {
-    const imgPath = 'img/brand-design/rebellion/';
+    const imgPath = 'img/Branding/rebellion/';
     let html = '<div class="ie-project-page">';
 
     // Back link
@@ -490,7 +490,7 @@ function renderRebellionProject(container) {
 
 // ===== CABIFY PROJECT PAGE =====
 function renderCabifyProject(container) {
-    const imgPath = 'img/brand-design/cabify/';
+    const imgPath = 'img/Branding/cabify/';
     let html = '<div class="ie-project-page">';
 
     // Back link
@@ -552,7 +552,7 @@ function renderCabifyProject(container) {
 
 // ===== CARTO PROJECT PAGE =====
 function renderCartoProject(container) {
-    const imgPath = 'img/brand-design/carto/';
+    const imgPath = 'img/Branding/carto/';
     let html = '<div class="ie-project-page">';
 
     // Back link
@@ -596,7 +596,7 @@ function renderCartoProject(container) {
 
 // ===== MORE PROJECTS PAGE =====
 function renderIEMoreProjects(container) {
-    const imgPath = 'img/brand-design/more-projects/';
+    const imgPath = 'img/Branding/more-projects/';
     let html = '<div class="ie-project-page">';
 
     // Back link
@@ -605,7 +605,15 @@ function renderIEMoreProjects(container) {
     // Centered content
     html += '<div class="ie-project-content">';
 
-    // Images in order (2-7, skip 1.gif)
+    // SBC images first
+    html += '<img src="' + imgPath + 'sbc1.png" alt="More Projects">';
+    html += '<img src="' + imgPath + 'sbc2.GIF" alt="More Projects">';
+    html += '<img src="' + imgPath + 'sbc3.PNG" alt="More Projects">';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<div class="ie-hr-stars">*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*</div>';
+    html += '<div class="ie-project-spacer"></div>';
+
+    // Remaining images (2-7, skip 1.gif)
     html += '<img src="' + imgPath + '2.gif" alt="More Projects">';
     html += '<img src="' + imgPath + '3.png" alt="More Projects">';
     html += '<div class="ie-project-spacer"></div>';

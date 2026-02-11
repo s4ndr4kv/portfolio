@@ -221,7 +221,7 @@ a, button, [role="button"] {
     left: 0;
     right: 0;
     bottom: 0;
-    background: #8daaf0 url('../img/wallpaper.svg') center center / cover no-repeat;
+    background: #8daaf0 url('../img/desktop/wallpaper.svg') center center / cover no-repeat;
     overflow: hidden;
 }
 
@@ -2951,7 +2951,7 @@ input[type="submit"]:active {
     margin: 0;
     position: relative;
     background-color: #d4789b;
-    background-image: url('../img/Screenshot 2026-02-10 at 14.20.53.png');
+    background-image: url('../img/Branding/Screenshot 2026-02-10 at 14.20.53.png');
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat;

@@ -31,11 +31,11 @@ const windowTitles = {
 
 // Photo files mapping (filename -> actual image path)
 const photoFiles = {
-    'DSC82738.jpg': 'img/fotografia/IMG_1752825135453.JPEG',
-    'DSC82739.jpg': 'img/fotografia/IMG_1753169082772.JPEG',
-    'DSC82740.jpg': 'img/fotografia/IMG_1770068868969.JPEG',
-    'DSC82741.jpg': 'img/fotografia/IMG_1770068869192.JPEG',
-    'DSC82742.jpg': 'img/fotografia/IMG_1770072373044.jpg'
+    'DSC82738.jpg': 'img/Photos/IMG_1752825135453.JPEG',
+    'DSC82739.jpg': 'img/Photos/IMG_1753169082772.JPEG',
+    'DSC82740.jpg': 'img/Photos/IMG_1770068868969.JPEG',
+    'DSC82741.jpg': 'img/Photos/IMG_1770068869192.JPEG',
+    'DSC82742.jpg': 'img/Photos/IMG_1770072373044.jpg'
 };
 
 // ===== SPLASH SCREEN — BIOS BOOT =====
