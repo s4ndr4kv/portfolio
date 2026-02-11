@@ -923,7 +923,7 @@ body::before {
 
 .about-subtitle {
     color: #8a7090;
-    font-size: 11px;
+    font-size: 14px;
 }
 
 .about-section {
@@ -978,13 +978,15 @@ body::before {
 .about-link-btn {
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
-    padding: 4px 12px;
+    padding: 6px 16px;
     text-decoration: none;
     color: var(--text-color);
-    font-size: 11px;
+    font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
     transition: background 0.15s;
 }
 
@@ -4164,6 +4166,10 @@ a.ie-project-link:hover {
     /* Maximized window on mobile: gray background, no forced sizing */
     .window.maximized .viewer-main {
         background: var(--window-bg);
+    }
+    .window.maximized .viewer-main.video-loading {
+        background: var(--window-bg) url('../img/loader.gif') center center no-repeat;
+        background-size: 64px 64px;
     }
 }
 
