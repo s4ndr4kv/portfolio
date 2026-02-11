@@ -309,15 +309,16 @@ a, button, [role="button"] {
     transform: translateX(-620px);  /* bunny4 */
 }
 
-/* Shrink animation when hovering over recycle bin — scale the whole container */
+/* Shrink animation when dragging bunny over recycle bin */
 .bunny-container.over-recycle {
     transform: scale(0.3);
-    transition: transform 0.4s ease-in;
+    transform-origin: center center;
+    transition: transform 0.4s ease-in, left 0.4s ease-in, top 0.4s ease-in;
 }
 
-.bunny-container.dragging:not(.over-recycle) {
-    transition: transform 0.25s ease-out;
-    transform: scale(1);
+/* z-index boost while dragging so bunny is always on top */
+.bunny-container.dragging {
+    z-index: 10000;
 }
 
 /* Frame animation: 5 frames, 0.7s each = 3.5s total cycle */

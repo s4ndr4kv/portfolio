@@ -1246,20 +1246,9 @@ function initBunnyDrag() {
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-        let newX = clientX - startX;
-        let newY = clientY - startY;
-
-        // Constrain to viewport (use full size for boundary calc)
         const full = getFullSize();
-        const maxX = window.innerWidth - full.w;
-        const maxY = window.innerHeight - full.h;
-        newX = Math.max(0, Math.min(newX, maxX));
-        newY = Math.max(0, Math.min(newY, maxY));
 
-        bunny.style.left = newX + 'px';
-        bunny.style.top = newY + 'px';
-
-        // Check if cursor is hovering over the recycle bin → shrink
+        // Check if cursor is hovering over the recycle bin
         const recycleIcon = document.querySelector('.icon[data-window="recycle"]');
         if (recycleIcon) {
             const recycleRect = recycleIcon.getBoundingClientRect();
@@ -1272,17 +1261,42 @@ function initBunnyDrag() {
             );
 
             if (isOver && !isOverRecycleBin) {
+                // Entering recycle zone — shrink and slide to recycle bin center
                 isOverRecycleBin = true;
                 bunny.classList.add('over-recycle');
-                // Set transform-origin to where the cursor is relative to the element
-                // so the bunny shrinks "under" the cursor
-                const originX = startX;
-                const originY = startY;
-                bunny.style.transformOrigin = originX + 'px ' + originY + 'px';
+                const recycleCenterX = recycleRect.left + recycleRect.width / 2;
+                const recycleCenterY = recycleRect.top + recycleRect.height / 2;
+                bunny.style.left = (recycleCenterX - full.w / 2) + 'px';
+                bunny.style.top = (recycleCenterY - full.h / 2) + 'px';
             } else if (!isOver && isOverRecycleBin) {
+                // Leaving recycle zone — snap back to cursor instantly
                 isOverRecycleBin = false;
                 bunny.classList.remove('over-recycle');
+                // Remove transition so position follows cursor without delay
+                bunny.style.transition = 'transform 0.25s ease-out';
+                bunny.style.transform = 'scale(1)';
+                bunny.style.left = (clientX - startX) + 'px';
+                bunny.style.top = (clientY - startY) + 'px';
+                // Clear inline transition after scale animation finishes
+                setTimeout(() => {
+                    if (isDragging && !isOverRecycleBin) {
+                        bunny.style.transition = '';
+                        bunny.style.transform = '';
+                    }
+                }, 250);
             }
+        }
+
+        // Only follow cursor when NOT over recycle bin
+        if (!isOverRecycleBin) {
+            let newX = clientX - startX;
+            let newY = clientY - startY;
+            const maxX = window.innerWidth - full.w;
+            const maxY = window.innerHeight - full.h;
+            newX = Math.max(0, Math.min(newX, maxX));
+            newY = Math.max(0, Math.min(newY, maxY));
+            bunny.style.left = newX + 'px';
+            bunny.style.top = newY + 'px';
         }
 
         e.preventDefault();
@@ -1294,10 +1308,11 @@ function initBunnyDrag() {
 
         const wasOverRecycle = isOverRecycleBin;
 
-        // Restore classes
+        // Restore classes and clear inline styles
         bunny.classList.remove('dragging');
         bunny.classList.remove('over-recycle');
-        bunny.style.transformOrigin = '';
+        bunny.style.transition = '';
+        bunny.style.transform = '';
         isOverRecycleBin = false;
 
         if (wasOverRecycle) {
