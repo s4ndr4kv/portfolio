@@ -525,8 +525,6 @@ body::before {
 }
 
 .icon:hover .icon-text {
-    background: var(--accent-purple);
-    color: white;
     text-shadow: none;
 }
 
@@ -2826,7 +2824,7 @@ input[type="submit"]:active {
     100% { transform: scale(1.2); opacity: 1; }
 }
 
-/* ===== IE BROWSER — Brand Design ===== */
+/* ===== IE BROWSER — Branding ===== */
 
 .ie-browser-window.visible {
     display: flex;

@@ -1,5 +1,5 @@
 /*
- * IE Browser -- Brand Design Portfolio
+ * IE Browser -- Branding Portfolio
  * Retro Internet Explorer window with GeoCities-style content
  */
 
@@ -233,12 +233,11 @@ function ieNavigate(page, addToHistory = true) {
     const titleEl = document.querySelector('#ie-browser-window .window-title');
     if (titleEl) {
         if (page === 'home') {
-            titleEl.textContent = '\uD83E\uDE90 Internet Explorer -- geocities.com/sandraku/';
+            titleEl.textContent = '\uD83E\uDE90 Branding';
         } else if (page === 'more-projects') {
-            titleEl.textContent = '\uD83E\uDE90 More Projects -- Internet Explorer';
+            titleEl.textContent = '\uD83E\uDE90 /sandraku/more.html';
         } else {
-            const proj = IE_PROJECTS[page];
-            titleEl.textContent = '\uD83E\uDE90 ' + (proj ? proj.name : page) + ' -- Internet Explorer';
+            titleEl.textContent = '\uD83E\uDE90 /sandraku/' + page + '.html';
         }
     }
 
