@@ -2849,7 +2849,7 @@ input[type="submit"]:active {
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    background: url('../img/Screenshot 2026-02-10 at 14.20.53.png') center / cover no-repeat fixed, #d4789b;
+    background: url('../img/Screenshot 2026-02-10 at 14.20.53.png') center / 100% 100% no-repeat, #d4789b;
     border: 2px inset var(--window-bg);
     margin: 0;
     position: relative;
@@ -2958,6 +2958,9 @@ input[type="submit"]:active {
     padding: 6px 0;
     font-family: 'VT323', monospace;
     font-size: 16px;
+    line-height: 28px;
+    height: 28px;
+    box-sizing: content-box;
 }
 
 .ie-link-arrows {
@@ -2973,7 +2976,17 @@ input[type="submit"]:active {
     font-family: 'VT323', monospace;
     background: none;
     border: none;
-    padding: 0;
+    padding: 2px 4px;
+    display: inline-block;
+    line-height: 28px;
+    vertical-align: middle;
+}
+
+.ie-link-text {
+    display: inline-block;
+    padding: 2px 4px;
+    line-height: 28px;
+    vertical-align: middle;
 }
 
 a.ie-project-link:visited {

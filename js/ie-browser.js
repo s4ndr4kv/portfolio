@@ -288,8 +288,10 @@ function renderIEHome(container) {
     container.innerHTML = html;
     container.scrollTop = 0;
 
-    // Hover: swap name to Japanese
+    // Hover: swap name to Japanese (lock width to prevent flicker)
     container.querySelectorAll('[data-name-jp]').forEach(el => {
+        const w = el.offsetWidth;
+        el.style.minWidth = w + 'px';
         el.addEventListener('mouseenter', () => {
             el.textContent = el.dataset.nameJp;
         });
@@ -310,7 +312,7 @@ function renderIEProject(container, slug) {
     let html = '<div class="ie-project-page">';
 
     // Back link
-    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&lt;-- Back</a>';
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; Back</a>';
 
     // Project header
     html += '<div class="ie-project-banner">';
@@ -329,7 +331,7 @@ function renderIEProject(container, slug) {
     html += '<div class="ie-hr-stars">-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</div>';
 
     // Back link at bottom
-    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&lt;-- Back to Directory</a>';
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; Back to Directory</a>';
 
     html += '</div>';
 
@@ -342,7 +344,7 @@ function renderIEMoreProjects(container) {
     let html = '<div class="ie-project-page">';
 
     // Back link
-    html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&lt;-- Back to Directory</a>';
+    html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&#8592; Back to Directory</a>';
 
     html += '<div class="ie-project-banner">';
     html += '<span class="ie-project-name">.:*~ More Projects ~*:.</span>';
@@ -360,7 +362,7 @@ function renderIEMoreProjects(container) {
     html += '<div class="ie-hr-stars">-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</div>';
 
     // Back link at bottom
-    html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&lt;-- Back to Directory</a>';
+    html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&#8592; Back to Directory</a>';
 
     html += '</div>';
 
