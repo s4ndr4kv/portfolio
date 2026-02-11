@@ -319,7 +319,7 @@ function renderIEProject(container, slug) {
     let html = '<div class="ie-project-page">';
 
     // Back link
-    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; Back</a>';
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
 
     // Project header
     html += '<div class="ie-project-banner">';
@@ -338,12 +338,18 @@ function renderIEProject(container, slug) {
     html += '<div class="ie-hr-stars">-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</div>';
 
     // Back link at bottom
-    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; Back to Directory</a>';
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
 
     html += '</div>';
 
     container.innerHTML = html;
     container.scrollTop = 0;
+
+    // Japanese hover on back links
+    container.querySelectorAll('.ie-back-text').forEach(el => {
+        el.addEventListener('mouseenter', () => { el.textContent = el.dataset.jp; });
+        el.addEventListener('mouseleave', () => { el.textContent = el.dataset.en; });
+    });
 }
 
 // ===== MORE PROJECTS PAGE =====
@@ -351,7 +357,7 @@ function renderIEMoreProjects(container) {
     let html = '<div class="ie-project-page">';
 
     // Back link
-    html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&#8592; Back to Directory</a>';
+    html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
 
     html += '<div class="ie-project-banner">';
     html += '<span class="ie-project-name">.:*~ More Projects ~*:.</span>';
@@ -369,12 +375,18 @@ function renderIEMoreProjects(container) {
     html += '<div class="ie-hr-stars">-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</div>';
 
     // Back link at bottom
-    html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&#8592; Back to Directory</a>';
+    html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
 
     html += '</div>';
 
     container.innerHTML = html;
     container.scrollTop = 0;
+
+    // Japanese hover on back links
+    container.querySelectorAll('.ie-back-text').forEach(el => {
+        el.addEventListener('mouseenter', () => { el.textContent = el.dataset.jp; });
+        el.addEventListener('mouseleave', () => { el.textContent = el.dataset.en; });
+    });
 }
 
 // ===== SNOWFALL =====
