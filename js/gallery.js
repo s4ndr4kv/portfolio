@@ -425,6 +425,9 @@ function showImage(index) {
 
     // Check if it's a video or image
     if (isVideo(filename)) {
+        // Show loader while video buffers
+        viewerMain.classList.add('video-loading');
+
         // Replace img with video element - use optimized compressed version
         viewerMain.innerHTML = `
             <button class="viewer-prev">&#10094;</button>
@@ -466,11 +469,14 @@ function showImage(index) {
             // Apply zoom and reveal
             applyZoom();
             video.classList.remove('loading');
+            viewerMain.classList.remove('video-loading');
         });
 
         // Attach pan listeners for video
         attachPanListeners(video);
     } else {
+        // Remove video loader if switching from video to image
+        viewerMain.classList.remove('video-loading');
         // Check if we need to replace video with img
         const currentMedia = viewerMain.querySelector('.viewer-image');
         if (!currentMedia || currentMedia.tagName === 'VIDEO') {

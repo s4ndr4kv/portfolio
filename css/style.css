@@ -898,6 +898,7 @@ body::before {
 .about-content {
     background: var(--window-bg) !important;
     padding: 12px !important;
+    font-family: 'Courier New', monospace;
 }
 
 .about-header {
@@ -2469,6 +2470,12 @@ body::before {
 .viewer-image.loading {
     visibility: hidden !important;
     position: absolute !important;
+}
+
+/* Loader gif while video is buffering */
+.viewer-main.video-loading {
+    background: url('../img/loader.gif') center center no-repeat;
+    background-size: 64px 64px;
 }
 
 /* Video in viewer - same styles as image */
