@@ -195,12 +195,14 @@ function ieNavigate(page, addToHistory = true) {
     // Update status bar
     document.getElementById('ie-status').textContent = 'Done';
 
-    // Swap background for rebellion
+    // Swap background for rebellion (solid black)
     const content = document.getElementById('ie-content');
     if (page === 'rebellion') {
-        content.style.backgroundImage = "url('img/Screenshot 2026-02-10 at 14.20.53-2.png')";
+        content.style.backgroundImage = 'none';
+        content.style.backgroundColor = '#000';
     } else {
         content.style.backgroundImage = '';
+        content.style.backgroundColor = '';
     }
 
     // Render
@@ -316,6 +318,12 @@ function renderIEProject(container, slug) {
     const project = IE_PROJECTS[slug];
     if (!project) { ieNavigate('home'); return; }
 
+    // Rebellion has its own designed page
+    if (slug === 'rebellion') {
+        renderRebellionProject(container);
+        return;
+    }
+
     let html = '<div class="ie-project-page">';
 
     // Back link
@@ -341,6 +349,61 @@ function renderIEProject(container, slug) {
     html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
 
     html += '</div>';
+
+    container.innerHTML = html;
+    container.scrollTop = 0;
+
+    // Japanese hover on back links
+    container.querySelectorAll('.ie-back-text').forEach(el => {
+        el.addEventListener('mouseenter', () => { el.textContent = el.dataset.jp; });
+        el.addEventListener('mouseleave', () => { el.textContent = el.dataset.en; });
+    });
+}
+
+// ===== REBELLION PROJECT PAGE =====
+function renderRebellionProject(container) {
+    const imgPath = 'img/brand-design/rebellion/';
+    let html = '<div class="ie-project-page">';
+
+    // Back link
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
+
+    // Centered content
+    html += '<div class="ie-project-content">';
+
+    // Logo
+    html += '<img class="ie-project-logo" src="' + imgPath + 'logo-rebellion-white.svg" alt="Rebellion">';
+
+    // Intro text
+    html += '<p class="ie-project-text">Rebellion is a Spanish mobile-first fintech that challenges the status quo offering payment services to the younger generations. So, in short: Rebellion is the money app for Gen Z. It has now been acquired by a larger fintech.</p>';
+
+    // WHAT WE NEEDED
+    html += '<div class="ie-project-section-header">&gt;&gt; WHAT WE NEEDED</div>';
+    html += '<p class="ie-project-text">When I first joined the Rebellion team, it was already an unconventional bank: the colors and tone of voice spoke to a young audience, and they were cool, no doubt. But I still saw that some changes were due: illustration scalability, coherence of the brand image between product and marketing, readability on different platforms\u2026</p>';
+    html += '<p class="ie-project-text">The brand\u2019s very soul also had room for improvement: it could use an in-depth identity, a personality with enough shades to connect with our target. We needed to make banking cool. Easy. Young. Fun.</p>';
+
+    // HOW WE DID IT
+    html += '<div class="ie-project-section-header">&gt;&gt; HOW WE DID IT</div>';
+    html += '<p class="ie-project-text">Our work here began by identifying the design requirements that every area of the company had. Afterwards, with extensive research about our audience and competitors, we got to really understand our market niche. And like that, we were finally able to start creating a brand that really spoke their language.</p>';
+    html += '<img src="' + imgPath + 'logobuild.png" alt="Logo Build">';
+    html += '<img src="' + imgPath + 'angels.png" alt="Angels">';
+
+    // A BRAND FULL OF NEON
+    html += '<div class="ie-project-section-header">&gt;&gt; A BRAND FULL OF NEON</div>';
+    html += '<p class="ie-project-text">Our carefully chosen photography - always showing a big city, neon lights and/or a young rebel - is essential for our brand. It shows our personality better than anything else.</p>';
+    html += '<p class="ie-project-text">Also, with our fresh new vector doodles it is effortless to maintain coherence between marketing and product assets. With them, we can create illustrations, videos, decorate assets giving them more meaning, or even explain difficult concepts within the app.</p>';
+    html += '<img src="' + imgPath + 'rebelliongifs.gif" alt="Rebellion GIFs">';
+    html += '<p class="ie-project-text">We chose Montserrat as our main typography. Simple, geometric, beautiful, and useful. With it, we improved legibility, scalability and coherence across platforms. In order to make a difference in titles, we glitched it - creating Montsemouse.</p>';
+    html += '<p class="ie-project-text">Finally, once we established a design system, we started creating every asset, template, and module we needed. With this done, the website and blog were a piece of cake.</p>';
+    html += '<img src="' + imgPath + 'montsemouse-invertido.gif" alt="Montsemouse">';
+    html += '<img src="' + imgPath + 'fullbody_1000.png" alt="Full Body">';
+
+    html += '</div>'; // close ie-project-content
+
+    // Back link at bottom
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
+
+    html += '</div>'; // close ie-project-page
 
     container.innerHTML = html;
     container.scrollTop = 0;

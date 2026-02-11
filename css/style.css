@@ -3225,6 +3225,41 @@ a.ie-project-link:hover {
     cursor: pointer;
 }
 
+/* === Rebellion Project Content === */
+.ie-project-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.ie-project-logo {
+    display: block;
+    max-width: 200px;
+    margin: 20px auto 30px;
+}
+
+.ie-project-section-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 24px 0 12px;
+    font-family: 'VT323', monospace;
+}
+
+.ie-project-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0 0 16px;
+    font-family: 'VT323', monospace;
+}
+
+.ie-project-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 8px 0;
+}
+
 /* Sub-projects (More projects page) */
 .ie-sub-project {
     margin-bottom: 12px;
