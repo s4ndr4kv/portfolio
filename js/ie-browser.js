@@ -61,18 +61,14 @@ const IE_PROJECTS = {
         description: 'CARTO is an open, powerful, and intuitive platform for discovering and predicting key insights underlying the location data in our world. I created graphic assets for the marketing team: digital banners, event brochures, roll-ups and marketing collateral.',
         path: 'img/brand-design/carto/',
         images: [
-            'tumblr_ob1rfhKy5r1rf9x4co1_1280_1000.png',
-            'tumblr_ob1rikuA3J1rf9x4co1_1280_782.png',
-            'tumblr_ob1rmcj4T01rf9x4co1_r1_1280_1000.png',
-            'tumblr_ob1ro4Gfsi1rf9x4co1_1280_1000.png',
-            'tumblr_ob1rwt0rMm1rf9x4co1_1280_1000.png',
-            'tumblr_ob1rwt0rMm1rf9x4co2_1280_1000.png',
-            'tumblr_ob1rwt0rMm1rf9x4co3_1280_1000.png',
-            'tumblr_ob1rwt0rMm1rf9x4co4_1280_1000.png',
-            'cartobrochure_1000.png',
-            'cartorollup_1000.png',
-            'tumblr_ob1t5coDgH1rf9x4co1_1280_1000.png',
-            'tumblr_ob1t5coDgH1rf9x4co2_1280_1000.png'
+            'logo.svg',
+            '1.png',
+            '2.png',
+            '3.png',
+            '4.png',
+            '5.png',
+            '6.png',
+            '7.png'
         ]
     },
     'carbono': {
@@ -176,6 +172,19 @@ function iePreloadAllImages() {
         if (!allImages.includes(src)) allImages.push(src);
     });
 
+    // More-projects images (not in IE_PROJECTS)
+    const moreProjectsImages = [
+        'img/brand-design/more-projects/2.gif',
+        'img/brand-design/more-projects/3.png',
+        'img/brand-design/more-projects/4.png',
+        'img/brand-design/more-projects/5.png',
+        'img/brand-design/more-projects/6.png',
+        'img/brand-design/more-projects/7.png'
+    ];
+    moreProjectsImages.forEach(src => {
+        if (!allImages.includes(src)) allImages.push(src);
+    });
+
     // Preload with staggered loading to avoid blocking the main thread
     let i = 0;
     function loadNext() {
@@ -248,9 +257,9 @@ function ieNavigate(page, addToHistory = true) {
     // Update status bar
     document.getElementById('ie-status').textContent = 'Done';
 
-    // Swap background for project pages (solid black)
+    // Swap background for rebellion only (solid black)
     const content = document.getElementById('ie-content');
-    if (page === 'rebellion' || page === 'cabify') {
+    if (page === 'rebellion') {
         content.style.backgroundImage = 'none';
         content.style.backgroundColor = '#000';
     } else {
@@ -308,10 +317,10 @@ function renderIEHome(container) {
         const p = IE_PROJECTS[slug];
         const comingSoon = !p.images || p.images.length === 0;
         if (comingSoon) {
-            html += '<div class="ie-link-row ie-coming-soon">';
+            html += '<div class="ie-link-row">';
             html += '<span class="ie-link-arrows">&gt;&gt;</span> ';
-            html += '<span class="ie-link-text" data-name="' + p.name + '" data-name-jp="' + p.nameJp + '">' + p.name + '</span>';
-            html += ' <span class="ie-under-construction">[under construction]</span>';
+            html += '<a class="ie-project-link" href="#" data-name="' + p.name + '" data-name-jp="' + p.nameJp + '" onclick="ieNavigate(\'' + slug + '\'); return false;">';
+            html += p.name + '</a>';
             html += '</div>';
         } else {
             html += '<div class="ie-link-row">';
@@ -378,6 +387,10 @@ function renderIEProject(container, slug) {
     }
     if (slug === 'cabify') {
         renderCabifyProject(container);
+        return;
+    }
+    if (slug === 'carto') {
+        renderCartoProject(container);
         return;
     }
 
@@ -537,27 +550,79 @@ function renderCabifyProject(container) {
     });
 }
 
+// ===== CARTO PROJECT PAGE =====
+function renderCartoProject(container) {
+    const imgPath = 'img/brand-design/carto/';
+    let html = '<div class="ie-project-page">';
+
+    // Back link
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
+
+    // Centered content
+    html += '<div class="ie-project-content">';
+
+    // Logo (centered)
+    html += '<img class="ie-project-logo" src="' + imgPath + 'logo.svg" alt="CARTO">';
+
+    // Intro text with link
+    html += '<p class="ie-project-text"><a class="ie-project-link" href="https://carto.com/" target="_blank" rel="noopener">CARTO</a> is an open, powerful, and intuitive platform for discovering and predicting the key insights underlying the location data in our world. Under their brand guidelines, I created assets needed all around the company.</p>';
+
+    // Images 1-7
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<img src="' + imgPath + '1.png" alt="CARTO">';
+    html += '<img src="' + imgPath + '2.png" alt="CARTO">';
+    html += '<img src="' + imgPath + '3.png" alt="CARTO">';
+    html += '<img src="' + imgPath + '4.png" alt="CARTO">';
+    html += '<img src="' + imgPath + '5.png" alt="CARTO">';
+    html += '<img src="' + imgPath + '6.png" alt="CARTO">';
+    html += '<img src="' + imgPath + '7.png" alt="CARTO">';
+
+    html += '</div>'; // close ie-project-content
+
+    // Back link at bottom
+    html += '<a class="ie-back-link" href="#" onclick="ieGoBack(); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
+
+    html += '</div>'; // close ie-project-page
+
+    container.innerHTML = html;
+    container.scrollTop = 0;
+
+    // Japanese hover on back links
+    container.querySelectorAll('.ie-back-text').forEach(el => {
+        el.addEventListener('mouseenter', () => { el.textContent = el.dataset.jp; });
+        el.addEventListener('mouseleave', () => { el.textContent = el.dataset.en; });
+    });
+}
+
 // ===== MORE PROJECTS PAGE =====
 function renderIEMoreProjects(container) {
+    const imgPath = 'img/brand-design/more-projects/';
     let html = '<div class="ie-project-page">';
 
     // Back link
     html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
 
-    html += '<div class="ie-project-banner">';
-    html += '<span class="ie-project-name">.:*~ More Projects ~*:.</span>';
-    html += '</div>';
+    // Centered content
+    html += '<div class="ie-project-content">';
 
-    html += '<div class="ie-hr-stars">-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</div>';
+    // Images in order (2-7, skip 1.gif)
+    html += '<img src="' + imgPath + '2.gif" alt="More Projects">';
+    html += '<img src="' + imgPath + '3.png" alt="More Projects">';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<div class="ie-hr-stars">*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*</div>';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<img src="' + imgPath + '4.png" alt="More Projects">';
+    html += '<img src="' + imgPath + '5.png" alt="More Projects">';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<div class="ie-hr-stars">*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*</div>';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<img src="' + imgPath + '6.png" alt="More Projects">';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<div class="ie-hr-stars">*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*~-.,_,.-~*</div>';
+    html += '<div class="ie-project-spacer"></div>';
+    html += '<img src="' + imgPath + '7.png" alt="More Projects">';
 
-    // Under construction placeholder
-    html += '<div class="ie-under-construction-page">';
-    html += '<div class="ie-construction-icon">&#9888;</div>';
-    html += '<div class="ie-construction-text">UNDER CONSTRUCTION</div>';
-    html += '<div class="ie-construction-sub">.:*~ coming soon ~*:.</div>';
-    html += '</div>';
-
-    html += '<div class="ie-hr-stars">-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</div>';
+    html += '</div>'; // close ie-project-content
 
     // Back link at bottom
     html += '<a class="ie-back-link" href="#" onclick="ieNavigate(\'home\'); return false;">&#8592; <span class="ie-back-text" data-en="Back" data-jp="戻る">Back</span></a>';
