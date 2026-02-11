@@ -1463,7 +1463,6 @@ body::before {
     background: #0a0514;
     border: 2px inset #1a0a28;
     margin: 4px 6px 6px;
-    max-height: 140px;
     overflow-y: auto;
     flex: 1;
     min-height: 60px;
@@ -1597,10 +1596,11 @@ body::before {
 .kutv-channels {
     display: flex;
     gap: 4px;
+    flex: 1;
 }
 
 .kutv-channel-btn {
-    padding: 3px 10px;
+    padding: 3px 12px;
     background: var(--button-bg);
     border: 2px outset var(--button-bg);
     font-family: 'MS Sans Serif', 'Segoe UI', sans-serif;
@@ -1608,6 +1608,8 @@ body::before {
     font-weight: bold;
     color: var(--text-color);
     transition: background 0.1s;
+    white-space: nowrap;
+    flex: 1;
 }
 
 .kutv-channel-btn:hover {
