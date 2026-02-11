@@ -3763,9 +3763,18 @@ a.ie-project-link:hover {
         grid-row: auto;
     }
 
-    /* Mobile icon order: Illustration first, Brand Design second */
-    .icon[data-window="editorial"]  { order: -2; }
-    .icon[data-window="ie-browser"] { order: -1; }
+    /* Mobile icon order */
+    .icon[data-window="editorial"]   { order: 1; }
+    .icon[data-window="ie-browser"]  { order: 2; }
+    .icon[data-window="about"]       { order: 3; }
+    .icon[data-window="notepad"]     { order: 4; }
+    .icon[data-window="fotografia"]  { order: 5; }
+    .icon[data-window="email"]       { order: 6; }
+    .icon[data-window="paint"]       { order: 7; }
+    .icon[data-window="kutv"]        { order: 8; }
+    .icon[data-window="tamagotchi"]  { order: 9; }
+    .icon[data-window="recycle"]     { order: 10; }
+    .icon[data-window="winamp"]      { order: 11; }
 
     .icon {
         width: auto;
