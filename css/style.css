@@ -309,6 +309,17 @@ a, button, [role="button"] {
     transform: translateX(-620px);  /* bunny4 */
 }
 
+/* Shrink animation when hovering over recycle bin — scale the whole container */
+.bunny-container.over-recycle {
+    transform: scale(0.3);
+    transition: transform 0.4s ease-in;
+}
+
+.bunny-container.dragging:not(.over-recycle) {
+    transition: transform 0.25s ease-out;
+    transform: scale(1);
+}
+
 /* Frame animation: 5 frames, 0.7s each = 3.5s total cycle */
 /* Cycle: bunny1 → bunny3 → bunny4 → bunny5 → bunny6 */
 /* translateX values for scaled sprite (310px per frame) */

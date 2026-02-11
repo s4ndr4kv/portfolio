@@ -1202,6 +1202,14 @@ function initBunnyDrag() {
     let isDragging = false;
     let startX, startY;
     let bunnyX, bunnyY;
+    let isOverRecycleBin = false;
+
+    // Full size depends on viewport (5x desktop, 4x mobile)
+    function getFullSize() {
+        return window.innerWidth <= 768
+            ? { w: 248, h: 260 }
+            : { w: 310, h: 325 };
+    }
 
     // Get initial position from CSS
     function getBunnyPosition() {
@@ -1211,6 +1219,7 @@ function initBunnyDrag() {
 
     function onStart(e) {
         isDragging = true;
+        isOverRecycleBin = false;
         bunny.classList.add('dragging');
 
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -1240,14 +1249,41 @@ function initBunnyDrag() {
         let newX = clientX - startX;
         let newY = clientY - startY;
 
-        // Constrain to viewport
-        const maxX = window.innerWidth - bunny.offsetWidth;
-        const maxY = window.innerHeight - bunny.offsetHeight;
+        // Constrain to viewport (use full size for boundary calc)
+        const full = getFullSize();
+        const maxX = window.innerWidth - full.w;
+        const maxY = window.innerHeight - full.h;
         newX = Math.max(0, Math.min(newX, maxX));
         newY = Math.max(0, Math.min(newY, maxY));
 
         bunny.style.left = newX + 'px';
         bunny.style.top = newY + 'px';
+
+        // Check if cursor is hovering over the recycle bin → shrink
+        const recycleIcon = document.querySelector('.icon[data-window="recycle"]');
+        if (recycleIcon) {
+            const recycleRect = recycleIcon.getBoundingClientRect();
+            const margin = 30;
+            const isOver = (
+                clientX >= recycleRect.left - margin &&
+                clientX <= recycleRect.right + margin &&
+                clientY >= recycleRect.top - margin &&
+                clientY <= recycleRect.bottom + margin
+            );
+
+            if (isOver && !isOverRecycleBin) {
+                isOverRecycleBin = true;
+                bunny.classList.add('over-recycle');
+                // Set transform-origin to where the cursor is relative to the element
+                // so the bunny shrinks "under" the cursor
+                const originX = startX;
+                const originY = startY;
+                bunny.style.transformOrigin = originX + 'px ' + originY + 'px';
+            } else if (!isOver && isOverRecycleBin) {
+                isOverRecycleBin = false;
+                bunny.classList.remove('over-recycle');
+            }
+        }
 
         e.preventDefault();
     }
@@ -1255,25 +1291,17 @@ function initBunnyDrag() {
     function onEnd() {
         if (!isDragging) return;
         isDragging = false;
+
+        const wasOverRecycle = isOverRecycleBin;
+
+        // Restore classes
         bunny.classList.remove('dragging');
+        bunny.classList.remove('over-recycle');
+        bunny.style.transformOrigin = '';
+        isOverRecycleBin = false;
 
-        // Check if bunny was dropped on the recycle bin
-        const recycleIcon = document.querySelector('.icon[data-window="recycle"]');
-        if (recycleIcon) {
-            const bunnyRect = bunny.getBoundingClientRect();
-            const recycleRect = recycleIcon.getBoundingClientRect();
-
-            // Check collision
-            const isOverRecycle = !(
-                bunnyRect.right < recycleRect.left ||
-                bunnyRect.left > recycleRect.right ||
-                bunnyRect.bottom < recycleRect.top ||
-                bunnyRect.top > recycleRect.bottom
-            );
-
-            if (isOverRecycle) {
-                showBunnyDeathDialog();
-            }
+        if (wasOverRecycle) {
+            showBunnyDeathDialog();
         }
     }
 
