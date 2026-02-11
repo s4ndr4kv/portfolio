@@ -2759,6 +2759,12 @@ input[type="submit"]:active {
 
 /* ===== IE BROWSER — Brand Design ===== */
 
+.ie-browser-window {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 .ie-browser-window.visible {
     flex-direction: column;
 }
@@ -2844,7 +2850,10 @@ input[type="submit"]:active {
 /* IE Content Area — Y2K pink grid background */
 .ie-content {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
     background: url('../img/Screenshot 2026-02-10 at 14.20.53.png') center / cover no-repeat fixed, #d4789b;
     border: 2px inset var(--window-bg);
     margin: 0;
@@ -3153,8 +3162,15 @@ a.ie-project-link:hover {
 
 /* === IE Browser Responsive === */
 @media (max-width: 768px) {
+    .ie-browser-window {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
     .ie-toolbar {
         padding: 2px 4px;
+        flex-shrink: 0;
     }
 
     .ie-nav-label {
@@ -3166,6 +3182,10 @@ a.ie-project-link:hover {
         padding: 4px 6px;
     }
 
+    .ie-address-bar {
+        flex-shrink: 0;
+    }
+
     .ie-address-label {
         display: none;
     }
@@ -3174,12 +3194,30 @@ a.ie-project-link:hover {
         font-size: 12px;
     }
 
+    .ie-content {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
     .ie-home {
         padding: 14px;
     }
 
     .ie-header-scroll {
         font-size: 24px;
+    }
+
+    .ie-directory-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ie-directory-gif {
+        width: 140px;
+        align-self: center;
     }
 
     .ie-project-link {
@@ -3192,6 +3230,10 @@ a.ie-project-link:hover {
 
     .ie-project-images img {
         border-width: 1px;
+    }
+
+    .window-status-bar {
+        flex-shrink: 0;
     }
 }
 
