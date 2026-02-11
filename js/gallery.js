@@ -464,8 +464,11 @@ function showImage(index) {
             baseZoom = Math.round(scaleToFillWidth * 100);
             currentZoom = 100; // Start at "fill width"
 
-            // Apply zoom and reveal
+            // Apply zoom
             applyZoom();
+        });
+        video.addEventListener('canplaythrough', () => {
+            // Remove loader only when video has enough data to play
             video.classList.remove('loading');
             const loader = viewerMain.querySelector('.video-loader');
             if (loader) loader.remove();
