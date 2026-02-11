@@ -11,33 +11,14 @@ function isVideo(filename) {
     return /\.(mp4|mov|webm)$/i.test(filename);
 }
 
-// Helper to get optimized file path
-// Illustration folders: files live in optimized/ subfolder
-// Photos: files live directly in folder
-function getOptimizedPath(folderPath, filename) {
-    const isIllustration = folderPath.startsWith(basePath);
-    const decoded = decodeURIComponent(filename);
-    if (isIllustration) {
-        if (isVideo(decoded)) {
-            // Strip original extension, use .mp4
-            const nameWithoutExt = decoded.replace(/\.[^.]+$/, '');
-            const optimizedPath = folderPath + 'optimized/' + encodeURIComponent(nameWithoutExt) + '.mp4';
-            return optimizedPath;
-        }
-        return folderPath + 'optimized/' + filename;
-    }
-    // Non-illustration folders (Photos) — load directly
-    return folderPath + filename;
-}
-
 // Folder configuration with images
 const folderConfig = {
     'character-design': {
         name: 'Character Design',
         path: basePath + 'Character%20Design/',
         images: [
-            '1sandraku-bunnyvroom.MOV',
-            '2sandraku-joyful.MP4',
+            '1sandraku-bunnyvroom.mp4',
+            '2sandraku-joyful.mp4',
             '3sandraku-killboll.jpg',
             '4sandraku-bunwalk.jpg',
             '5sandraku-yoongi.jpg',
@@ -55,8 +36,8 @@ const folderConfig = {
         name: 'Kidcore',
         path: basePath + 'Kidcore/',
         images: [
-            '1sandraku-stepinto.mov',
-            '2sandraku-sakura.mov',
+            '1sandraku-stepinto.mp4',
+            '2sandraku-sakura.mp4',
             '3sandraku-restincolors.mp4',
             '4sandraku-bunnyskel.mp4',
             '5sandraku-alice.jpg',
@@ -79,15 +60,15 @@ const folderConfig = {
         name: 'Narrative',
         path: basePath + 'Narrative/',
         images: [
-            '1sandraku-killbollcity.mov',
-            '2sandraku-yaoisearch.mov',
-            '3sandraku-goodgirl.mov',
+            '1sandraku-killbollcity.mp4',
+            '2sandraku-yaoisearch.mp4',
+            '3sandraku-goodgirl.mp4',
             '4sandraku-lookingfor.mp4',
             '5sandraku-lostmyself.mp4',
-            '6sandraku-coffeeshop.mov',
-            '7sandraku-light.mov',
+            '6sandraku-coffeeshop.mp4',
+            '7sandraku-light.mp4',
             '8sandraku-creatures.mp4',
-            '9sandraku-apocalypse.mov',
+            '9sandraku-apocalypse.mp4',
             '10sandraku-freedom.mp4',
             '11sandraku-plath.mp4',
             '12sandraku-laundromat.jpg',
@@ -111,22 +92,22 @@ const folderConfig = {
         name: '???',
         path: basePath + '%3F%3F%3F/',
         images: [
-            '1sandraku-hyunjin.MOV',
+            '1sandraku-hyunjin.mp4',
             '2sandraku-zine.mp4',
             '4sandraku-animation.mp4',
-            '5sandraku-artjournal.MOV',
+            '5sandraku-artjournal.mp4',
             '7sandraku-peace.mp4',
             '8sandraku-poetry.mp4',
-            '9sandraku-stopmotion1.mov',
-            '10sandraku-stopmotion2.MP4',
+            '9sandraku-stopmotion1.mp4',
+            '10sandraku-stopmotion2.mp4',
             '11sandraku-man.mp4',
-            '12sandraku-journal.MP4',
-            '13sandraku-akihabara.MOV',
+            '12sandraku-journal.mp4',
+            '13sandraku-akihabara.mp4',
             '14sandraku-gouache.jpg',
             '15sandraku-angels.mp4',
             '16sandraku-bungirls.mp4',
             '17sandraku-shibuya.mp4',
-            '18sandraku-journalpink.MP4'
+            '18sandraku-journalpink.mp4'
         ]
     },
     'photography': {
@@ -425,8 +406,7 @@ function showImage(index) {
     if (currentImageIndex >= files.length) currentImageIndex = 0;
 
     const filename = files[currentImageIndex];
-    // Get optimized path (videos and images both in optimized/)
-    const filePath = getOptimizedPath(currentFolder.path, filename);
+    const filePath = currentFolder.path + filename;
 
     // Reset zoom and pan when changing images
     currentZoom = 100;
@@ -798,7 +778,7 @@ function buildThumbnails() {
             // Video thumbnail
             thumb.classList.add('video-thumb');
             const video = document.createElement('video');
-            const videoSrc = getOptimizedPath(currentFolder.path, file);
+            const videoSrc = currentFolder.path + file;
             video.muted = true;
             video.playsInline = true;
             video.setAttribute('playsinline', '');
@@ -821,7 +801,7 @@ function buildThumbnails() {
             thumb.appendChild(playIcon);
         } else {
             // Image thumbnail
-            thumb.style.backgroundImage = `url('${getOptimizedPath(currentFolder.path, file)}')`;
+            thumb.style.backgroundImage = `url('${currentFolder.path + file}')`;
         }
 
         thumb.addEventListener('click', () => showImage(index));
