@@ -222,18 +222,18 @@ function ieNavigate(page, addToHistory = true) {
     // Update address bar
     const addressEl = document.getElementById('ie-address');
     if (page === 'home') {
-        addressEl.textContent = 'sandraku://brand-design/';
+        addressEl.textContent = 'http://www.geocities.com/sandraku/';
     } else if (page === 'more-projects') {
-        addressEl.textContent = 'sandraku://brand-design/more/';
+        addressEl.textContent = 'http://www.geocities.com/sandraku/more.html';
     } else {
-        addressEl.textContent = 'sandraku://brand-design/' + page + '/';
+        addressEl.textContent = 'http://www.geocities.com/sandraku/' + page + '.html';
     }
 
     // Update window title
     const titleEl = document.querySelector('#ie-browser-window .window-title');
     if (titleEl) {
         if (page === 'home') {
-            titleEl.textContent = '\uD83E\uDE90 Internet Explorer -- sandraku://brand-design/';
+            titleEl.textContent = '\uD83E\uDE90 Internet Explorer -- geocities.com/sandraku/';
         } else if (page === 'more-projects') {
             titleEl.textContent = '\uD83E\uDE90 More Projects -- Internet Explorer';
         } else {
