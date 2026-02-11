@@ -3082,8 +3082,17 @@ a.ie-project-link:visited {
 }
 
 a.ie-project-link:hover {
-    color: #fff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    color: var(--accent-pink);
+    text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+}
+
+/* When link is inside a paragraph, inherit text flow */
+.ie-project-text a.ie-project-link {
+    font-size: inherit;
+    line-height: inherit;
+    display: inline;
+    padding: 0;
+    vertical-align: baseline;
 }
 
 .ie-link-row.ie-coming-soon {
