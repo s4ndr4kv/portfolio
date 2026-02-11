@@ -3231,11 +3231,11 @@ a.ie-project-link:hover {
     margin: 0 auto;
 }
 
-.ie-project-logo {
+.ie-project-content .ie-project-logo {
     display: block;
     max-width: 400px;
     width: 100%;
-    margin: 30px auto 40px;
+    margin: 30px auto 50px;
 }
 
 .ie-project-section-header {
