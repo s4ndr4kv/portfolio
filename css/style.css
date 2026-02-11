@@ -2759,14 +2759,10 @@ input[type="submit"]:active {
 
 /* ===== IE BROWSER — Brand Design ===== */
 
-.ie-browser-window {
+.ie-browser-window.visible {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-}
-
-.ie-browser-window.visible {
-    flex-direction: column;
 }
 
 /* IE Toolbar — simple like Illustration explorer */
@@ -3162,11 +3158,6 @@ a.ie-project-link:hover {
 
 /* === IE Browser Responsive === */
 @media (max-width: 768px) {
-    .ie-browser-window {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
 
     .ie-toolbar {
         padding: 2px 4px;
