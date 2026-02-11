@@ -49,7 +49,7 @@ function initSplash() {
     // BIOS boot lines — kawaii retro terminal ♡
     const lines = [
         { text: 'SANDRA98 BIOS v1.0 ♡', cls: 'highlight', delay: 0 },
-        { text: 'Copyright (C) 2024 Sandra Industries ✧', cls: 'dimmed', delay: 200 },
+        { text: 'Copyright (C) 2026 Ku Industries ✧', cls: 'dimmed', delay: 200 },
         { text: '', cls: '', delay: 100 },
         { text: 'MEMORY CHECK: 640K OK ✧', cls: '', delay: 400 },
         { text: 'LOADING KAWAII MODULES........... OK', cls: '', delay: 600 },
