@@ -697,7 +697,8 @@ body::before {
 }
 
 .window-button:hover {
-    background: var(--button-hover);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .window-button:active {
@@ -1135,7 +1136,8 @@ body::before {
 }
 
 .paint-tool:hover {
-    background: var(--button-hover);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .paint-tool.active {
@@ -1603,7 +1605,8 @@ body::before {
 }
 
 .kutv-channel-btn:hover {
-    background: var(--button-hover);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .kutv-channel-btn.active {
@@ -1651,7 +1654,8 @@ body::before {
 }
 
 .start-button:hover {
-    background: var(--button-hover);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .start-button.active {
@@ -1697,7 +1701,8 @@ body::before {
 }
 
 .taskbar-item:hover {
-    background: var(--button-hover);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .clock {
@@ -1813,16 +1818,20 @@ body::before {
 }
 
 .explorer-btn:hover:not(.disabled) {
-    background: var(--window-border-light);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .explorer-btn:active:not(.disabled) {
-    background: var(--window-border-dark);
+    background: var(--accent-purple);
+    color: white;
+    filter: brightness(0.85);
 }
 
 .explorer-btn.disabled {
     opacity: 0.4;
-    cursor: default;
+    cursor: default !important;
+    pointer-events: none;
 }
 
 .explorer-btn-icon {
@@ -2463,7 +2472,8 @@ video.viewer-image {
 
 .viewer-prev:hover,
 .viewer-next:hover {
-    background: var(--window-border-light);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .viewer-prev:active,
@@ -2501,7 +2511,8 @@ video.viewer-image {
 }
 
 .viewer-zoom-btn:hover {
-    background: var(--window-border-light);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .viewer-zoom-btn:active {
@@ -2716,7 +2727,8 @@ input[type="submit"] {
 button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover {
-    background: var(--button-hover);
+    background: var(--accent-purple);
+    color: white;
 }
 
 button:active,
@@ -2786,16 +2798,20 @@ input[type="submit"]:active {
 }
 
 .ie-nav-btn:hover:not(:disabled) {
-    background: var(--window-border-light);
+    background: var(--accent-purple);
+    color: white;
 }
 
 .ie-nav-btn:active:not(:disabled) {
-    background: var(--window-border-dark);
+    background: var(--accent-purple);
+    color: white;
+    filter: brightness(0.85);
 }
 
 .ie-nav-btn:disabled {
     opacity: 0.4;
-    cursor: default;
+    cursor: default !important;
+    pointer-events: none;
 }
 
 .ie-nav-icon {
