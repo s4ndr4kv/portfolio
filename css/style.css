@@ -1297,6 +1297,10 @@ body::before {
     background: linear-gradient(180deg, #5a4030 0%, #3a2518 50%, #2a1808 100%);
     padding: 0;
     font-family: 'VT323', monospace;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 /* ===== WINAMP MAXIMIZED ===== */
@@ -1461,6 +1465,8 @@ body::before {
     margin: 4px 6px 6px;
     max-height: 140px;
     overflow-y: auto;
+    flex: 1;
+    min-height: 60px;
 }
 
 .winamp-playlist-header {
@@ -1948,7 +1954,7 @@ body::before {
 .explorer-tree {
     flex: 1;
     overflow-y: auto;
-    overflow-x: auto;
+    overflow-x: hidden;
     padding: 8px;
     font-size: 14px;
 }
@@ -2669,6 +2675,7 @@ video.viewer-image {
 /* ===== SCROLLBARS ===== */
 ::-webkit-scrollbar {
     width: 16px;
+    height: 16px;
 }
 
 ::-webkit-scrollbar-track {
@@ -2688,11 +2695,47 @@ video.viewer-image {
 ::-webkit-scrollbar-button {
     background: var(--window-bg);
     border: 1px outset var(--window-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 6px 6px;
+}
+
+/* Hide the duplicate buttons (Chrome renders 2 per end by default) */
+::-webkit-scrollbar-button:start:increment,
+::-webkit-scrollbar-button:end:decrement {
+    display: none;
+}
+
+/* Vertical: ▲ up arrow at top */
+::-webkit-scrollbar-button:vertical:start:decrement {
+    display: block;
     height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M1 6L4 2L7 6Z' fill='%232a1a2e'/%3E%3C/svg%3E");
+}
+
+/* Vertical: ▼ down arrow at bottom */
+::-webkit-scrollbar-button:vertical:end:increment {
+    display: block;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M1 2L4 6L7 2Z' fill='%232a1a2e'/%3E%3C/svg%3E");
+}
+
+/* Horizontal: ◄ left arrow */
+::-webkit-scrollbar-button:horizontal:start:decrement {
+    display: block;
+    width: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M6 1L2 4L6 7Z' fill='%232a1a2e'/%3E%3C/svg%3E");
+}
+
+/* Horizontal: ► right arrow */
+::-webkit-scrollbar-button:horizontal:end:increment {
+    display: block;
+    width: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M2 1L6 4L2 7Z' fill='%232a1a2e'/%3E%3C/svg%3E");
 }
 
 ::-webkit-scrollbar-button:hover {
-    background: var(--button-hover);
+    background-color: var(--button-hover);
 }
 
 /* ===== FORM ELEMENTS ===== */
