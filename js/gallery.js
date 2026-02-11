@@ -425,12 +425,10 @@ function showImage(index) {
 
     // Check if it's a video or image
     if (isVideo(filename)) {
-        // Show loader while video buffers
-        viewerMain.classList.add('video-loading');
-
-        // Replace img with video element - use optimized compressed version
+        // Replace img with video element + loader
         viewerMain.innerHTML = `
             <button class="viewer-prev">&#10094;</button>
+            <img class="video-loader" src="img/loader.gif" alt="Loading...">
             <video class="viewer-image loading" src="${filePath}" loop autoplay muted playsinline webkit-playsinline preload="auto"></video>
             <button class="viewer-next">&#10095;</button>
             ${zoomControlsHTML}
@@ -469,14 +467,16 @@ function showImage(index) {
             // Apply zoom and reveal
             applyZoom();
             video.classList.remove('loading');
-            viewerMain.classList.remove('video-loading');
+            const loader = viewerMain.querySelector('.video-loader');
+            if (loader) loader.remove();
         });
 
         // Attach pan listeners for video
         attachPanListeners(video);
     } else {
         // Remove video loader if switching from video to image
-        viewerMain.classList.remove('video-loading');
+        const oldLoader = viewerMain.querySelector('.video-loader');
+        if (oldLoader) oldLoader.remove();
         // Check if we need to replace video with img
         const currentMedia = viewerMain.querySelector('.viewer-image');
         if (!currentMedia || currentMedia.tagName === 'VIDEO') {

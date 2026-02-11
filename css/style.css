@@ -2475,9 +2475,14 @@ body::before {
 }
 
 /* Loader gif while video is buffering */
-.viewer-main.video-loading {
-    background: url('../img/loader.gif') center center no-repeat;
-    background-size: 64px 64px;
+.video-loader {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 64px;
+    height: 64px;
+    z-index: 5;
+    image-rendering: pixelated;
 }
 
 /* Video in viewer - same styles as image */
@@ -4166,10 +4171,6 @@ a.ie-project-link:hover {
     /* Maximized window on mobile: gray background, no forced sizing */
     .window.maximized .viewer-main {
         background: var(--window-bg);
-    }
-    .window.maximized .viewer-main.video-loading {
-        background: var(--window-bg) url('../img/loader.gif') center center no-repeat;
-        background-size: 64px 64px;
     }
 }
 
