@@ -468,9 +468,6 @@ function onDragStart(e) {
     const header = e.target.closest('.window-header');
     if (!header || e.target.closest('.window-controls')) return;
 
-    // Don't drag on mobile (windows are fullscreen)
-    if (window.innerWidth <= 768) return;
-
     draggedElement = header.closest('.window');
     const rect = draggedElement.getBoundingClientRect();
     dragOffset.x = e.clientX - rect.left;
@@ -484,7 +481,6 @@ function onDragStart(e) {
 function onTouchStart(e) {
     const header = e.target.closest('.window-header');
     if (!header || e.target.closest('.window-controls')) return;
-    if (window.innerWidth <= 768) return;
 
     const touch = e.touches[0];
     draggedElement = header.closest('.window');

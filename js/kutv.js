@@ -49,6 +49,8 @@ const SMPTE_DARK = [
     [0, 0, 64],
 ];
 
+let kutvInitialized = false;
+
 function initKuTV() {
     kutvCanvas = document.getElementById('kutv-canvas');
     if (!kutvCanvas) return;
@@ -58,37 +60,57 @@ function initKuTV() {
     // Size canvas to container
     resizeKuTVCanvas();
 
-    // Channel button listeners
-    document.querySelectorAll('.kutv-channel-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const ch = parseInt(btn.dataset.channel);
-            switchChannel(ch);
+    // Only set up listeners and video once
+    if (!kutvInitialized) {
+        kutvInitialized = true;
+
+        // Channel button listeners
+        document.querySelectorAll('.kutv-channel-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const ch = parseInt(btn.dataset.channel);
+                switchChannel(ch);
+            });
         });
-    });
 
-    // Create hidden video element for channel 4
-    kutvVideo = document.createElement('video');
-    kutvVideo.src = 'img/kutv/vhs-opening.mp4';
-    kutvVideo.loop = true;
-    kutvVideo.muted = true;
-    kutvVideo.playsInline = true;
-    kutvVideo.preload = 'auto';
-    kutvVideo.style.display = 'none';
-    document.body.appendChild(kutvVideo);
+        // Create hidden video element for channel 4
+        kutvVideo = document.createElement('video');
+        kutvVideo.src = 'img/kutv/vhs-opening.mp4';
+        kutvVideo.loop = true;
+        kutvVideo.muted = true;
+        kutvVideo.playsInline = true;
+        kutvVideo.preload = 'auto';
+        kutvVideo.style.display = 'none';
+        document.body.appendChild(kutvVideo);
 
-    // Click on canvas to toggle sound on channel 4
-    kutvCanvas.addEventListener('click', () => {
-        if (kutvChannel === 4 && kutvVideo) {
-            kutvSoundOn = !kutvSoundOn;
-            kutvVideo.muted = !kutvSoundOn;
-        }
-    });
+        // Click on canvas to toggle sound on channel 4
+        kutvCanvas.addEventListener('click', () => {
+            if (kutvChannel === 4 && kutvVideo) {
+                kutvSoundOn = !kutvSoundOn;
+                kutvVideo.muted = !kutvSoundOn;
+            }
+        });
 
-    // Handle resize
-    window.addEventListener('resize', resizeKuTVCanvas);
+        // Handle resize
+        window.addEventListener('resize', resizeKuTVCanvas);
+    }
 
-    // Start on channel 1
+    // Reset to channel 1
     kutvChannel = 1;
+    kutvSoundOn = false;
+    if (kutvVideo) {
+        kutvVideo.pause();
+        kutvVideo.muted = true;
+        kutvVideo.currentTime = 0;
+    }
+
+    // Reset button styling to channel 1 active
+    document.querySelectorAll('.kutv-channel-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.channel) === 1);
+    });
+
+    // Reset status bar
+    if (kutvStatusEl) kutvStatusEl.textContent = CHANNEL_NAMES[1];
+
     startKuTV();
 }
 
