@@ -3,13 +3,14 @@
 let kutvCanvas, kutvCtx;
 let kutvChannel = 1;
 let kutvStatusEl = null;
+let kutvVideo = null; // Video element for channel 4
 
 // Channel names
 const CHANNEL_NAMES = {
     1: 'Channel 1 — LIVE ✧',
     2: 'Channel 2 — NO SIGNAL',
     3: 'Channel 3 — GLITCH',
-    4: 'Channel 4 — COMING SOON ♡'
+    4: 'Channel 4 — VHS ♡'
 };
 let kutvAnimFrame = null;
 let kutvActive = false;
@@ -21,6 +22,7 @@ let kutvScanX = 0;
 let kutvFlashTimer = 0;
 let kutvDistortTimer = 0;
 let kutvLastTime = 0;
+let kutvSoundOn = false; // Track if user has unmuted channel 4
 
 const KUTV_SWITCH_DURATION = 300; // ms of static burst when switching
 const KUTV_BLINK_RATE = 500; // ms per blink toggle
@@ -64,6 +66,24 @@ function initKuTV() {
         });
     });
 
+    // Create hidden video element for channel 4
+    kutvVideo = document.createElement('video');
+    kutvVideo.src = 'img/kutv/vhs-opening.mp4';
+    kutvVideo.loop = true;
+    kutvVideo.muted = true;
+    kutvVideo.playsInline = true;
+    kutvVideo.preload = 'auto';
+    kutvVideo.style.display = 'none';
+    document.body.appendChild(kutvVideo);
+
+    // Click on canvas to toggle sound on channel 4
+    kutvCanvas.addEventListener('click', () => {
+        if (kutvChannel === 4 && kutvVideo) {
+            kutvSoundOn = !kutvSoundOn;
+            kutvVideo.muted = !kutvSoundOn;
+        }
+    });
+
     // Handle resize
     window.addEventListener('resize', resizeKuTVCanvas);
 
@@ -93,6 +113,7 @@ function stopKuTV() {
         cancelAnimationFrame(kutvAnimFrame);
         kutvAnimFrame = null;
     }
+    if (kutvVideo) kutvVideo.pause();
 }
 
 function switchChannel(ch) {
@@ -111,6 +132,17 @@ function switchChannel(ch) {
     // Update status bar text
     if (kutvStatusEl && CHANNEL_NAMES[ch]) {
         kutvStatusEl.textContent = CHANNEL_NAMES[ch];
+    }
+
+    // Handle video play/pause for channel 4
+    if (kutvVideo) {
+        if (ch === 4) {
+            kutvVideo.play().catch(() => {});
+        } else {
+            kutvVideo.pause();
+            kutvVideo.muted = true;
+            kutvSoundOn = false;
+        }
     }
 }
 
@@ -341,38 +373,70 @@ function renderChannel3(ctx, w, h) {
     drawOverlayText(ctx, 'CH 3', 12, 24, '#00ffff', 16);
 }
 
-// --- Channel 4: Placeholder ---
+// --- Channel 4: VHS Video ---
 function renderChannel4(ctx, w, h) {
-    // White noise (same as channel 1)
-    const imageData = ctx.createImageData(w, h);
-    const data = imageData.data;
-    const len = data.length;
-    for (let i = 0; i < len; i += 4) {
-        const v = (Math.random() * 256) | 0;
-        data[i] = v;
-        data[i + 1] = v;
-        data[i + 2] = v;
-        data[i + 3] = 255;
+    if (!kutvVideo || kutvVideo.readyState < 2) {
+        // Video not ready yet — show static
+        const imageData = ctx.createImageData(w, h);
+        const data = imageData.data;
+        for (let i = 0; i < data.length; i += 4) {
+            const v = (Math.random() * 256) | 0;
+            data[i] = v; data[i + 1] = v; data[i + 2] = v; data[i + 3] = 255;
+        }
+        ctx.putImageData(imageData, 0, 0);
+        drawOverlayText(ctx, 'CH 4', 12, 24, '#ff69b4', 16);
+        return;
     }
-    ctx.putImageData(imageData, 0, 0);
+
+    // Draw video frame scaled to fill canvas
+    const videoAspect = kutvVideo.videoWidth / kutvVideo.videoHeight;
+    const canvasAspect = w / h;
+    let drawW, drawH, drawX, drawY;
+
+    if (canvasAspect > videoAspect) {
+        drawW = w;
+        drawH = w / videoAspect;
+        drawX = 0;
+        drawY = (h - drawH) / 2;
+    } else {
+        drawH = h;
+        drawW = h * videoAspect;
+        drawX = (w - drawW) / 2;
+        drawY = 0;
+    }
+
+    ctx.drawImage(kutvVideo, drawX, drawY, drawW, drawH);
+
+    // CRT scanlines overlay
+    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+    for (let y = 0; y < h; y += 3) {
+        ctx.fillRect(0, y, w, 1);
+    }
+
+    // Slight VHS color bleed — shift a thin strip occasionally
+    if (Math.random() < 0.06) {
+        const stripY = (Math.random() * h) | 0;
+        const stripH = 1 + (Math.random() * 4) | 0;
+        const shift = ((Math.random() - 0.5) * 8) | 0;
+        const clampH = Math.min(stripH, h - stripY);
+        if (clampH > 0) {
+            const strip = ctx.getImageData(0, stripY, w, clampH);
+            ctx.putImageData(strip, shift, stripY);
+        }
+    }
 
     // Overlay: CH 4 top-left
     drawOverlayText(ctx, 'CH 4', 12, 24, '#ff69b4', 16);
 
-    // Centered: "CH 4 — COMING SOON ♡" in pink
-    const text = 'CH 4 \u2014 COMING SOON \u2661';
-    ctx.font = 'bold 18px monospace';
-    const textW = ctx.measureText(text).width;
-    const tx = (w - textW) / 2;
-    const ty = h / 2;
-
-    // Dark background for readability
-    ctx.fillStyle = 'rgba(0,0,0,0.6)';
-    ctx.fillRect(tx - 10, ty - 22, textW + 20, 32);
-
-    ctx.fillStyle = '#ff69b4';
-    ctx.font = 'bold 18px monospace';
-    ctx.fillText(text, tx, ty);
+    // Sound status top-right
+    if (kutvSoundOn) {
+        drawOverlayText(ctx, 'SOUND ON', w - 95, 24, '#ff69b4', 14);
+    } else {
+        const blinkOn = (kutvBlinkTimer % (KUTV_BLINK_RATE * 2)) < KUTV_BLINK_RATE;
+        if (blinkOn) {
+            drawOverlayText(ctx, 'SOUND OFF', w - 105, 24, '#ff69b4', 14);
+        }
+    }
 }
 
 // --- Utility: draw overlay text with optional bold ---

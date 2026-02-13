@@ -205,10 +205,12 @@ function initGallery() {
                     if (windowEl) windowEl.classList.remove('viewer-mode');
                     restoreWindowFromViewer();
                 }
+                updateWindowTitle('illustration');
                 showIllustrationFolders();
             } else if (folderId === 'photos') {
                 // Open Photos directly in the viewer
                 currentSection = 'photos';
+                updateWindowTitle('photos');
                 openFolder('photos');
             } else {
                 openFolder(folderId);
@@ -255,6 +257,10 @@ function openFolder(folderId, startIndex = 0) {
     currentFolder = folder;
     currentFolderId = folderId;
     currentImageIndex = startIndex;
+
+    // Update section and window title
+    currentSection = folderId === 'photos' ? 'photos' : 'illustration';
+    updateWindowTitle(currentSection);
 
     // Resize window to be as TALL as possible for better image viewing
     resizeWindowForViewer();
@@ -345,10 +351,8 @@ function closeFolder() {
     const windowEl = document.getElementById('illustration-window');
     if (windowEl) {
         windowEl.classList.remove('viewer-mode');
-        // Restore title to Illustration
-        const titleEl = windowEl.querySelector('.window-title');
-        if (titleEl) titleEl.textContent = '📂 Exploring — C:\\Sandra\\Illustration ✧';
     }
+    updateWindowTitle('illustration');
 
     // Restore original window size
     restoreWindowFromViewer();
@@ -526,6 +530,16 @@ function showPhotosFileList() {
     if (sidebar) sidebar.classList.remove('collapsed');
 }
 
+// Update the window header title
+function updateWindowTitle(section) {
+    const windowEl = document.getElementById('illustration-window');
+    const titleEl = windowEl?.querySelector('.window-title');
+    if (titleEl) {
+        const name = section === 'photos' ? 'Photos' : 'Illustration';
+        titleEl.textContent = `📂 Exploring — C:\\Sandra\\${name} ✧`;
+    }
+}
+
 // Switch between Illustration and Photos sections
 function showGallerySection(sectionId) {
     // Always reset viewer state first
@@ -535,15 +549,13 @@ function showGallerySection(sectionId) {
     if (windowEl) windowEl.classList.remove('viewer-mode');
     restoreWindowFromViewer();
 
-    // Update window title
-    const titleEl = windowEl?.querySelector('.window-title');
+    updateWindowTitle(sectionId);
+
     if (sectionId === 'photos') {
         currentSection = 'photos';
-        if (titleEl) titleEl.textContent = '📂 Exploring — C:\\Sandra\\Photos ✧';
         openFolder('photos');
     } else {
         currentSection = 'illustration';
-        if (titleEl) titleEl.textContent = '📂 Exploring — C:\\Sandra\\Illustration ✧';
         showIllustrationFolders();
     }
 }
