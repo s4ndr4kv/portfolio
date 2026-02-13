@@ -41,7 +41,7 @@
         <!-- DESKTOP ICONS -->
         <div class="desktop-icons">
             <!-- Gallery Icons -->
-            <div class="icon" data-window="editorial">
+            <div class="icon" data-window="illustration">
                 <div class="icon-image">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
                         <rect x="8" y="8" width="32" height="3" fill="#2a1a2e"/>
@@ -213,7 +213,7 @@
                 <span class="icon-text">Experimental</span>
             </div>
 
-            <div class="icon" data-window="fotografia">
+            <div class="icon" id="photos-icon" data-window="illustration" data-gallery-target="photos">
                 <div class="icon-image">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
                         <rect x="10" y="8" width="8" height="4" fill="#a0d8ef"/>
@@ -628,13 +628,13 @@
         <!-- ============ WINDOWS ============ -->
 
         <!-- GALLERY: Ilustración Editorial — Windows Explorer style -->
-        <div class="window explorer-window" id="editorial-window" style="top: 20px; left: 80px; width: 700px; height: 620px;">
+        <div class="window explorer-window" id="illustration-window" style="top: 20px; left: 80px; width: 700px; height: 620px;">
             <div class="window-header">
                 <span class="window-title">📂 Exploring — C:\Sandra\Illustration ✧</span>
                 <div class="window-controls">
-                    <button class="window-button minimize-btn" data-action="minimize" data-window="editorial">_</button>
-                    <button class="window-button maximize-btn" data-action="maximize" data-window="editorial">□</button>
-                    <button class="window-button close-btn" data-action="close" data-window="editorial">×</button>
+                    <button class="window-button minimize-btn" data-action="minimize" data-window="illustration">_</button>
+                    <button class="window-button maximize-btn" data-action="maximize" data-window="illustration">□</button>
+                    <button class="window-button close-btn" data-action="close" data-window="illustration">×</button>
                 </div>
             </div>
             <div class="window-menu-bar">
@@ -785,7 +785,7 @@
                                                         </div>
                                                         <!-- Photos -->
                                                         <div class="tree-node">
-                                                            <div class="tree-row" data-folder="photography">
+                                                            <div class="tree-row" data-folder="photos">
                                                                 <span class="tree-box-empty"></span>
                                                                 <span class="tree-icon-img tree-icon-folder"></span>
                                                                 <span class="tree-label">Photos</span>
@@ -860,13 +860,13 @@
                 <!-- Right content: folder view or image viewer -->
                 <div class="explorer-content">
                     <!-- Viewer header bar (hidden by default, shows when viewing images) -->
-                    <div class="viewer-header hidden" id="editorial-viewer-header">
+                    <div class="viewer-header hidden" id="illustration-viewer-header">
                         <button class="viewer-back">← Back</button>
                         <span class="viewer-title">Folder</span>
                         <span class="viewer-count">1 / 10</span>
                     </div>
                     <!-- Folder View (list style like Explorer) -->
-                    <div class="explorer-list" id="editorial-folders">
+                    <div class="explorer-list" id="illustration-folders">
                         <div class="explorer-list-header">
                             <span class="list-col list-col-name">Name</span>
                             <span class="list-col list-col-size">Size</span>
@@ -899,7 +899,7 @@
                         </div>
                     </div>
                     <!-- Image Viewer main area (hidden by default) -->
-                    <div class="viewer-main hidden" id="editorial-viewer-main">
+                    <div class="viewer-main hidden" id="illustration-viewer-main">
                         <button class="viewer-prev">&#10094;</button>
                         <img class="viewer-image" src="" alt="illustration">
                         <button class="viewer-next">&#10095;</button>
@@ -912,7 +912,7 @@
                 </div>
             </div>
             <!-- Viewer thumbnails (hidden by default, anchored above status bar) -->
-            <div class="viewer-thumbnails hidden" id="editorial-viewer-thumbs"></div>
+            <div class="viewer-thumbnails hidden" id="illustration-viewer-thumbs"></div>
             <div class="window-status-bar">
                 <span id="explorer-status">3 object(s) ✧</span>
                 <span id="explorer-filename"></span>
@@ -1039,87 +1039,6 @@
             </div>
             <div class="window-status-bar">
                 <span>0 objects ✧</span>
-            </div>
-        </div>
-
-        <!-- GALLERY: Fotografía -->
-        <div class="window" id="fotografia-window" style="top: 70px; left: 180px; width: 600px; height: 450px;">
-            <div class="window-header">
-                <span class="window-title">📷 Photos — 写真 ✧</span>
-                <div class="window-controls">
-                    <button class="window-button minimize-btn" data-action="minimize" data-window="fotografia">_</button>
-                    <button class="window-button maximize-btn" data-action="maximize" data-window="fotografia">□</button>
-                    <button class="window-button close-btn" data-action="close" data-window="fotografia">×</button>
-                </div>
-            </div>
-            <div class="window-menu-bar">
-                <span class="menu-item">File</span>
-                <span class="menu-item">Edit</span>
-                <span class="menu-item">View</span>
-                <span class="menu-item">Help</span>
-            </div>
-            <div class="window-content">
-                <div class="explorer-grid" id="fotografia-gallery">
-                    <!-- Photo file icons -->
-                    <div class="explorer-file">
-                        <div class="explorer-file-icon">
-                            <svg viewBox="0 0 32 32" width="48" height="48">
-                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
-                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
-                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
-                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
-                            </svg>
-                        </div>
-                        <span class="explorer-file-name">DSC82738.jpg</span>
-                    </div>
-                    <div class="explorer-file">
-                        <div class="explorer-file-icon">
-                            <svg viewBox="0 0 32 32" width="48" height="48">
-                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
-                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
-                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
-                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
-                            </svg>
-                        </div>
-                        <span class="explorer-file-name">DSC82739.jpg</span>
-                    </div>
-                    <div class="explorer-file">
-                        <div class="explorer-file-icon">
-                            <svg viewBox="0 0 32 32" width="48" height="48">
-                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
-                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
-                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
-                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
-                            </svg>
-                        </div>
-                        <span class="explorer-file-name">DSC82740.jpg</span>
-                    </div>
-                    <div class="explorer-file">
-                        <div class="explorer-file-icon">
-                            <svg viewBox="0 0 32 32" width="48" height="48">
-                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
-                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
-                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
-                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
-                            </svg>
-                        </div>
-                        <span class="explorer-file-name">DSC82741.jpg</span>
-                    </div>
-                    <div class="explorer-file">
-                        <div class="explorer-file-icon">
-                            <svg viewBox="0 0 32 32" width="48" height="48">
-                                <rect x="2" y="4" width="28" height="22" fill="#ffb6d9" stroke="#ff69b4" stroke-width="1"/>
-                                <rect x="4" y="6" width="24" height="18" fill="#e8d4f0"/>
-                                <circle cx="10" cy="12" r="3" fill="#ffcc00"/>
-                                <polygon points="6,22 14,14 20,20 24,16 28,22" fill="#87ceeb"/>
-                            </svg>
-                        </div>
-                        <span class="explorer-file-name">DSC82742.jpg</span>
-                    </div>
-                </div>
-            </div>
-            <div class="window-status-bar">
-                <span>5 objects ✧</span>
             </div>
         </div>
 
@@ -1658,7 +1577,7 @@ hi@sandraku.com
         </div>
         <div class="start-menu-main">
             <div class="start-menu-items">
-                <div class="start-menu-item" data-window="editorial">
+                <div class="start-menu-item" data-window="illustration">
                     <span class="start-icon">📂</span>
                     Illustration
                 </div>
@@ -1674,7 +1593,7 @@ hi@sandraku.com
                     <span class="start-icon">📝</span>
                     Notepad (CV)
                 </div>
-                <div class="start-menu-item" data-window="fotografia">
+                <div class="start-menu-item" data-window="illustration" data-gallery-target="photos">
                     <span class="start-icon">📷</span>
                     Photos
                 </div>

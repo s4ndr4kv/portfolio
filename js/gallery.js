@@ -110,15 +110,22 @@ const folderConfig = {
             '18sandraku-journalpink.mp4'
         ]
     },
-    'photography': {
+    'photos': {
         name: 'Photos',
         path: 'img/Photos/',
         images: [
-            'IMG_1752825135453.JPEG',
-            'IMG_1753169082772.JPEG',
-            'IMG_1770068868969.JPEG',
-            'IMG_1770068869192.JPEG',
-            'IMG_1770072373044.jpg'
+            'MVI_4012.mp4',
+            'DSC94999.jpg',
+            'DSC94998.jpg',
+            'DSC95002.jpg',
+            'DSC95001.jpg',
+            'DSC95005.jpg',
+            'DSC95004.jpg',
+            'DSC95008.jpg',
+            'DSC95007.jpg',
+            'DSC95011.jpg',
+            'DSC95010.jpg',
+            'DSC95013.jpg'
         ]
     }
 };
@@ -127,6 +134,7 @@ const folderConfig = {
 let currentFolder = null;
 let currentFolderId = null;
 let currentImageIndex = 0;
+let currentSection = 'illustration'; // 'illustration' or 'photos'
 let currentZoom = 100; // Zoom level percentage
 let baseZoom = 100; // Base zoom for vertical images (calculated to fill width)
 let isVerticalCrop = false; // Track if current image is very vertical
@@ -157,10 +165,10 @@ function getDisplayName(filename) {
 }
 
 function initGallery() {
-    explorerList = document.getElementById('editorial-folders');
-    viewerHeader = document.getElementById('editorial-viewer-header');
-    viewerMain = document.getElementById('editorial-viewer-main');
-    viewerThumbs = document.getElementById('editorial-viewer-thumbs');
+    explorerList = document.getElementById('illustration-folders');
+    viewerHeader = document.getElementById('illustration-viewer-header');
+    viewerMain = document.getElementById('illustration-viewer-main');
+    viewerThumbs = document.getElementById('illustration-viewer-thumbs');
     viewerImage = document.querySelector('.viewer-image');
     viewerTitle = document.querySelector('.viewer-title');
     viewerCount = document.querySelector('.viewer-count');
@@ -189,7 +197,19 @@ function initGallery() {
             row.classList.add('selected');
 
             if (folderId === 'root') {
-                closeFolder();
+                // Reset viewer if active, then show Illustration folders
+                if (currentFolder) {
+                    currentFolder = null;
+                    currentFolderId = null;
+                    const windowEl = document.getElementById('illustration-window');
+                    if (windowEl) windowEl.classList.remove('viewer-mode');
+                    restoreWindowFromViewer();
+                }
+                showIllustrationFolders();
+            } else if (folderId === 'photos') {
+                // Open Photos directly in the viewer
+                currentSection = 'photos';
+                openFolder('photos');
             } else {
                 openFolder(folderId);
             }
@@ -228,13 +248,13 @@ function initGallery() {
     document.querySelector('.tree-row[data-folder="root"]')?.classList.add('selected');
 }
 
-function openFolder(folderId) {
+function openFolder(folderId, startIndex = 0) {
     const folder = folderConfig[folderId];
     if (!folder || folder.images.length === 0) return;
 
     currentFolder = folder;
     currentFolderId = folderId;
-    currentImageIndex = 0;
+    currentImageIndex = startIndex;
 
     // Resize window to be as TALL as possible for better image viewing
     resizeWindowForViewer();
@@ -246,7 +266,7 @@ function openFolder(folderId) {
     // Update address bar
     if (explorerPath) {
         // Photos has its own path, others are under Illustration
-        const addressPath = folderId === 'photography'
+        const addressPath = folderId === 'photos'
             ? `C:\\Sandra\\Photos`
             : `C:\\Sandra\\Illustration\\${folder.name}`;
         explorerPath.textContent = addressPath;
@@ -269,14 +289,14 @@ function openFolder(folderId) {
     // Build thumbnails
     buildThumbnails();
 
-    // Show first image
-    showImage(0);
+    // Show image at start index
+    showImage(startIndex);
 }
 
 // Resize the Illustration window IN PLACE to be taller and wider for image viewing
 // Uses 4:5 aspect ratio for desktop, maximizes on mobile
 function resizeWindowForViewer() {
-    const windowEl = document.getElementById('editorial-window');
+    const windowEl = document.getElementById('illustration-window');
     if (!windowEl) return;
 
     const isMobile = window.innerWidth <= 768;
@@ -292,7 +312,7 @@ function resizeWindowForViewer() {
 
     if (isMobile) {
         // Mobile: MAXIMIZE the window and add viewer-mode class
-        const windowId = 'editorial';
+        const windowId = 'illustration';
         windowEl.classList.add('viewer-mode');
         if (typeof maximizeWindow === 'function' && !windowEl.classList.contains('maximized')) {
             maximizeWindow(windowId);
@@ -322,44 +342,20 @@ function closeFolder() {
     currentFolderId = null;
 
     // Remove viewer-mode class
-    const windowEl = document.getElementById('editorial-window');
+    const windowEl = document.getElementById('illustration-window');
     if (windowEl) {
         windowEl.classList.remove('viewer-mode');
+        // Restore title to Illustration
+        const titleEl = windowEl.querySelector('.window-title');
+        if (titleEl) titleEl.textContent = '📂 Exploring — C:\\Sandra\\Illustration ✧';
     }
 
     // Restore original window size
     restoreWindowFromViewer();
 
-    // Update tree selection back to Illustration (root)
-    document.querySelectorAll('.tree-row').forEach(r => r.classList.remove('selected'));
-    document.querySelector('.tree-row[data-folder="root"]')?.classList.add('selected');
-
-    // Update address bar
-    if (explorerPath) {
-        explorerPath.textContent = 'C:\\Sandra\\Illustration';
-    }
-
-    // Update status bar
-    if (explorerStatus) {
-        explorerStatus.textContent = '3 object(s) ✧';
-    }
-
-    // Clear filename
-    if (explorerFilename) {
-        explorerFilename.textContent = '';
-    }
-
-    // Show folder list, hide viewer
-    explorerList.classList.remove('hidden');
-    viewerHeader.classList.add('hidden');
-    viewerMain.classList.add('hidden');
-    viewerThumbs.classList.add('hidden');
-
-    // Re-open sidebar when going back to folder view
-    const sidebar = document.querySelector('.explorer-sidebar');
-    if (sidebar) {
-        sidebar.classList.remove('collapsed');
-    }
+    // Always return to Illustration folders view
+    currentSection = 'illustration';
+    showIllustrationFolders();
 }
 
 // Toggle sidebar visibility (collapse/expand the tree panel)
@@ -372,7 +368,7 @@ function toggleSidebar() {
 
 // Restore window to original size when closing viewer (position stays the same)
 function restoreWindowFromViewer() {
-    const windowEl = document.getElementById('editorial-window');
+    const windowEl = document.getElementById('illustration-window');
     if (!windowEl) return;
 
     const isMobile = window.innerWidth <= 768;
@@ -380,7 +376,7 @@ function restoreWindowFromViewer() {
     if (isMobile) {
         // Mobile: restore from maximized state using maximizeWindow toggle
         if (windowEl.classList.contains('maximized') && typeof maximizeWindow === 'function') {
-            maximizeWindow('editorial');
+            maximizeWindow('illustration');
         }
     } else if (windowEl.dataset.viewerOrigH) {
         // Desktop: restore saved dimensions
@@ -394,6 +390,166 @@ function restoreWindowFromViewer() {
     delete windowEl.dataset.viewerOrigH;
     delete windowEl.dataset.viewerOrigMaxH;
 }
+
+// Show the Illustration folder list (default view)
+function showIllustrationFolders() {
+    currentSection = 'illustration';
+
+    // Rebuild folder list HTML
+    const foldersHTML = `
+        <div class="explorer-list-header">
+            <span class="list-col list-col-name">Name</span>
+            <span class="list-col list-col-size">Size</span>
+            <span class="list-col list-col-type">Type</span>
+            <span class="list-col list-col-modified">Modified</span>
+        </div>
+        <div class="explorer-list-item" data-folder="character-design">
+            <span class="list-col list-col-name"><span class="list-icon folder-icon-yellow"></span> Character Design</span>
+            <span class="list-col list-col-size"></span>
+            <span class="list-col list-col-type">File Folder</span>
+            <span class="list-col list-col-modified">01/15/25</span>
+        </div>
+        <div class="explorer-list-item" data-folder="kidcore">
+            <span class="list-col list-col-name"><span class="list-icon folder-icon-yellow"></span> Kidcore</span>
+            <span class="list-col list-col-size"></span>
+            <span class="list-col list-col-type">File Folder</span>
+            <span class="list-col list-col-modified">01/12/25</span>
+        </div>
+        <div class="explorer-list-item" data-folder="narrative">
+            <span class="list-col list-col-name"><span class="list-icon folder-icon-yellow"></span> Narrative</span>
+            <span class="list-col list-col-size"></span>
+            <span class="list-col list-col-type">File Folder</span>
+            <span class="list-col list-col-modified">01/10/25</span>
+        </div>
+        <div class="explorer-list-item" data-folder="mystery">
+            <span class="list-col list-col-name"><span class="list-icon folder-icon-yellow"></span> ???</span>
+            <span class="list-col list-col-size"></span>
+            <span class="list-col list-col-type">File Folder</span>
+            <span class="list-col list-col-modified">02/11/26</span>
+        </div>
+    `;
+
+    explorerList.innerHTML = foldersHTML;
+
+    // Re-attach click handlers to folder items
+    document.querySelectorAll('.explorer-list-item[data-folder]').forEach(item => {
+        item.addEventListener('click', () => {
+            const folderId = item.getAttribute('data-folder');
+            openFolder(folderId);
+        });
+    });
+
+    // Update tree selection
+    document.querySelectorAll('.tree-row').forEach(r => r.classList.remove('selected'));
+    document.querySelector('.tree-row[data-folder="root"]')?.classList.add('selected');
+
+    // Update address bar
+    if (explorerPath) explorerPath.textContent = 'C:\\Sandra\\Illustration';
+
+    // Update status bar
+    if (explorerStatus) explorerStatus.textContent = '4 object(s) ✧';
+
+    // Clear filename
+    if (explorerFilename) explorerFilename.textContent = '';
+
+    // Show folder list, hide viewer
+    explorerList.classList.remove('hidden');
+    viewerHeader.classList.add('hidden');
+    viewerMain.classList.add('hidden');
+    viewerThumbs.classList.add('hidden');
+
+    // Re-open sidebar
+    const sidebar = document.querySelector('.explorer-sidebar');
+    if (sidebar) sidebar.classList.remove('collapsed');
+}
+
+// Show the Photos file list view
+function showPhotosFileList() {
+    currentSection = 'photos';
+    const folder = folderConfig['photos'];
+    if (!folder) return;
+
+    // Make sure viewer is hidden, file list is showing
+    explorerList.classList.remove('hidden');
+    viewerHeader.classList.add('hidden');
+    viewerMain.classList.add('hidden');
+    viewerThumbs.classList.add('hidden');
+
+    // Update tree selection to Photos
+    document.querySelectorAll('.tree-row').forEach(r => r.classList.remove('selected'));
+    document.querySelector('.tree-row[data-folder="photos"]')?.classList.add('selected');
+
+    // Update address bar
+    if (explorerPath) explorerPath.textContent = 'C:\\Sandra\\Photos';
+
+    // Update status bar
+    if (explorerStatus) explorerStatus.textContent = `${folder.images.length} object(s) ✧`;
+
+    // Clear filename
+    if (explorerFilename) explorerFilename.textContent = '';
+
+    // Build photo file list HTML
+    let html = `
+        <div class="explorer-list-header">
+            <span class="list-col list-col-name">Name</span>
+            <span class="list-col list-col-size">Size</span>
+            <span class="list-col list-col-type">Type</span>
+            <span class="list-col list-col-modified">Modified</span>
+        </div>
+    `;
+
+    folder.images.forEach((filename, index) => {
+        const ext = filename.split('.').pop().toUpperCase();
+        const displayName = getDisplayName(filename);
+        html += `
+            <div class="explorer-list-item photo-file-item" data-photo-index="${index}">
+                <span class="list-col list-col-name"><span class="list-icon file-icon-image"></span> ${displayName}</span>
+                <span class="list-col list-col-size"></span>
+                <span class="list-col list-col-type">${ext} Image</span>
+                <span class="list-col list-col-modified">01/20/25</span>
+            </div>
+        `;
+    });
+
+    explorerList.innerHTML = html;
+
+    // Add click handlers to photo file items
+    document.querySelectorAll('.photo-file-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const index = parseInt(item.getAttribute('data-photo-index'));
+            openFolder('photos', index);
+        });
+    });
+
+    // Re-open sidebar
+    const sidebar = document.querySelector('.explorer-sidebar');
+    if (sidebar) sidebar.classList.remove('collapsed');
+}
+
+// Switch between Illustration and Photos sections
+function showGallerySection(sectionId) {
+    // Always reset viewer state first
+    currentFolder = null;
+    currentFolderId = null;
+    const windowEl = document.getElementById('illustration-window');
+    if (windowEl) windowEl.classList.remove('viewer-mode');
+    restoreWindowFromViewer();
+
+    // Update window title
+    const titleEl = windowEl?.querySelector('.window-title');
+    if (sectionId === 'photos') {
+        currentSection = 'photos';
+        if (titleEl) titleEl.textContent = '📂 Exploring — C:\\Sandra\\Photos ✧';
+        openFolder('photos');
+    } else {
+        currentSection = 'illustration';
+        if (titleEl) titleEl.textContent = '📂 Exploring — C:\\Sandra\\Illustration ✧';
+        showIllustrationFolders();
+    }
+}
+
+// Expose for main.js
+window.showGallerySection = showGallerySection;
 
 function showImage(index) {
     if (!currentFolder) return;

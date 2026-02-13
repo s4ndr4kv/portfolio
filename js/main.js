@@ -13,11 +13,11 @@ let selectedIcon = null;
 
 // ===== WINDOW TITLES =====
 const windowTitles = {
-    'editorial': '📖 Illustration — イラスト ✧',
+    'illustration': '📖 Illustration — イラスト ✧',
     'personajes': '🧙 Characters — キャラクター ✧',
     'winamp': '🎵 Winamp — ウィンアンプ ♡',
     'experimental': '🧪 Experimental — 実験的 ✧',
-    'fotografia': '📷 Photos — 写真 ✧',
+
     'about': '🖥️ My PC — マイコンピュータ',
     'notepad': '📝 CV.txt — メモ帳 ✧',
     'email': '📧 New Message — メール ♡',
@@ -29,14 +29,7 @@ const windowTitles = {
     'imageviewer': '🖼️ Image Viewer — 画像 ✧'
 };
 
-// Photo files mapping (filename -> actual image path)
-const photoFiles = {
-    'DSC82738.jpg': 'img/Photos/IMG_1752825135453.JPEG',
-    'DSC82739.jpg': 'img/Photos/IMG_1753169082772.JPEG',
-    'DSC82740.jpg': 'img/Photos/IMG_1770068868969.JPEG',
-    'DSC82741.jpg': 'img/Photos/IMG_1770068869192.JPEG',
-    'DSC82742.jpg': 'img/Photos/IMG_1770072373044.jpg'
-};
+
 
 // ===== SPLASH SCREEN — BIOS BOOT =====
 function initSplash() {
@@ -169,7 +162,7 @@ function getMobileWindowStyle() {
     };
 }
 
-function openWindow(windowId) {
+function openWindow(windowId, galleryTarget) {
     const windowEl = document.getElementById(windowId + '-window');
     if (!windowEl) return;
 
@@ -188,6 +181,11 @@ function openWindow(windowId) {
     addToTaskbar(windowId);
     closeStartMenu();
     clearIconSelection();
+
+    // Handle gallery section switching for illustration window
+    if (windowId === 'illustration' && typeof showGallerySection === 'function') {
+        showGallerySection(galleryTarget || 'illustration');
+    }
 
     // Initialize paint canvas when paint window opens
     if (windowId === 'paint') {
@@ -301,7 +299,7 @@ function maximizeWindow(windowId) {
     }
 
     // Recalculate gallery zoom after maximize/restore (with small delay for CSS to apply)
-    if (windowId === 'editorial') {
+    if (windowId === 'illustration') {
         setTimeout(() => {
             if (window.recalculateGalleryZoom) {
                 window.recalculateGalleryZoom();
@@ -827,7 +825,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.add('selected');
             selectedIcon = icon;
             const windowId = icon.getAttribute('data-window');
-            openWindow(windowId);
+            const galleryTarget = icon.getAttribute('data-gallery-target');
+            openWindow(windowId, galleryTarget);
         });
     });
 
@@ -861,7 +860,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start menu items
     document.querySelectorAll('.start-menu-item[data-window]').forEach(item => {
         item.addEventListener('click', () => {
-            openWindow(item.getAttribute('data-window'));
+            const windowId = item.getAttribute('data-window');
+            const galleryTarget = item.getAttribute('data-gallery-target');
+            openWindow(windowId, galleryTarget);
         });
     });
 
